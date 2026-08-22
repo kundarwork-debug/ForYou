@@ -23,6 +23,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
     .badge-capsule {
@@ -64,7 +66,7 @@
       line-height: 1.6;
     }
 
-    /* Interactive Orbital Orbit Physics */
+    /* Orbit Physics Hub */
     .interactive-hero-zone {
       position: relative;
       width: min(94vw, 900px);
@@ -138,12 +140,14 @@
       100% { transform: scale(1.7); opacity: 0; }
     }
 
-    /* Modules Section */
+    /* Cards Module Section */
     .workspace-section {
       max-width: 1200px;
       margin: 30px auto 40px;
       padding: 0 32px;
       width: 100%;
+      position: relative;
+      z-index: 2;
     }
 
     .section-bar {
@@ -282,6 +286,8 @@
       margin: 10px auto 40px;
       padding: 0 32px;
       width: 100%;
+      position: relative;
+      z-index: 2;
     }
 
     .impact-grid {
@@ -334,7 +340,7 @@
     <div class="matrix-plane" id="matrixPlane"></div>
   </div>
 
-  <!-- Header Placeholder -->
+  <!-- Header Placeholder (Injected by common.js) -->
   <div id="header-container"></div>
 
   <main>
@@ -432,7 +438,7 @@
     </section>
   </main>
 
-  <!-- Footer Placeholder -->
+  <!-- Footer Placeholder (Injected by common.js) -->
   <div id="footer-container"></div>
 
   <!-- Shared Controller Script -->
