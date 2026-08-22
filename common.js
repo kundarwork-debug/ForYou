@@ -1,47 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Inject Header Component
+  // Inject Common Header
   const headerContainer = document.getElementById("header-container");
   if (headerContainer) {
-    fetch("header.html")
-      .then(res => res.text())
-      .then(html => headerContainer.innerHTML = html)
-      .catch(() => {
-        // Fallback inline header if running without local web server
-        headerContainer.innerHTML = `
-          <header class="site-header">
-            <div class="header-container">
-              <a href="index.html" class="brand-logo"><span class="material-symbols-outlined" style="color: #ff3377;">favorite</span> VibeNotes</a>
-              <nav class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="free1.html" class="nav-link">Love Letter</a>
-              </nav>
-              <div class="nav-badge">Virtual Cards</div>
-            </div>
-          </header>
-        `;
-      });
+    headerContainer.innerHTML = `
+      <header class="site-header">
+        <div class="header-container">
+          <a href="index.html" class="brand-logo">
+            <span class="material-symbols-outlined" style="color: #ff3377; font-size: 22px;">favorite</span>
+            <span>VibeNotes</span>
+          </a>
+          <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="free1.html" class="nav-link">Love Letter</a>
+          </nav>
+          <div class="nav-badge">Virtual Cards Hub</div>
+        </div>
+      </header>
+    `;
+
+    // Highlight active link
+    const currentPath = window.location.pathname;
+    const links = headerContainer.querySelectorAll(".nav-link");
+    links.forEach(link => {
+      if (link.getAttribute("href") && currentPath.endsWith(link.getAttribute("href"))) {
+        link.classList.add("active");
+      }
+    });
   }
 
-  // 2. Inject Footer Component
+  // Inject Common Footer
   const footerContainer = document.getElementById("footer-container");
   if (footerContainer) {
-    fetch("footer.html")
-      .then(res => res.text())
-      .then(html => footerContainer.innerHTML = html)
-      .catch(() => {
-        // Fallback inline footer if running without local web server
-        footerContainer.innerHTML = `
-          <footer class="site-footer">
-            <div class="footer-container">
-              <div class="footer-left">© 2026 VibeNotes. Handcrafted with ❤️</div>
-              <div class="footer-right"><a href="index.html" class="footer-link">Home</a><a href="free1.html" class="footer-link">Love Letter</a></div>
-            </div>
-          </footer>
-        `;
-      });
+    footerContainer.innerHTML = `
+      <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-left">
+            © 2026 VibeNotes Workspace. Designed & developed with ❤️ by Prasad.
+          </div>
+          <div class="footer-right">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="free1.html" class="footer-link">Love Letter</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+          </div>
+        </div>
+      </footer>
+    `;
   }
 
-  // 3. Floating Particle Physics
+  // Floating Particle Hearts
   const emojis = ["❤️", "💖", "💕", "✨", "🌸"];
   setInterval(() => {
     const p = document.createElement("div");
@@ -54,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => p.remove(), 9000);
   }, 450);
 
-  // 4. Matrix Scroll Controller
+  // Background Matrix Scroll Movement
   const plane = document.getElementById('matrixPlane');
   if (plane) {
     window.addEventListener('scroll', () => {
