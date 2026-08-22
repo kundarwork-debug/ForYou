@@ -1,243 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Share a Special Message</title>
-  <style>
-    :root {
-      --primary: #ff4d6d;
-      --primary-hover: #c9184a;
-      --bg-gradient: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-      --card-bg: #ffffff;
-      --text: #2b2b2b;
-      --muted: #666;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Special Surprise ❤️</title>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    body {
-      background: var(--bg-gradient);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+}
 
-    .card {
-      background: var(--card-bg);
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      width: 100%;
-      max-width: 480px;
-      text-align: center;
-    }
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #ff4d88, transparent 35%),
+        linear-gradient(135deg, #16001f, #3b082f, #120016);
+    color: white;
+    overflow-x: hidden;
+}
 
-    h1 {
-      color: var(--text);
-      font-size: 1.6rem;
-      margin-bottom: 8px;
-    }
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none;
+    animation: floatHeart linear forwards;
+    z-index: 1;
+}
 
-    p.subtitle {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 24px;
-    }
+@keyframes floatHeart {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    15% { opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
 
-    .form-group {
-      text-align: left;
-      margin-bottom: 16px;
-    }
+/* Main Container */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    padding: 70px 0;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
 
-    label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
+/* Generator Card View */
+.generator-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 28px;
+    padding: 40px 30px;
+    max-width: 580px;
+    margin: 40px auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+.generator-card h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #fff, #ff82b2, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-    input:focus, textarea:focus {
-      border-color: var(--primary);
-    }
+.generator-card p.subtitle {
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 25px;
+}
 
-    textarea {
-      resize: vertical;
-      min-height: 110px;
-    }
+.form-group {
+    margin-bottom: 18px;
+}
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 8px;
-    }
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #ff9ac2;
+    font-weight: 600;
+}
 
-    button:hover {
-      background: var(--primary-hover);
-    }
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
 
-    .result-box {
-      margin-top: 20px;
-      padding: 16px;
-      background: #fdf0f2;
-      border: 1px dashed var(--primary);
-      border-radius: 8px;
-      display: none;
-    }
+.form-group input:focus, .form-group textarea:focus {
+    border-color: #ff4d88;
+    background: rgba(255, 255, 255, 0.16);
+}
 
-    .result-box input {
-      background: #fff;
-      margin-bottom: 10px;
-    }
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
 
-    /* Message Display View */
-    .view-card {
-      display: none;
-      text-align: center;
-    }
+.result-area {
+    display: none;
+    margin-top: 20px;
+    padding: 16px;
+    background: rgba(255, 77, 136, 0.12);
+    border: 1px dashed #ff4d88;
+    border-radius: 12px;
+}
 
-    .letter-body {
-      background: #fff9fa;
-      border-left: 4px solid var(--primary);
-      padding: 20px;
-      border-radius: 6px;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: var(--text);
-      text-align: left;
-      white-space: pre-wrap;
-      margin: 20px 0;
-    }
+.result-area input {
+    background: rgba(0, 0, 0, 0.25);
+    margin-bottom: 10px;
+}
 
-    .signature {
-      text-align: right;
-      font-style: italic;
-      color: var(--muted);
-      font-weight: 600;
-    }
-  </style>
+/* Hero Section */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.small {
+    font-size: 18px;
+    letter-spacing: 3px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 10vw, 95px);
+    margin: 15px 0;
+    background: linear-gradient(90deg, #fff, #ff82b2, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { filter: drop-shadow(0 0 5px #ff4f91); }
+    to { filter: drop-shadow(0 0 25px #ff4f91); }
+}
+
+.hero p {
+    font-size: 21px;
+    max-width: 600px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.scroll {
+    margin-top: 50px;
+    animation: bounce 1.5s infinite;
+    font-size: 15px;
+    opacity: 0.7;
+}
+
+@keyframes bounce {
+    50% { transform: translateY(12px); }
+}
+
+/* Glass Cards */
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 40px 30px;
+    margin: 30px 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 18px;
+    line-height: 1.9;
+    color: #ffeaf3;
+}
+
+/* Reasons Grid */
+.reasons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.reason {
+    padding: 25px 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    transition: 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reason:hover {
+    transform: translateY(-8px) scale(1.03);
+    background: rgba(255, 105, 160, 0.22);
+}
+
+.reason span {
+    display: block;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+/* Love Letter */
+.letter {
+    text-align: left;
+}
+
+.letter-content {
+    white-space: pre-wrap;
+    font-size: 18px;
+    line-height: 1.9;
+    color: #ffeaf3;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 30px;
+    font-size: 22px;
+    color: #ff9ac2;
+    font-weight: 600;
+}
+
+/* Buttons */
+button {
+    border: none;
+    padding: 16px 35px;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #ff3d81, #ff72a8);
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 61, 129, 0.35);
+    transition: 0.3s transform, 0.3s box-shadow;
+    width: 100%;
+}
+
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 35px rgba(255, 61, 129, 0.55);
+}
+
+.btn-inline {
+    width: auto;
+    margin-top: 25px;
+}
+
+/* Secret Message */
+#secret {
+    display: none;
+    margin-top: 30px;
+    animation: appear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.big-love {
+    font-size: clamp(38px, 8vw, 70px);
+    margin: 20px 0;
+    color: #ff7eaf;
+    font-weight: 700;
+}
+
+/* Final Section */
+.final {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.final h2 {
+    font-size: clamp(35px, 7vw, 65px);
+}
+
+.final p {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+/* Custom Popup Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-box {
+    background: linear-gradient(135deg, rgba(255, 77, 136, 0.25), rgba(40, 0, 50, 0.85));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 40px 30px;
+    border-radius: 25px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1);
+}
+
+.modal-box h3 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #ff82b2;
+}
+
+.modal-box p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container { width: 92%; padding: 40px 0; }
+    .hero { min-height: 90vh; }
+    .hero p { font-size: 17px; }
+    .card { padding: 30px 20px; }
+    .card h2 { font-size: 28px; }
+    .card p { font-size: 16px; }
+    .reasons { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
-  <div class="card">
-    <!-- Creation View -->
-    <div id="create-view">
-      <h1>Create a Love Note</h1>
-      <p class="subtitle">Write your message and generate a secret link to share.</p>
+<!-- CREATOR / GENERATOR VIEW -->
+<div id="creator-view" class="container" style="display: none;">
+    <div class="generator-card">
+        <h1>Create a Love Page ✨</h1>
+        <p class="subtitle">Fill out the details below to generate a unique, shareable link.</p>
 
-      <div class="form-group">
-        <label for="recipient">To:</label>
-        <input type="text" id="recipient" placeholder="Recipient's name" />
-      </div>
+        <div class="form-group">
+            <label>Their Name (Recipient):</label>
+            <input type="text" id="input-to" placeholder="e.g. Shravya" />
+        </div>
 
-      <div class="form-group">
-        <label for="message">Your Message:</label>
-        <textarea id="message" placeholder="Type your heartfelt message here..."></textarea>
-      </div>
+        <div class="form-group">
+            <label>Your Name (Sender):</label>
+            <input type="text" id="input-from" placeholder="e.g. Prasad" />
+        </div>
 
-      <div class="form-group">
-        <label for="sender">From:</label>
-        <input type="text" id="sender" placeholder="Your name (optional)" />
-      </div>
+        <div class="form-group">
+            <label>Your Message / Letter:</label>
+            <textarea id="input-msg" placeholder="Write your heartfelt message here..."></textarea>
+        </div>
 
-      <button id="generate-btn">Generate Shareable Link</button>
+        <button onclick="generateLink()">Generate Magical Link 💖</button>
 
-      <div id="result" class="result-box">
-        <input type="text" id="share-url" readonly />
-        <button id="copy-btn">Copy Link</button>
-      </div>
+        <div id="result-box" class="result-area">
+            <input type="text" id="share-link-input" readonly />
+            <button onclick="copyShareLink()">📋 Copy Link</button>
+        </div>
+    </div>
+</div>
+
+<!-- PRESENTATION / RECIPIENT VIEW -->
+<div id="recipient-view" class="container" style="display: none;">
+
+    <section class="hero">
+        <div class="small">A little something for</div>
+        <h1 id="hero-name">Name ❤️</h1>
+        <p>
+            There are billions of people in this world...
+            <br>
+            but somehow my heart chose you.
+        </p>
+        <div class="scroll">↓ Scroll slowly ↓</div>
+    </section>
+
+    <div class="card">
+        <h2 id="card-greeting">Hey 🌸</h2>
+        <p>Ye website kisi special occasion ke liye nahi hai.</p>
+        <br>
+        <p>
+            Bas isliye hai kyunki kabhi-kabhi dil mein
+            jo feelings hoti hain na...
+            unhe words mein bolna mushkil hota hai.
+        </p>
+        <br>
+        <p>
+            Isliye socha...
+            <br><br>
+            <b>ek chhoti si duniya bana doon, sirf tumhare liye. ❤️</b>
+        </p>
     </div>
 
-    <!-- Read View -->
-    <div id="read-view" class="view-card">
-      <h1 id="view-to"></h1>
-      <div class="letter-body" id="view-message"></div>
-      <div class="signature" id="view-from"></div>
-      <button onclick="window.location.href = window.location.pathname" style="margin-top: 24px;">Create Your Own Note</button>
+    <div class="card">
+        <h2>Why You? ❤️</h2>
+        <div class="reasons">
+            <div class="reason"><span>😊</span> Your smile</div>
+            <div class="reason"><span>👀</span> Your beautiful eyes</div>
+            <div class="reason"><span>🌸</span> Your presence</div>
+            <div class="reason"><span>❤️</span> Your heart</div>
+            <div class="reason"><span>🥰</span> The way you are</div>
+            <div class="reason"><span>✨</span> Simply... YOU</div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const createView = document.getElementById('create-view');
-    const readView = document.getElementById('read-view');
+    <div class="card letter">
+        <h2 id="letter-title">💌 Dear...</h2>
+        <div class="letter-content" id="letter-body"></div>
+        <p style="text-align:center; font-size:24px; margin-top:25px;">
+            <b>I REALLY, REALLY LOVE YOU. ❤️</b>
+        </p>
+        <div class="signature" id="letter-sign">— Name ❤️</div>
+    </div>
 
-    // Parse URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const encodedData = urlParams.get('msg');
+    <div class="card">
+        <h2>🎁 One Little Surprise</h2>
+        <p>
+            <span id="surprise-name">You</span>, ek button hai...
+            <br>
+            aur iske andar ek chhoti si feeling chhupi hai.
+        </p>
+        <button class="btn-inline" onclick="showSecret()">Click Me ❤️</button>
 
-    if (encodedData) {
-      try {
-        // Decode Base64 data (handles Unicode properly)
-        const jsonString = decodeURIComponent(escape(atob(encodedData)));
-        const data = JSON.parse(jsonString);
+        <div id="secret">
+            <div class="big-love">I LOVE YOU</div>
+            <p>
+                Aaj ❤️<br>
+                Kal ❤️<br>
+                Aur har beautiful moment mein ❤️
+            </p>
+        </div>
+    </div>
 
-        createView.style.display = 'none';
-        readView.style.display = 'block';
+    <section class="final">
+        <div style="font-size:70px;">❤️</div>
+        <h2 id="pair-names">Prasad ❤️ Shravya</h2>
+        <p>
+            Some people become a chapter...
+            <br>
+            but you became my favourite story.
+        </p>
+        <button class="btn-inline" onclick="finalLove()">One Last Thing 💕</button>
+        <br><br>
+        <button class="btn-inline" style="background: rgba(255,255,255,0.15); font-size: 14px; padding: 10px 24px;" onclick="window.location.href = window.location.pathname">Create your own note ✍️</button>
+    </section>
 
-        document.getElementById('view-to').innerText = data.to ? `To: ${data.to}` : 'A Special Note For You';
-        document.getElementById('view-message').innerText = data.msg;
-        document.getElementById('view-from').innerText = data.from ? `— With love, ${data.from}` : '';
-      } catch (err) {
-        console.error('Failed to parse message', err);
-      }
+</div>
+
+<div class="modal-overlay" id="customModal">
+    <div class="modal-box">
+        <h3 id="modal-name">Name ❤️</h3>
+        <p id="modal-text">
+            Bas ek baat yaad rakhna...<br><br>
+            I love you more than words can ever say. 🥹❤️
+        </p>
+        <button onclick="closeModal()">Forever & Always ✨</button>
+    </div>
+</div>
+
+<script>
+/* Floating Hearts Animation */
+const emojis = ["❤️", "💖", "💕", "💗", "💓", "💘", "🥰", "✨"];
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 30) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 9000);
+}
+
+setInterval(createHeart, 450);
+
+/* Parse URL Data */
+const urlParams = new URLSearchParams(window.location.search);
+const encodedPayload = urlParams.get('data');
+
+if (encodedPayload) {
+    try {
+        const decodedString = decodeURIComponent(escape(atob(encodedPayload)));
+        const data = JSON.parse(decodedString);
+
+        document.getElementById('recipient-view').style.display = 'block';
+
+        const toName = data.to || 'You';
+        const fromName = data.from || 'Someone Special';
+
+        document.getElementById('page-title').innerText = `For ${toName} ❤️`;
+        document.getElementById('hero-name').innerText = `${toName} ❤️`;
+        document.getElementById('card-greeting').innerText = `Hey ${toName} 🌸`;
+        document.getElementById('letter-title').innerText = `💌 Dear ${toName}...`;
+        document.getElementById('letter-body').innerText = data.msg;
+        document.getElementById('letter-sign').innerText = `— ${fromName} ❤️`;
+        document.getElementById('surprise-name').innerText = toName;
+        document.getElementById('pair-names').innerText = `${fromName} ❤️ ${toName}`;
+        document.getElementById('modal-name').innerText = `${toName} ❤️`;
+        document.getElementById('modal-text').innerHTML = `Bas ek baat yaad rakhna...<br><br>${fromName} loves you more than words can ever say. 🥹❤️`;
+    } catch (e) {
+        document.getElementById('creator-view').style.display = 'block';
+    }
+} else {
+    document.getElementById('creator-view').style.display = 'block';
+}
+
+/* Link Generator Logic */
+function generateLink() {
+    const to = document.getElementById('input-to').value.trim();
+    const from = document.getElementById('input-from').value.trim();
+    const msg = document.getElementById('input-msg').value.trim();
+
+    if (!to || !msg) {
+        alert('Please provide both the recipient name and your message.');
+        return;
     }
 
-    // Generate Link Handler
-    document.getElementById('generate-btn').addEventListener('click', () => {
-      const recipient = document.getElementById('recipient').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const sender = document.getElementById('sender').value.trim();
+    const payload = { to, from, msg };
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+    const fullUrl = `${window.location.origin}${window.location.pathname}?data=${encoded}`;
 
-      if (!message) {
-        alert('Please enter a message before generating a link.');
-        return;
-      }
+    document.getElementById('share-link-input').value = fullUrl;
+    document.getElementById('result-box').style.display = 'block';
+}
 
-      const payload = { to: recipient, msg: message, from: sender };
-      const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
-      const shareUrl = `${window.location.origin}${window.location.pathname}?msg=${encoded}`;
-
-      const resultBox = document.getElementById('result');
-      const shareInput = document.getElementById('share-url');
-
-      shareInput.value = shareUrl;
-      resultBox.style.display = 'block';
+function copyShareLink() {
+    const input = document.getElementById('share-link-input');
+    input.select();
+    navigator.clipboard.writeText(input.value).then(() => {
+        alert('Link copied to clipboard! Share it with them. 💌');
     });
+}
 
-    // Copy to Clipboard
-    document.getElementById('copy-btn').addEventListener('click', () => {
-      const shareInput = document.getElementById('share-url');
-      shareInput.select();
-      navigator.clipboard.writeText(shareInput.value).then(() => {
-        alert('Link copied to clipboard!');
-      });
-    });
-  </script>
+/* Presentation Interaction */
+function showSecret() {
+    document.getElementById("secret").style.display = "block";
+    for (let i = 0; i < 30; i++) {
+        setTimeout(createHeart, i * 80);
+    }
+}
+
+function finalLove() {
+    for (let i = 0; i < 60; i++) {
+        setTimeout(createHeart, i * 40);
+    }
+    setTimeout(() => {
+        document.getElementById("customModal").classList.add("active");
+    }, 800);
+}
+
+function closeModal() {
+    document.getElementById("customModal").classList.remove("active");
+}
+</script>
+
 </body>
 </html>
