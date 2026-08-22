@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Share a Special Message</title>
+  <style>
+    :root {
+      --primary: #ff4d6d;
+      --primary-hover: #c9184a;
+      --bg-gradient: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+      --card-bg: #ffffff;
+      --text: #2b2b2b;
+      --muted: #666;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--text);
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--primary);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background: var(--primary-hover);
+    }
+
+    .result-box {
+      margin-top: 20px;
+      padding: 16px;
+      background: #fdf0f2;
+      border: 1px dashed var(--primary);
+      border-radius: 8px;
+      display: none;
+    }
+
+    .result-box input {
+      background: #fff;
+      margin-bottom: 10px;
+    }
+
+    /* Message Display View */
+    .view-card {
+      display: none;
+      text-align: center;
+    }
+
+    .letter-body {
+      background: #fff9fa;
+      border-left: 4px solid var(--primary);
+      padding: 20px;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text);
+      text-align: left;
+      white-space: pre-wrap;
+      margin: 20px 0;
+    }
+
+    .signature {
+      text-align: right;
+      font-style: italic;
+      color: var(--muted);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <!-- Creation View -->
+    <div id="create-view">
+      <h1>Create a Love Note</h1>
+      <p class="subtitle">Write your message and generate a secret link to share.</p>
+
+      <div class="form-group">
+        <label for="recipient">To:</label>
+        <input type="text" id="recipient" placeholder="Recipient's name" />
+      </div>
+
+      <div class="form-group">
+        <label for="message">Your Message:</label>
+        <textarea id="message" placeholder="Type your heartfelt message here..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="sender">From:</label>
+        <input type="text" id="sender" placeholder="Your name (optional)" />
+      </div>
+
+      <button id="generate-btn">Generate Shareable Link</button>
+
+      <div id="result" class="result-box">
+        <input type="text" id="share-url" readonly />
+        <button id="copy-btn">Copy Link</button>
+      </div>
+    </div>
+
+    <!-- Read View -->
+    <div id="read-view" class="view-card">
+      <h1 id="view-to"></h1>
+      <div class="letter-body" id="view-message"></div>
+      <div class="signature" id="view-from"></div>
+      <button onclick="window.location.href = window.location.pathname" style="margin-top: 24px;">Create Your Own Note</button>
+    </div>
+  </div>
+
+  <script>
+    const createView = document.getElementById('create-view');
+    const readView = document.getElementById('read-view');
+
+    // Parse URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('msg');
+
+    if (encodedData) {
+      try {
+        // Decode Base64 data (handles Unicode properly)
+        const jsonString = decodeURIComponent(escape(atob(encodedData)));
+        const data = JSON.parse(jsonString);
+
+        createView.style.display = 'none';
+        readView.style.display = 'block';
+
+        document.getElementById('view-to').innerText = data.to ? `To: ${data.to}` : 'A Special Note For You';
+        document.getElementById('view-message').innerText = data.msg;
+        document.getElementById('view-from').innerText = data.from ? `— With love, ${data.from}` : '';
+      } catch (err) {
+        console.error('Failed to parse message', err);
+      }
+    }
+
+    // Generate Link Handler
+    document.getElementById('generate-btn').addEventListener('click', () => {
+      const recipient = document.getElementById('recipient').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const sender = document.getElementById('sender').value.trim();
+
+      if (!message) {
+        alert('Please enter a message before generating a link.');
+        return;
+      }
+
+      const payload = { to: recipient, msg: message, from: sender };
+      const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+      const shareUrl = `${window.location.origin}${window.location.pathname}?msg=${encoded}`;
+
+      const resultBox = document.getElementById('result');
+      const shareInput = document.getElementById('share-url');
+
+      shareInput.value = shareUrl;
+      resultBox.style.display = 'block';
+    });
+
+    // Copy to Clipboard
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      const shareInput = document.getElementById('share-url');
+      shareInput.select();
+      navigator.clipboard.writeText(shareInput.value).then(() => {
+        alert('Link copied to clipboard!');
+      });
+    });
+  </script>
+</body>
+</html>
