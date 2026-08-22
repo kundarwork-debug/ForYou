@@ -1,692 +1,479 @@
 <!DOCTYPE html>
-<html lang="en"><!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VibeNotes — Virtual Greeting Cards ✨</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>VibeNotes — Virtual Greeting Cards Workspace</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+  <link rel="stylesheet" href="common.css">
 
-<!-- Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Hero Stage */
+    .hero-stage {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 60px 32px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-<style>
-:root {
-    --primary: #ff3377;
-    --primary-glow: rgba(255, 51, 119, 0.35);
-    --surface: rgba(255, 255, 255, 0.04);
-    --surface-border: rgba(255, 255, 255, 0.1);
-    --text-muted: rgba(255, 255, 255, 0.65);
-}
+    .badge-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 6vw, 54px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
 
-body {
-    background-color: #0b030c;
-    color: #ffffff;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
+    .hero-title span {
+      background: linear-gradient(135deg, var(--primary) 0%, #ff82b2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-/* Ambient Neon Lights */
-.glow-spot {
-    position: fixed;
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.45;
-    animation: pulse 8s ease-in-out infinite alternate;
-}
-.glow-1 { top: -100px; left: 15%; background: #ff2a70; }
-.glow-2 { bottom: 5%; right: 15%; background: #7928ca; }
+    .hero-sub {
+      font-size: clamp(14px, 3.5vw, 17px);
+      font-weight: 500;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.6;
+    }
 
-@keyframes pulse {
-    0% { transform: scale(1) translate(0, 0); }
-    100% { transform: scale(1.15) translate(30px, 30px); }
-}
+    /* Interactive Orbital Orbit Physics */
+    .interactive-hero-zone {
+      position: relative;
+      width: min(94vw, 900px);
+      height: 320px;
+      margin: 20px auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
 
-/* Floating Particles */
-.particle {
-    position: fixed;
-    bottom: -50px;
-    pointer-events: none;
-    animation: floatUp linear forwards;
-    z-index: 1;
-}
+    .beacon-wave {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 1.5px solid var(--primary);
+      opacity: 0;
+      animation: beaconRipple 3.6s cubic-bezier(0.1, 0.85, 0.25, 1) infinite;
+      pointer-events: none;
+    }
+    .beacon-wave:nth-child(2) { animation-delay: 1.2s; }
+    .beacon-wave:nth-child(3) { animation-delay: 2.4s; }
 
-@keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    20% { opacity: 0.85; }
-    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-}
+    .orbit-ring-track {
+      position: absolute;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 51, 119, 0.25);
+    }
+    .track-inner { width: 120px; height: 120px; }
+    .track-middle { width: 180px; height: 180px; border-color: rgba(121, 40, 202, 0.25); }
+    .track-outer { width: 240px; height: 240px; }
 
-/* Common Header */
-.site-header {
-    width: 100%;
-    padding: 24px 0 10px;
-    position: relative;
-    z-index: 10;
-}
+    .beacon-core-disc {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff3377 0%, #7928ca 100%);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 12px 28px -4px var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      z-index: 5;
+    }
 
-.header-container {
-    width: 90%;
-    max-width: 1050px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 28px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--surface-border);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 100px;
-}
+    .free-node {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 34px;
+      height: 34px;
+      margin-top: -17px;
+      margin-left: -17px;
+      border-radius: 50%;
+      background: #140118;
+      border: 1.5px solid var(--primary);
+      color: #ff82b2;
+      box-shadow: 0 4px 12px var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
 
-.brand-logo {
-    font-weight: 800;
-    font-size: 19px;
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    background: linear-gradient(90deg, #fff, #ff82b2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+    @keyframes beaconRipple {
+      0% { transform: scale(0.65); opacity: 0.8; }
+      50% { opacity: 0.4; }
+      100% { transform: scale(1.7); opacity: 0; }
+    }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
+    /* Modules Section */
+    .workspace-section {
+      max-width: 1200px;
+      margin: 30px auto 40px;
+      padding: 0 32px;
+      width: 100%;
+    }
 
-.nav-link {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 13.5px;
-    font-weight: 500;
-    transition: color 0.25s ease;
-}
+    .section-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--surface-border);
+    }
 
-.nav-link:hover {
-    color: #ffffff;
-}
+    .section-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.nav-badge {
-    font-size: 12px;
-    background: rgba(255, 51, 119, 0.15);
-    border: 1px solid rgba(255, 51, 119, 0.4);
-    padding: 5px 14px;
-    border-radius: 50px;
-    color: #ff82b2;
-    font-weight: 600;
-}
+    .section-counter {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-soft);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
 
-/* Main Content Area */
-.main-wrapper {
-    flex: 1;
-    width: 90%;
-    max-width: 1050px;
-    margin: 0 auto;
-    padding: 40px 0 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-}
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+      gap: 24px;
+    }
 
-.hero-header {
-    text-align: center;
-    margin-bottom: 35px;
-}
+    .module-card {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      padding: 28px 24px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    }
 
-.hero-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    padding: 8px 18px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #ff9ac2;
-    margin-bottom: 18px;
-}
+    .module-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-hover);
+    }
 
-.hero-header h1 {
-    font-size: clamp(34px, 5.5vw, 54px);
-    font-weight: 800;
-    letter-spacing: -1.2px;
-    line-height: 1.2;
-    margin-bottom: 14px;
-}
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
 
-.hero-header h1 span {
-    background: linear-gradient(135deg, #ff4d88 0%, #ff9ac2 50%, #fff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+    .card-icon-pill {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--surface-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: 0.3s;
+    }
 
-.hero-header p {
-    font-size: 16px;
-    color: var(--text-muted);
-    max-width: 540px;
-    margin: auto;
-    line-height: 1.6;
-}
+    .module-card:hover .card-icon-pill {
+      background: var(--primary);
+      color: #fff;
+    }
 
-/* Card Showcase Box */
-.card-box {
-    background: var(--surface);
-    border: 1px solid var(--surface-border);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-radius: 32px;
-    padding: 38px 30px;
-    max-width: 440px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 35px var(--primary-glow);
-    transition: transform 0.3s ease;
-}
+    .status-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #2ecc71;
+      background: rgba(46, 204, 113, 0.15);
+      border: 1px solid rgba(46, 204, 113, 0.3);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
 
-.card-box:hover {
-    transform: translateY(-5px);
-}
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
 
-.preview-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 100px;
-    background: rgba(46, 204, 113, 0.15);
-    color: #2ecc71;
-    border: 1px solid rgba(46, 204, 113, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 20px;
-}
+    .card-description {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
 
-.card-icon {
-    width: 90px;
-    height: 90px;
-    background: linear-gradient(135deg, #ff3377, #7928ca);
-    border-radius: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 42px;
-    margin: 0 auto 20px;
-    box-shadow: 0 15px 35px var(--primary-glow);
-}
+    .tags-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
 
-.card-box h3 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
+    .micro-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      color: #cbd5e1;
+    }
 
-.card-box p {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
+    .card-footer-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--surface-border);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
 
-.btn-vibe {
-    width: 100%;
-    padding: 16px 24px;
-    border-radius: 100px;
-    border: none;
-    background: linear-gradient(90deg, #ff3377 0%, #ff5e97 100%);
-    color: white;
-    font-size: 15.5px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 10px 30px var(--primary-glow);
-    transition: all 0.25s ease;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
+    /* Live Stats Section */
+    .impact-section {
+      max-width: 1200px;
+      margin: 10px auto 40px;
+      padding: 0 32px;
+      width: 100%;
+    }
 
-.btn-vibe:hover {
-    transform: scale(1.02);
-    box-shadow: 0 15px 40px rgba(255, 51, 119, 0.55);
-}
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-subtle);
+    }
 
-/* Common Footer */
-.site-footer {
-    width: 100%;
-    border-top: 1px solid var(--surface-border);
-    background: rgba(10, 2, 12, 0.6);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 30px 0 26px;
-    position: relative;
-    z-index: 10;
-    margin-top: auto;
-}
+    .impact-item {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      border-right: 1px dashed var(--surface-border);
+    }
+    .impact-item:last-child { border-right: none; }
 
-.footer-container {
-    width: 90%;
-    max-width: 1050px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
+    .impact-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.footer-left {
-    font-size: 13.5px;
-    color: var(--text-muted);
-}
-
-.footer-right {
-    display: flex;
-    gap: 20px;
-}
-
-.footer-link {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 13px;
-    transition: color 0.25s ease;
-}
-
-.footer-link:hover {
-    color: #ff82b2;
-}
-
-@media (max-width: 600px) {
-    .header-container { padding: 12px 20px; }
-    .nav-links { display: none; }
-    .footer-container { flex-direction: column; text-align: center; }
-}
-</style>
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    }
+  </style>
 </head>
 <body>
 
-<div class="glow-spot glow-1"></div>
-<div class="glow-spot glow-2"></div>
+  <!-- Ambient Light Mesh Background -->
+  <div class="ambient-bg"></div>
 
-<!-- HEADER -->
-<header class="site-header">
-    <div class="header-container">
-        <a href="index.html" class="brand-logo">✨ VibeNotes</a>
-        <nav class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="free1.html" class="nav-link">Love Letter</a>
-        </nav>
-        <div class="nav-badge">Virtual Cards</div>
-    </div>
-</header>
+  <!-- Perspective 3D Matrix Layer -->
+  <div class="perspective-grid-layer">
+    <div class="matrix-plane" id="matrixPlane"></div>
+  </div>
 
-<!-- MAIN CONTENT -->
-<main class="main-wrapper">
-    <div class="hero-header">
-        <div class="hero-pill">💌 Thoughtful • Interactive • Instant</div>
-        <h1>Send a Digital <span>Greeting Card</span></h1>
-        <p>Pick a card below, personalize your secret note, and send an interactive web link to your loved ones.</p>
-    </div>
+  <!-- Header Placeholder -->
+  <div id="header-container"></div>
 
-    <div class="card-box">
-        <span class="preview-badge">✨ Free Edition</span>
-        <div class="card-icon">💌</div>
-        <h3>Love Letter</h3>
-        <p>A handcrafted digital letter featuring floating hearts, glassmorphism cards, and an interactive reveal surprise.</p>
-        <a href="free1.html" class="btn-vibe">Open Love Letter 💖</a>
-    </div>
-</main>
+  <main>
+    <!-- HERO STAGE -->
+    <section class="hero-stage">
+      <div class="badge-capsule">
+        <span class="material-symbols-outlined" style="font-size: 15px;">auto_awesome</span>
+        <span>Virtual Cards Hub</span>
+      </div>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="footer-container">
-        <div class="footer-left">
-            © 2026 VibeNotes. Crafted with ❤️ for special moments.
+      <h1 class="hero-title">
+        Send Moments, <span>Not Just Text.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Craft personalized, interactive keepsake pages with live 3D unboxing and share secret links with your loved ones.
+      </p>
+
+      <!-- Physics Orbit Zone -->
+      <div class="interactive-hero-zone" id="heroInteractiveZone">
+        <div class="beacon-wave"></div>
+        <div class="beacon-wave"></div>
+        <div class="beacon-wave"></div>
+
+        <div class="orbit-ring-track track-inner"></div>
+        <div class="orbit-ring-track track-middle"></div>
+        <div class="orbit-ring-track track-outer"></div>
+
+        <div class="beacon-core-disc" id="hubCore">
+          <span class="material-symbols-outlined" style="font-size: 32px;">favorite</span>
         </div>
-        <div class="footer-right">
-            <a href="index.html" class="footer-link">Home</a>
-            <a href="free1.html" class="footer-link">Love Letter</a>
-            <a href="#" class="footer-link">Privacy</a>
+
+        <div class="free-node" id="node1"><span class="material-symbols-outlined" style="font-size: 18px;">mail</span></div>
+        <div class="free-node" id="node2"><span class="material-symbols-outlined" style="font-size: 18px;">celebration</span></div>
+        <div class="free-node" id="node3"><span class="material-symbols-outlined" style="font-size: 18px;">loyalty</span></div>
+        <div class="free-node" id="node4"><span class="material-symbols-outlined" style="font-size: 18px;">diamond</span></div>
+      </div>
+    </section>
+
+    <!-- CARDS / MODULES SECTION -->
+    <section class="workspace-section">
+      <div class="section-bar">
+        <div class="section-heading">
+          <span class="material-symbols-outlined" style="color: var(--primary); font-size: 20px;">grid_view</span>
+          <span>Featured Greeting Cards</span>
         </div>
-    </div>
-</footer>
+        <span class="section-counter">1 Active Card</span>
+      </div>
 
-<script>
-const emojis = ["❤️", "💖", "💕", "✨", "🌸"];
+      <div class="modules-grid">
+        <!-- Love Letter Card -->
+        <a href="free1.html" class="module-card">
+          <div>
+            <div class="card-head">
+              <div class="card-icon-pill">
+                <span class="material-symbols-outlined">mail</span>
+              </div>
+              <span class="status-tag">Free Edition</span>
+            </div>
+            <h2 class="card-title">Digital Love Letter</h2>
+            <p class="card-description">A handcrafted digital letter featuring floating hearts, glassmorphism cards, and an interactive envelope unboxing reveal.</p>
+            <div class="tags-flow">
+              <span class="micro-tag">💌 Envelope Unboxing</span>
+              <span class="micro-tag">✨ Particle Effects</span>
+              <span class="micro-tag">🔒 Secret Link</span>
+            </div>
+          </div>
+          <div class="card-footer-cta">
+            <span>Customize Note</span>
+            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+          </div>
+        </a>
+      </div>
+    </section>
 
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "particle";
-    heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (18 + Math.random() * 24) + "px";
-    heart.style.animationDuration = (4 + Math.random() * 5) + "s";
-    document.body.appendChild(heart);
+    <!-- LIVE IMPACT STATS -->
+    <section class="impact-section">
+      <div class="impact-grid">
+        <div class="impact-item">
+          <div class="impact-num">1</div>
+          <div style="font-size: 12.5px; color: var(--text-muted);">Active Templates</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-num">
+            <span class="pulse-dot"></span>
+            <span>Online</span>
+          </div>
+          <div style="font-size: 12.5px; color: var(--text-muted);">Real-Time Network</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-num">Instant</div>
+          <div style="font-size: 12.5px; color: var(--text-muted);">Link Delivery</div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    setTimeout(() => {
-        heart.remove();
-    }, 9000);
-}
+  <!-- Footer Placeholder -->
+  <div id="footer-container"></div>
 
-setInterval(createHeart, 450);
-</script>
+  <!-- Shared Controller Script -->
+  <script src="common.js"></script>
 
-</body>
-</html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Virtual Greeting Cards ✨</title>
+  <!-- Orbit Physics Rig Script -->
+  <script>
+    (function initOrbitPhysics() {
+      const zone = document.getElementById('heroInteractiveZone');
+      const core = document.getElementById('hubCore');
+      if (!zone || !core) return;
 
-<!-- Heart Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+      const nodes = [
+        { el: document.getElementById('node1'), radius: 60,  speed:  0.012, angle: 0, x: 0, y: 0 },
+        { el: document.getElementById('node2'), radius: 90,  speed: -0.009, angle: Math.PI, x: 0, y: 0 },
+        { el: document.getElementById('node3'), radius: 120, speed:  0.006, angle: -Math.PI / 2, x: 0, y: 0 },
+        { el: document.getElementById('node4'), radius: 120, speed:  0.006, angle:  Math.PI / 2, x: 0, y: 0 }
+      ];
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+      let mouseX = 0, mouseY = 0;
+      zone.addEventListener('mousemove', (e) => {
+        const rect = zone.getBoundingClientRect();
+        mouseX = (e.clientX - (rect.left + rect.width / 2)) * 0.06;
+        mouseY = (e.clientY - (rect.top + rect.height / 2)) * 0.06;
+      });
+      zone.addEventListener('mouseleave', () => { mouseX = 0; mouseY = 0; });
 
-<style>
-:root {
-    --primary: #ff3377;
-    --primary-glow: rgba(255, 51, 119, 0.35);
-    --surface: rgba(255, 255, 255, 0.05);
-    --surface-border: rgba(255, 255, 255, 0.12);
-    --text-muted: rgba(255, 255, 255, 0.65);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-body {
-    background-color: #0b030c;
-    color: #ffffff;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Dynamic Ambient Glow Spots */
-.glow-spot {
-    position: fixed;
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.5;
-    animation: pulse 8s ease-in-out infinite alternate;
-}
-.glow-1 { top: -100px; left: 15%; background: #ff2a70; }
-.glow-2 { bottom: 5%; right: 15%; background: #7928ca; }
-
-@keyframes pulse {
-    0% { transform: scale(1) translate(0, 0); }
-    100% { transform: scale(1.15) translate(30px, 30px); }
-}
-
-/* Floating Hearts */
-.particle {
-    position: fixed;
-    bottom: -50px;
-    pointer-events: none;
-    animation: floatUp linear forwards;
-    z-index: 1;
-}
-
-@keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    20% { opacity: 0.85; }
-    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-}
-
-/* App Container */
-.container {
-    width: 90%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 0 80px;
-    position: relative;
-    z-index: 2;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Navbar */
-.nav-bar {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 28px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--surface-border);
-    backdrop-filter: blur(20px);
-    border-radius: 100px;
-    margin-bottom: 50px;
-}
-.brand-logo {
-    font-weight: 800;
-    font-size: 18px;
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(90deg, #fff, #ff82b2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.nav-tag {
-    font-size: 12px;
-    background: rgba(255, 51, 119, 0.15);
-    border: 1px solid rgba(255, 51, 119, 0.4);
-    padding: 5px 14px;
-    border-radius: 50px;
-    color: #ff82b2;
-    font-weight: 600;
-}
-
-/* Header */
-.hero-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-.hero-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    padding: 8px 18px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #ff9ac2;
-    margin-bottom: 18px;
-}
-.hero-header h1 {
-    font-size: clamp(34px, 5.5vw, 54px);
-    font-weight: 800;
-    letter-spacing: -1.2px;
-    line-height: 1.2;
-    margin-bottom: 14px;
-}
-.hero-header h1 span {
-    background: linear-gradient(135deg, #ff4d88 0%, #ff9ac2 50%, #fff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.hero-header p {
-    font-size: 16px;
-    color: var(--text-muted);
-    max-width: 540px;
-    margin: auto;
-    line-height: 1.6;
-}
-
-/* Card Showcase Box */
-.card-box {
-    background: var(--surface);
-    border: 1px solid var(--surface-border);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-radius: 32px;
-    padding: 38px 30px;
-    max-width: 440px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 35px var(--primary-glow);
-    transition: transform 0.3s ease;
-}
-.card-box:hover {
-    transform: translateY(-5px);
-}
-
-.preview-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 100px;
-    background: rgba(46, 204, 113, 0.15);
-    color: #2ecc71;
-    border: 1px solid rgba(46, 204, 113, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 20px;
-}
-
-.card-icon {
-    width: 90px;
-    height: 90px;
-    background: linear-gradient(135deg, #ff3377, #7928ca);
-    border-radius: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 42px;
-    margin: 0 auto 20px;
-    box-shadow: 0 15px 35px var(--primary-glow);
-}
-
-.card-box h3 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.card-box p {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
-
-/* Button */
-.btn-vibe {
-    width: 100%;
-    padding: 16px 24px;
-    border-radius: 100px;
-    border: none;
-    background: linear-gradient(90deg, #ff3377 0%, #ff5e97 100%);
-    color: white;
-    font-size: 15.5px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 10px 30px var(--primary-glow);
-    transition: all 0.25s ease;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-.btn-vibe:hover {
-    transform: scale(1.02);
-    box-shadow: 0 15px 40px rgba(255, 51, 119, 0.55);
-}
-</style>
-</head>
-<body>
-
-<div class="glow-spot glow-1"></div>
-<div class="glow-spot glow-2"></div>
-
-<div class="container">
-    <div class="nav-bar">
-        <div class="brand-logo">✨ VibeNotes</div>
-        <div class="nav-tag">Virtual Greeting Cards</div>
-    </div>
-
-    <div class="hero-header">
-        <div class="hero-pill">💌 Thoughtful • Interactive • Instant</div>
-        <h1>Send a Digital <span>Greeting Card</span></h1>
-        <p>Pick a card below, personalize your secret note, and send an interactive web link to your loved ones.</p>
-    </div>
-
-    <div class="card-box">
-        <span class="preview-badge">✨ Free Edition</span>
-        <div class="card-icon">💌</div>
-        <h3>Love Letter</h3>
-        <p>A handcrafted digital letter featuring floating hearts, glassmorphism cards, and an interactive reveal surprise.</p>
-        <a href="free1.html" class="btn-vibe">Open Love Letter 💖</a>
-    </div>
-</div>
-
-<script>
-const emojis = ["❤️", "💖", "💕", "✨", "🌸"];
-
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "particle";
-    heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (18 + Math.random() * 24) + "px";
-    heart.style.animationDuration = (4 + Math.random() * 5) + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 9000);
-}
-
-setInterval(createHeart, 450);
-</script>
-
+      function render() {
+        core.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        nodes.forEach(item => {
+          item.angle += item.speed;
+          const targetX = Math.cos(item.angle) * item.radius + mouseX * 0.4;
+          const targetY = Math.sin(item.angle) * item.radius + mouseY * 0.4;
+          item.x += (targetX - item.x) * 0.15;
+          item.y += (targetY - item.y) * 0.15;
+          if (item.el) item.el.style.transform = `translate(${item.x}px, ${item.y}px)`;
+        });
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+  </script>
 </body>
 </html>
