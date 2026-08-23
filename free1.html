@@ -8,20 +8,17 @@
 <!-- Heart Favicon -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
 
+<!-- Common Stylesheet -->
+<link rel="stylesheet" href="common.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-body {
-    min-height: 100vh;
+/* Page-Specific Styles */
+.card-content-area {
+    min-height: 80vh;
     background:
         radial-gradient(circle at 50% 15%, rgba(255, 77, 136, 0.45), transparent 45%),
         linear-gradient(135deg, #18001c 0%, #2f0426 50%, #120014 100%);
@@ -29,6 +26,7 @@ body {
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 /* Floating Hearts */
@@ -59,11 +57,11 @@ body {
 
 /* Front Page Generator Center Layout */
 .front-wrapper {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px 16px;
+    padding: 32px 16px;
 }
 
 .generator-card {
@@ -400,136 +398,147 @@ body {
 </head>
 <body>
 
-<!-- FRONT PAGE (CREATOR) -->
-<div id="creator-view" class="front-wrapper" style="display: none;">
-    <div class="generator-card">
-        <h1>Create a Love Page ✨</h1>
-        <p class="subtitle">Fill out the details below to generate a unique, shareable link.</p>
+<!-- COMMON HEADER CONTAINER -->
+<div id="header-container"></div>
 
-        <div class="form-group">
-            <label>Their Name (Recipient):</label>
-            <input type="text" id="input-to" placeholder="Enter recipient's name..." />
-        </div>
+<div class="card-content-area">
+    <!-- FRONT PAGE (CREATOR) -->
+    <div id="creator-view" class="front-wrapper" style="display: none;">
+        <div class="generator-card">
+            <h1>Create a Love Page ✨</h1>
+            <p class="subtitle">Fill out the details below to generate a unique, shareable link.</p>
 
-        <div class="form-group">
-            <label>Your Name (Sender):</label>
-            <input type="text" id="input-from" placeholder="Enter your name..." />
-        </div>
-
-        <div class="form-group">
-            <label>Your Message / Letter:</label>
-            <textarea id="input-msg" placeholder="Write your heartfelt message here..."></textarea>
-        </div>
-
-        <button class="btn-primary" onclick="generateLink()">Generate Magical Link 💖</button>
-
-        <div id="result-box" class="result-area">
-            <div class="form-group" style="margin-bottom: 10px;">
-                <label>Your Shareable Link:</label>
-                <input type="text" id="share-link-input" readonly />
+            <div class="form-group">
+                <label>Their Name (Recipient):</label>
+                <input type="text" id="input-to" placeholder="Enter recipient's name..." />
             </div>
-            <button class="btn-primary" onclick="copyShareLink()">📋 Copy Link</button>
-        </div>
-    </div>
-</div>
 
-<!-- SHARED LINK PAGE (RECIPIENT) -->
-<div id="recipient-view" class="container" style="display: none;">
+            <div class="form-group">
+                <label>Your Name (Sender):</label>
+                <input type="text" id="input-from" placeholder="Enter your name..." />
+            </div>
 
-    <section class="hero">
-        <div class="small">A little something for</div>
-        <h1 id="hero-name">Name ❤️</h1>
-        <p>
-            There are billions of people in this world...
-            <br>
-            but somehow my heart chose you.
-        </p>
-        <div class="scroll">↓ Scroll slowly ↓</div>
-    </section>
+            <div class="form-group">
+                <label>Your Message / Letter:</label>
+                <textarea id="input-msg" placeholder="Write your heartfelt message here..."></textarea>
+            </div>
 
-    <div class="card">
-        <h2 id="card-greeting">Hey 🌸</h2>
-        <p>Ye website kisi special occasion ke liye nahi hai.</p>
-        <br>
-        <p>
-            Bas isliye hai kyunki kabhi-kabhi dil mein
-            jo feelings hoti hain na...
-            unhe words mein bolna mushkil hota hai.
-        </p>
-        <br>
-        <p>
-            Isliye socha...
-            <br><br>
-            <b>ek chhoti si duniya bana doon, sirf tumhare liye. ❤️</b>
-        </p>
-    </div>
+            <button class="btn-primary" onclick="generateLink()">Generate Magical Link 💖</button>
 
-    <div class="card">
-        <h2>Why You? ❤️</h2>
-        <div class="reasons">
-            <div class="reason"><span>😊</span> Your smile</div>
-            <div class="reason"><span>👀</span> Your beautiful eyes</div>
-            <div class="reason"><span>🌸</span> Your presence</div>
-            <div class="reason"><span>❤️</span> Your heart</div>
-            <div class="reason"><span>🥰</span> The way you are</div>
-            <div class="reason"><span>✨</span> Simply... YOU</div>
+            <div id="result-box" class="result-area">
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label>Your Shareable Link:</label>
+                    <input type="text" id="share-link-input" readonly />
+                </div>
+                <button class="btn-primary" onclick="copyShareLink()">📋 Copy Link</button>
+            </div>
         </div>
     </div>
 
-    <div class="card letter">
-        <h2 id="letter-title">💌 Dear...</h2>
-        <div class="letter-content" id="letter-body"></div>
-        <p style="text-align:center; font-size:24px; margin-top:25px;">
-            <b>I REALLY, REALLY LOVE YOU. ❤️</b>
-        </p>
-        <div class="signature" id="letter-sign">— Name ❤️</div>
-    </div>
+    <!-- SHARED LINK PAGE (RECIPIENT) -->
+    <div id="recipient-view" class="container" style="display: none;">
 
-    <div class="card">
-        <h2>🎁 One Little Surprise</h2>
-        <p>
-            <span id="surprise-name">You</span>, ek button hai...
-            <br>
-            aur iske andar ek chhoti si feeling chhupi hai.
-        </p>
-        <button class="btn-inline" onclick="showSecret()">Click Me ❤️</button>
-
-        <div id="secret">
-            <div class="big-love">I LOVE YOU</div>
+        <section class="hero">
+            <div class="small">A little something for</div>
+            <h1 id="hero-name">Name ❤️</h1>
             <p>
-                Aaj ❤️<br>
-                Kal ❤️<br>
-                Aur har beautiful moment mein ❤️
+                There are billions of people in this world...
+                <br>
+                but somehow my heart chose you.
+            </p>
+            <div class="scroll">↓ Scroll slowly ↓</div>
+        </section>
+
+        <div class="card">
+            <h2 id="card-greeting">Hey 🌸</h2>
+            <p>Ye website kisi special occasion ke liye nahi hai.</p>
+            <br>
+            <p>
+                Bas isliye hai kyunki kabhi-kabhi dil mein
+                jo feelings hoti hain na...
+                unhe words mein bolna mushkil hota hai.
+            </p>
+            <br>
+            <p>
+                Isliye socha...
+                <br><br>
+                <b>ek chhoti si duniya bana doon, sirf tumhare liye. ❤️</b>
             </p>
         </div>
+
+        <div class="card">
+            <h2>Why You? ❤️</h2>
+            <div class="reasons">
+                <div class="reason"><span>😊</span> Your smile</div>
+                <div class="reason"><span>👀</span> Your beautiful eyes</div>
+                <div class="reason"><span>🌸</span> Your presence</div>
+                <div class="reason"><span>❤️</span> Your heart</div>
+                <div class="reason"><span>🥰</span> The way you are</div>
+                <div class="reason"><span>✨</span> Simply... YOU</div>
+            </div>
+        </div>
+
+        <div class="card letter">
+            <h2 id="letter-title">💌 Dear...</h2>
+            <div class="letter-content" id="letter-body"></div>
+            <p style="text-align:center; font-size:24px; margin-top:25px;">
+                <b>I REALLY, REALLY LOVE YOU. ❤️</b>
+            </p>
+            <div class="signature" id="letter-sign">— Name ❤️</div>
+        </div>
+
+        <div class="card">
+            <h2>🎁 One Little Surprise</h2>
+            <p>
+                <span id="surprise-name">You</span>, ek button hai...
+                <br>
+                aur iske andar ek chhoti si feeling chhupi hai.
+            </p>
+            <button class="btn-inline" onclick="showSecret()">Click Me ❤️</button>
+
+            <div id="secret">
+                <div class="big-love">I LOVE YOU</div>
+                <p>
+                    Aaj ❤️<br>
+                    Kal ❤️<br>
+                    Aur har beautiful moment mein ❤️
+                </p>
+            </div>
+        </div>
+
+        <section class="final">
+            <div style="font-size:70px;">❤️</div>
+            <h2 id="pair-names">Together Forever ❤️</h2>
+            <p>
+                Some people become a chapter...
+                <br>
+                but you became my favourite story.
+            </p>
+            <button class="btn-inline" onclick="finalLove()">One Last Thing 💕</button>
+            <br><br>
+            <button class="btn-inline" style="background: rgba(255,255,255,0.12); font-size: 14px; padding: 10px 24px; box-shadow: none;" onclick="window.location.href = window.location.pathname">Create your own note ✍️</button>
+        </section>
+
     </div>
 
-    <section class="final">
-        <div style="font-size:70px;">❤️</div>
-        <h2 id="pair-names">Together Forever ❤️</h2>
-        <p>
-            Some people become a chapter...
-            <br>
-            but you became my favourite story.
-        </p>
-        <button class="btn-inline" onclick="finalLove()">One Last Thing 💕</button>
-        <br><br>
-        <button class="btn-inline" style="background: rgba(255,255,255,0.12); font-size: 14px; padding: 10px 24px; box-shadow: none;" onclick="window.location.href = window.location.pathname">Create your own note ✍️</button>
-    </section>
-
-</div>
-
-<!-- Pop-up Modal -->
-<div class="modal-overlay" id="customModal">
-    <div class="modal-box">
-        <h3 id="modal-name">Name ❤️</h3>
-        <p id="modal-text">
-            Bas ek baat yaad rakhna...<br><br>
-            I love you more than words can ever say. 🥹❤️
-        </p>
-        <button class="btn-primary" onclick="closeModal()">Forever & Always ✨</button>
+    <!-- Pop-up Modal -->
+    <div class="modal-overlay" id="customModal">
+        <div class="modal-box">
+            <h3 id="modal-name">Name ❤️</h3>
+            <p id="modal-text">
+                Bas ek baat yaad rakhna...<br><br>
+                I love you more than words can ever say. 🥹❤️
+            </p>
+            <button class="btn-primary" onclick="closeModal()">Forever & Always ✨</button>
+        </div>
     </div>
 </div>
+
+<!-- COMMON FOOTER CONTAINER -->
+<div id="footer-container"></div>
+
+<!-- Common Script (Header/Footer Injection) -->
+<script src="common.js"></script>
 
 <script>
 /* Floating Heart Generator */
