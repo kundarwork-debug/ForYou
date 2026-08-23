@@ -12,12 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
           <nav class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
             <a href="free1.html" class="nav-link">Love Letter</a>
+            <a href="page1.html" class="nav-link">Rakhi</a>
           </nav>
         </div>
       </header>
     `;
 
-    // Accurate Active Tab Highlighting
+    // Active page highlighting
     const currentPath = window.location.pathname;
     const links = headerContainer.querySelectorAll(".nav-link");
     links.forEach(link => {
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="footer-right">
             <a href="index.html" class="footer-link">Home</a>
             <a href="free1.html" class="footer-link">Love Letter</a>
+            <a href="page1.html" class="footer-link">Rakhi</a>
           </div>
         </div>
       </footer>
