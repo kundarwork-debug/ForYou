@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     headerContainer.innerHTML = `
       <header class="site-header">
         <div class="header-container">
-          <a href="index.html" class="brand-logo">For You</a>
+          <a href="index.html" class="brand-logo">For <span>You</span></a>
           <nav class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
             <a href="free1.html" class="nav-link">Love Letter</a>
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </header>
     `;
 
-    // Highlight current page active link
+    // Highlight current page
     const currentPath = window.location.pathname;
     const links = headerContainer.querySelectorAll(".nav-link");
     links.forEach(link => {
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <footer class="site-footer">
         <div class="footer-container">
           <div class="footer-left">
-            © 2026 For You. All rights reserved.
+            © 2026 For You. Crafted for meaningful moments.
           </div>
           <div class="footer-right">
             <a href="index.html" class="footer-link">Home</a>
