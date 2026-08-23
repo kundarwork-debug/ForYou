@@ -1,11 +1,14 @@
 :root {
-  --primary: #2563eb;
-  --bg-base: #090d16;
-  --surface-card: rgba(255, 255, 255, 0.03);
+  --primary: #fb7185;
+  --primary-hover: #f43f5e;
+  --primary-soft: rgba(251, 113, 133, 0.12);
+  --primary-glow: rgba(244, 63, 94, 0.3);
+  --bg-base: #0e0714;
+  --surface-card: rgba(255, 255, 255, 0.04);
   --surface-border: rgba(255, 255, 255, 0.08);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --radius-xl: 16px;
+  --text-main: #fff1f2;
+  --text-muted: #fda4af;
+  --radius-xl: 20px;
   --radius-pill: 9999px;
 }
 
@@ -23,14 +26,26 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Header Styles */
+/* Ambient Velvet Background Glows */
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    radial-gradient(circle at 20% 15%, rgba(244, 63, 94, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 45%);
+}
+
+/* Common Header */
 .site-header {
   width: 100%;
-  padding: 20px 0 10px;
-  border-bottom: 1px solid var(--surface-border);
-  background: #090d16;
+  padding: 24px 0 10px;
+  position: relative;
+  z-index: 100;
 }
 
 .header-container {
@@ -40,26 +55,36 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  padding: 14px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-pill);
 }
 
 .brand-logo {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 22px;
+  letter-spacing: -0.01em;
   color: var(--text-main);
   text-decoration: none;
-  letter-spacing: -0.02em;
+}
+
+.brand-logo span {
+  color: var(--primary);
+  font-style: italic;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 .nav-link {
-  color: var(--text-muted);
+  color: rgba(255, 241, 242, 0.65);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -67,15 +92,18 @@ body {
 }
 
 .nav-link:hover, .nav-link.active {
-  color: var(--text-main);
+  color: #ffffff;
 }
 
-/* Footer Styles */
+/* Common Footer */
 .site-footer {
   width: 100%;
   border-top: 1px solid var(--surface-border);
-  background: #060911;
-  padding: 24px 0;
+  background: rgba(14, 7, 20, 0.8);
+  backdrop-filter: blur(15px);
+  padding: 28px 0;
+  position: relative;
+  z-index: 10;
   margin-top: auto;
 }
 
@@ -91,8 +119,8 @@ body {
 }
 
 .footer-left {
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 13.5px;
+  color: rgba(255, 241, 242, 0.6);
 }
 
 .footer-right {
@@ -101,19 +129,17 @@ body {
 }
 
 .footer-link {
-  color: var(--text-muted);
+  color: rgba(255, 241, 242, 0.6);
   text-decoration: none;
   font-size: 13px;
   transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-  color: var(--text-main);
+  color: var(--primary);
 }
 
 @media (max-width: 600px) {
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-  }
+  .header-container { padding: 12px 18px; }
+  .footer-container { flex-direction: column; text-align: center; }
 }
