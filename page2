@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Create a Rakhi Page 🧡</title>
+
+<!-- Rakhi Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧡</text></svg>">
+
+<!-- Common Stylesheet -->
+<link rel="stylesheet" href="common.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* Page-Specific Styles */
+.card-content-area {
+    min-height: 80vh;
+    background:
+        radial-gradient(circle at 50% 15%, rgba(255, 153, 51, 0.45), transparent 45%),
+        linear-gradient(135deg, #1c0a00 0%, #3d1400 50%, #170800 100%);
+    color: white;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Floating Rakhi Threads */
+.heart {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none;
+    animation: floatHeart linear forwards;
+    z-index: 1;
+}
+
+@keyframes floatHeart {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    15% { opacity: 0.9; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 0;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Front Page Generator Center Layout */
+.front-wrapper {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+.generator-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 36px;
+    padding: 45px 38px;
+    max-width: 520px;
+    width: 100%;
+    box-shadow: 0 25px 65px rgba(0, 0, 0, 0.55), inset 0 0 20px rgba(255, 255, 255, 0.03);
+    text-align: left;
+}
+
+.generator-card h1 {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.generator-card p.subtitle {
+    text-align: center;
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 18px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    font-size: 14.5px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23ffffff' stroke-width='1.6' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: #3d1400;
+    color: #ffffff;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: rgba(255, 153, 51, 0.75);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 15px rgba(255, 153, 51, 0.25);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.btn-primary {
+    width: 100%;
+    border: none;
+    padding: 16px 20px;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #ff7a00, #ffc233);
+    color: #1a0a00;
+    font-size: 16.5px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 153, 51, 0.4);
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(255, 153, 51, 0.6);
+}
+
+.result-area {
+    display: none;
+    margin-top: 22px;
+    padding: 18px;
+    background: rgba(255, 153, 51, 0.12);
+    border: 1px dashed rgba(255, 153, 51, 0.6);
+    border-radius: 16px;
+}
+
+.result-area input {
+    background: rgba(0, 0, 0, 0.35);
+    margin-bottom: 12px;
+}
+
+/* Recipient View Styles */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.small {
+    font-size: 18px;
+    letter-spacing: 3px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 10vw, 95px);
+    margin: 15px 0;
+    background: linear-gradient(90deg, #fff, #ffcc66, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { filter: drop-shadow(0 0 5px #ff9933); }
+    to { filter: drop-shadow(0 0 25px #ff9933); }
+}
+
+.hero p {
+    font-size: 21px;
+    max-width: 600px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.scroll {
+    margin-top: 50px;
+    animation: bounce 1.5s infinite;
+    font-size: 15px;
+    opacity: 0.7;
+}
+
+@keyframes bounce {
+    50% { transform: translateY(12px); }
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 40px 30px;
+    margin: 30px 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 18px;
+    line-height: 1.9;
+    color: #ffe9d1;
+}
+
+.reasons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.reason {
+    padding: 25px 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    transition: 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reason:hover {
+    transform: translateY(-8px) scale(1.03);
+    background: rgba(255, 153, 51, 0.22);
+}
+
+.reason span {
+    display: block;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.letter {
+    text-align: left;
+}
+
+.letter-content {
+    white-space: pre-wrap;
+    font-size: 18px;
+    line-height: 1.9;
+    color: #ffe9d1;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 30px;
+    font-size: 22px;
+    color: #ffcc66;
+    font-weight: 600;
+}
+
+.btn-inline {
+    width: auto;
+    margin-top: 25px;
+    padding: 16px 35px;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #ff7a00, #ffb733);
+    color: #1a0a00;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 122, 0, 0.35);
+    transition: 0.3s;
+}
+
+.btn-inline:hover {
+    transform: scale(1.04);
+}
+
+#secret {
+    display: none;
+    margin-top: 30px;
+    animation: appear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.big-love {
+    font-size: clamp(32px, 7vw, 60px);
+    margin: 20px 0;
+    color: #ffb347;
+    font-weight: 700;
+}
+
+.final {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.final h2 {
+    font-size: clamp(35px, 7vw, 65px);
+}
+
+.final p {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-box {
+    background: linear-gradient(135deg, rgba(255, 153, 51, 0.25), rgba(50, 15, 0, 0.85));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 40px 30px;
+    border-radius: 25px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1);
+}
+
+.modal-box h3 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #ffcc66;
+}
+
+.modal-box p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 600px) {
+    .generator-card { padding: 32px 20px; }
+    .container { width: 92%; padding: 30px 0; }
+    .reasons { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- COMMON HEADER CONTAINER -->
+<div id="header-container"></div>
+
+<div class="card-content-area">
+    <!-- FRONT PAGE (CREATOR) -->
+    <div id="creator-view" class="front-wrapper" style="display: none;">
+        <div class="generator-card">
+            <h1>Create a Rakhi Page 🧡</h1>
+            <p class="subtitle">Fill out the details below to generate a unique, shareable Raksha Bandhan link.</p>
+
+            <div class="form-group">
+                <label>Their Name (Recipient):</label>
+                <input type="text" id="input-to" placeholder="Enter your sibling's name..." />
+            </div>
+
+            <div class="form-group">
+                <label>Your Name (Sender):</label>
+                <input type="text" id="input-from" placeholder="Enter your name..." />
+            </div>
+
+            <div class="form-group">
+                <label>Your Message:</label>
+                <textarea id="input-msg" placeholder="Write your rakhi message here..."></textarea>
+            </div>
+
+            <button class="btn-primary" onclick="generateLink()">Generate Rakhi Link 🧵</button>
+
+            <div id="result-box" class="result-area">
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label>Your Shareable Link:</label>
+                    <input type="text" id="share-link-input" readonly />
+                </div>
+                <button class="btn-primary" onclick="copyShareLink()">📋 Copy Link</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHARED LINK PAGE (RECIPIENT) -->
+    <div id="recipient-view" class="container" style="display: none;">
+
+        <section class="hero">
+            <div class="small">A rakhi wish for</div>
+            <h1 id="hero-name">Name 🧡</h1>
+            <p>
+                Kuch rishtey khoon se bante hain...
+                <br>
+                aur kuch ek dhaage se bandh jaate hain, hamesha ke liye.
+            </p>
+            <div class="scroll">↓ Scroll slowly ↓</div>
+        </section>
+
+        <div class="card">
+            <h2 id="card-greeting">Hey 🎊</h2>
+            <p>Ye website kisi normal wish jaisi nahi hai.</p>
+            <br>
+            <p>
+                Bas isliye hai kyunki kabhi-kabhi humara bandhan,
+                humari yaadein...
+                unhe sirf ek rakhi ya ek message mein samet na mushkil hota hai.
+            </p>
+            <br>
+            <p>
+                Isliye socha...
+                <br><br>
+                <b>ek chhoti si duniya bana doon, sirf tumhare liye. 🧡</b>
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Why You're Special 🧡</h2>
+            <div class="reasons">
+                <div class="reason"><span>😄</span> Your laughter</div>
+                <div class="reason"><span>🛡️</span> Your protection & care</div>
+                <div class="reason"><span>🤝</span> Our fights & making up</div>
+                <div class="reason"><span>🎊</span> Every rakhi memory</div>
+                <div class="reason"><span>🧡</span> Your unconditional love</div>
+                <div class="reason"><span>✨</span> Simply... YOU</div>
+            </div>
+        </div>
+
+        <div class="card letter">
+            <h2 id="letter-title">🧵 Dear...</h2>
+            <div class="letter-content" id="letter-body"></div>
+            <p style="text-align:center; font-size:24px; margin-top:25px;">
+                <b>HAPPIEST RAKSHA BANDHAN TO YOU. 🧡</b>
+            </p>
+            <div class="signature" id="letter-sign">— Name 🧵</div>
+        </div>
+
+        <div class="card">
+            <h2>🎁 One Little Surprise</h2>
+            <p>
+                <span id="surprise-name">You</span>, ek button hai...
+                <br>
+                aur iske andar ek chhoti si feeling chhupi hai.
+            </p>
+            <button class="btn-inline" onclick="showSecret()">Click Me 🧵</button>
+
+            <div id="secret">
+                <div class="big-love">HAPPY RAKSHA BANDHAN</div>
+                <p>
+                    Rakhi ke dhaage se bhi mazboot hai apna bandhan 🧡<br>
+                    Har saal, har pal 🧵<br>
+                    Forever bhai-behen ka pyaar 💛
+                </p>
+            </div>
+        </div>
+
+        <section class="final">
+            <div style="font-size:70px;">🧡</div>
+            <h2 id="pair-names">Bandhan Forever 🧡</h2>
+            <p>
+                Kuch log rishtedaar bante hain...
+                <br>
+                but you became my favourite person to protect and be protected by.
+            </p>
+            <button class="btn-inline" onclick="finalLove()">One Last Blessing 🙏</button>
+            <br><br>
+            <button class="btn-inline" style="background: rgba(255,255,255,0.12); color: #fff; font-size: 14px; padding: 10px 24px; box-shadow: none;" onclick="window.location.href = window.location.pathname">Create your own note ✍️</button>
+        </section>
+
+    </div>
+
+    <!-- Pop-up Modal -->
+    <div class="modal-overlay" id="customModal">
+        <div class="modal-box">
+            <h3 id="modal-name">Name 🧡</h3>
+            <p id="modal-text">
+                Bas ek baat yaad rakhna...<br><br>
+                I'll always be there for you, through every thread of this bond. 🙏🧡
+            </p>
+            <button class="btn-primary" onclick="closeModal()">Forever & Always ✨</button>
+        </div>
+    </div>
+</div>
+
+<!-- COMMON FOOTER CONTAINER -->
+<div id="footer-container"></div>
+
+<!-- Common Script (Header/Footer Injection) -->
+<script src="common.js"></script>
+
+<script>
+/* Floating Rakhi Elements */
+const emojis = ["🧡", "🧵", "🎗️", "🪢", "💛", "🎊", "✨", "🙏"];
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (18 + Math.random() * 26) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 9000);
+}
+
+setInterval(createHeart, 450);
+
+/* Parse URL Data */
+const urlParams = new URLSearchParams(window.location.search);
+const encodedPayload = urlParams.get('data');
+
+if (encodedPayload) {
+    try {
+        const decodedString = decodeURIComponent(escape(atob(encodedPayload)));
+        const data = JSON.parse(decodedString);
+
+        document.getElementById('recipient-view').style.display = 'block';
+
+        const toName = data.to || 'You';
+        const fromName = data.from || 'Someone Special';
+
+        document.getElementById('page-title').innerText = `Happy Raksha Bandhan ${toName} 🧡`;
+        document.getElementById('hero-name').innerText = `${toName} 🧡`;
+        document.getElementById('card-greeting').innerText = `Hey ${toName} 🎊`;
+        document.getElementById('letter-title').innerText = `🧵 Dear ${toName}...`;
+        document.getElementById('letter-body').innerText = data.msg;
+        document.getElementById('letter-sign').innerText = `— ${fromName} 🧵`;
+        document.getElementById('surprise-name').innerText = toName;
+        document.getElementById('pair-names').innerText = `${fromName} 🧵 ${toName}`;
+        document.getElementById('modal-name').innerText = `${toName} 🧡`;
+        document.getElementById('modal-text').innerHTML = `Bas ek baat yaad rakhna...<br><br>${fromName} hamesha tumhare saath khada rahega, is dhaage ki tarah. 🙏🧡`;
+    } catch (e) {
+        document.getElementById('creator-view').style.display = 'flex';
+    }
+} else {
+    document.getElementById('creator-view').style.display = 'flex';
+}
+
+/* Link Generator Function */
+function generateLink() {
+    const to = document.getElementById('input-to').value.trim();
+    const from = document.getElementById('input-from').value.trim();
+    const msg = document.getElementById('input-msg').value.trim();
+
+    if (!to || !msg) {
+        alert('Please fill in both the recipient name and your message.');
+        return;
+    }
+
+    const payload = { to, from, msg };
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+    const fullUrl = `${window.location.origin}${window.location.pathname}?data=${encoded}`;
+
+    document.getElementById('share-link-input').value = fullUrl;
+    document.getElementById('result-box').style.display = 'block';
+}
+
+function copyShareLink() {
+    const input = document.getElementById('share-link-input');
+    input.select();
+    navigator.clipboard.writeText(input.value).then(() => {
+        alert('Link copied! Send it to your sibling. 🧵');
+    });
+}
+
+/* Interactive Actions */
+function showSecret() {
+    document.getElementById("secret").style.display = "block";
+    for (let i = 0; i < 30; i++) {
+        setTimeout(createHeart, i * 80);
+    }
+}
+
+function finalLove() {
+    for (let i = 0; i < 60; i++) {
+        setTimeout(createHeart, i * 40);
+    }
+    setTimeout(() => {
+        document.getElementById("customModal").classList.add("active");
+    }, 800);
+}
+
+function closeModal() {
+    document.getElementById("customModal").classList.remove("active");
+}
+</script>
+
+</body>
+</html>
