@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="common.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
@@ -143,7 +143,6 @@
       margin-bottom: 30px;
     }
 
-    /* Practical trust strip — replaces the "salesy" feel with concrete facts */
     .trust-strip {
       display: flex;
       flex-wrap: wrap;
@@ -269,6 +268,12 @@
       text-transform: uppercase;
     }
 
+    .card-badge.badge-festival {
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.12);
+      border-color: rgba(251, 191, 36, 0.28);
+    }
+
     .card-title {
       font-family: 'Playfair Display', serif;
       font-size: 23px;
@@ -293,41 +298,6 @@
       font-size: 14px;
       font-weight: 600;
       color: var(--primary);
-    }
-
-    /* ---------- Coming soon variant ---------- */
-    .card-tile.is-coming-soon {
-      cursor: default;
-    }
-
-    .card-tile.is-coming-soon .card-icon-badge {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--surface-border);
-      color: rgba(255, 241, 242, 0.55);
-    }
-
-    .card-tile.is-coming-soon .card-badge {
-      color: rgba(255, 241, 242, 0.75);
-      background: rgba(255, 255, 255, 0.06);
-      border-color: var(--surface-border);
-    }
-
-    .card-tile.is-coming-soon .card-title {
-      color: rgba(255, 255, 255, 0.82);
-    }
-
-    .card-tile.is-coming-soon .card-footer {
-      color: rgba(255, 241, 242, 0.5);
-    }
-
-    .card-tile.is-coming-soon:hover {
-      transform: none;
-      border-color: var(--surface-border);
-      box-shadow: none;
-    }
-
-    .card-tile.is-coming-soon:hover::before {
-      opacity: 0;
     }
   </style>
 </head>
@@ -370,6 +340,7 @@
     </div>
 
     <div class="cards-grid">
+      <!-- Card 1: Love Letter -->
       <a href="free1.html" class="card-tile">
         <div>
           <div class="card-head">
@@ -387,22 +358,23 @@
         </div>
       </a>
 
-      <div class="card-tile is-coming-soon" aria-disabled="true">
+      <!-- Card 2: Raksha Bandhan (Active -> page1.html) -->
+      <a href="page1.html" class="card-tile">
         <div>
           <div class="card-head">
-            <div class="card-icon-badge">
+            <div class="card-icon-badge" style="color: #fbbf24; background: rgba(251, 191, 36, 0.12); border-color: rgba(251, 191, 36, 0.28);">
               <span class="material-symbols-outlined" style="font-size: 22px;">redeem</span>
             </div>
-            <span class="card-badge">Coming Soon</span>
+            <span class="card-badge badge-festival">Festival Edition</span>
           </div>
           <h2 class="card-title">Raksha Bandhan</h2>
           <p class="card-description">A warm, personalized rakhi greeting for your siblings — customize your message and share a heartfelt digital card.</p>
         </div>
-        <div class="card-footer">
-          <span>In the works</span>
-          <span class="material-symbols-outlined" style="font-size: 18px;">schedule</span>
+        <div class="card-footer" style="color: #fbbf24;">
+          <span>Create Rakhi Card</span>
+          <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
         </div>
-      </div>
+      </a>
     </div>
   </main>
 
