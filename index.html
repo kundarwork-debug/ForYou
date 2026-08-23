@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>For You — Digital Greeting Cards</title>
-  
+
   <link rel="stylesheet" href="common.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,17 +17,38 @@
       width: 90%;
       max-width: 960px;
       margin: 0 auto;
-      padding: 40px 0 80px;
+      padding: 48px 0 90px;
       position: relative;
       z-index: 2;
     }
 
+    /* ---------- Hero ---------- */
     .hero-stage {
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border: 1px solid rgba(251, 113, 133, 0.28);
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 26px;
+    }
+
+    .hero-kicker .material-symbols-outlined {
+      font-size: 15px;
     }
 
     /* Floating Letter Animation */
@@ -35,19 +56,19 @@
       position: relative;
       width: 140px;
       height: 120px;
-      margin: 10px auto 25px;
+      margin: 0 auto 28px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .floating-envelope {
-      width: 86px;
-      height: 60px;
+      width: 88px;
+      height: 62px;
       background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
       border-radius: 8px;
       position: relative;
-      box-shadow: 0 16px 35px var(--primary-glow);
+      box-shadow: 0 18px 40px var(--primary-glow);
       animation: floatSmooth 4.5s ease-in-out infinite;
       display: flex;
       align-items: center;
@@ -60,9 +81,9 @@
       left: 0;
       right: 0;
       height: 0;
-      border-left: 43px solid transparent;
-      border-right: 43px solid transparent;
-      border-top: 30px solid #fecdd3;
+      border-left: 44px solid transparent;
+      border-right: 44px solid transparent;
+      border-top: 31px solid #fecdd3;
     }
 
     .envelope-seal {
@@ -77,11 +98,11 @@
 
     .glow-aura {
       position: absolute;
-      width: 90px;
-      height: 90px;
+      width: 92px;
+      height: 92px;
       background: var(--primary);
       border-radius: 50%;
-      filter: blur(40px);
+      filter: blur(42px);
       opacity: 0.35;
       animation: pulseGlow 4.5s ease-in-out infinite;
     }
@@ -98,11 +119,11 @@
 
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(34px, 6vw, 52px);
+      font-size: clamp(34px, 6vw, 54px);
       font-weight: 700;
       letter-spacing: -0.02em;
-      line-height: 1.18;
-      margin-bottom: 14px;
+      line-height: 1.16;
+      margin-bottom: 16px;
       color: #ffffff;
     }
 
@@ -118,15 +139,66 @@
       font-size: 16.5px;
       color: rgba(255, 241, 242, 0.7);
       max-width: 520px;
-      line-height: 1.6;
+      line-height: 1.65;
+      margin-bottom: 30px;
     }
 
-    /* Greeting Cards Catalog */
+    /* Practical trust strip — replaces the "salesy" feel with concrete facts */
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 241, 242, 0.75);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--surface-border);
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+    }
+
+    .trust-item .material-symbols-outlined {
+      font-size: 16px;
+      color: var(--primary);
+    }
+
+    /* ---------- Section label ---------- */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 56px 0 22px;
+    }
+
+    .section-label h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 241, 242, 0.5);
+      white-space: nowrap;
+    }
+
+    .section-label .line {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--surface-border), transparent);
+    }
+
+    /* ---------- Greeting Cards Catalog ---------- */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
       gap: 24px;
-      margin-top: 20px;
+      margin-top: 8px;
     }
 
     .card-tile {
@@ -141,26 +213,42 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 85% 0%, rgba(251, 113, 133, 0.10), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .card-tile:hover::before {
+      opacity: 1;
     }
 
     .card-tile:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       border-color: rgba(251, 113, 133, 0.4);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px var(--primary-glow);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55), 0 0 30px var(--primary-glow);
     }
 
     .card-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .card-icon-badge {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+      width: 50px;
+      height: 50px;
+      border-radius: 15px;
       background: var(--primary-soft);
       border: 1px solid rgba(251, 113, 133, 0.3);
       display: flex;
@@ -171,19 +259,19 @@
 
     .card-badge {
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--primary);
       background: var(--primary-soft);
       border: 1px solid rgba(251, 113, 133, 0.25);
-      padding: 4px 10px;
+      padding: 5px 11px;
       border-radius: var(--radius-pill);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
     .card-title {
       font-family: 'Playfair Display', serif;
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 600;
       margin-bottom: 10px;
       color: #ffffff;
@@ -192,7 +280,7 @@
     .card-description {
       font-size: 14px;
       color: rgba(255, 241, 242, 0.65);
-      line-height: 1.6;
+      line-height: 1.65;
       margin-bottom: 28px;
     }
 
@@ -206,6 +294,41 @@
       font-weight: 600;
       color: var(--primary);
     }
+
+    /* ---------- Coming soon variant ---------- */
+    .card-tile.is-coming-soon {
+      cursor: default;
+    }
+
+    .card-tile.is-coming-soon .card-icon-badge {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--surface-border);
+      color: rgba(255, 241, 242, 0.55);
+    }
+
+    .card-tile.is-coming-soon .card-badge {
+      color: rgba(255, 241, 242, 0.75);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--surface-border);
+    }
+
+    .card-tile.is-coming-soon .card-title {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .card-tile.is-coming-soon .card-footer {
+      color: rgba(255, 241, 242, 0.5);
+    }
+
+    .card-tile.is-coming-soon:hover {
+      transform: none;
+      border-color: var(--surface-border);
+      box-shadow: none;
+    }
+
+    .card-tile.is-coming-soon:hover::before {
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
@@ -218,6 +341,11 @@
 
   <main>
     <section class="hero-stage">
+      <span class="hero-kicker">
+        <span class="material-symbols-outlined">verified</span>
+        Handcrafted, not templated
+      </span>
+
       <div class="envelope-stage">
         <div class="glow-aura"></div>
         <div class="floating-envelope">
@@ -227,8 +355,19 @@
       </div>
 
       <h1 class="hero-title">Say It With a <span>Keepsake</span></h1>
-      <p class="hero-sub">Write a personal letter, customize your greeting, and share an interactive digital note with someone special.</p>
+      <p class="hero-sub">Write a personal letter, customize your greeting, and share an interactive digital note with someone special — ready to send in minutes.</p>
+
+      <div class="trust-strip">
+        <span class="trust-item"><span class="material-symbols-outlined">bolt</span>Ready in 2 minutes</span>
+        <span class="trust-item"><span class="material-symbols-outlined">lock</span>No sign-up needed</span>
+        <span class="trust-item"><span class="material-symbols-outlined">favorite</span>Free to send</span>
+      </div>
     </section>
+
+    <div class="section-label">
+      <h3>Available Cards</h3>
+      <div class="line"></div>
+    </div>
 
     <div class="cards-grid">
       <a href="free1.html" class="card-tile">
@@ -247,6 +386,23 @@
           <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
         </div>
       </a>
+
+      <div class="card-tile is-coming-soon" aria-disabled="true">
+        <div>
+          <div class="card-head">
+            <div class="card-icon-badge">
+              <span class="material-symbols-outlined" style="font-size: 22px;">redeem</span>
+            </div>
+            <span class="card-badge">Coming Soon</span>
+          </div>
+          <h2 class="card-title">Raksha Bandhan</h2>
+          <p class="card-description">A warm, personalized rakhi greeting for your siblings — customize your message and share a heartfelt digital card.</p>
+        </div>
+        <div class="card-footer">
+          <span>In the works</span>
+          <span class="material-symbols-outlined" style="font-size: 18px;">schedule</span>
+        </div>
+      </div>
     </div>
   </main>
 
