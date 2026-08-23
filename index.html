@@ -3,151 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>VibeNotes — Virtual Greeting Cards Workspace</title>
+  <title>VibeNotes — Virtual Greeting Cards</title>
   
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
   <link rel="stylesheet" href="common.css">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
   <style>
-    /* Hero Stage */
+    /* Hero */
     .hero-stage {
-      max-width: 1440px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 60px 32px 10px;
+      padding: 70px 24px 40px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
-      z-index: 2;
     }
 
     .badge-capsule {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 16px;
-      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 14px;
+      background: var(--surface-card);
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-pill);
       font-size: 11px;
-      font-weight: 700;
-      color: var(--primary);
-      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #93c5fd;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 20px;
     }
 
     .hero-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(32px, 6vw, 54px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 12px;
-    }
-
-    .hero-title span {
-      background: linear-gradient(135deg, var(--primary) 0%, #ff82b2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      color: #ffffff;
     }
 
     .hero-sub {
-      font-size: clamp(14px, 3.5vw, 17px);
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 400;
       color: var(--text-muted);
-      max-width: 540px;
+      max-width: 520px;
       line-height: 1.6;
-    }
-
-    /* Orbit Physics Hub */
-    .interactive-hero-zone {
-      position: relative;
-      width: min(94vw, 900px);
-      height: 320px;
-      margin: 20px auto 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-    }
-
-    .beacon-wave {
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      border: 1.5px solid var(--primary);
-      opacity: 0;
-      animation: beaconRipple 3.6s cubic-bezier(0.1, 0.85, 0.25, 1) infinite;
-      pointer-events: none;
-    }
-    .beacon-wave:nth-child(2) { animation-delay: 1.2s; }
-    .beacon-wave:nth-child(3) { animation-delay: 2.4s; }
-
-    .orbit-ring-track {
-      position: absolute;
-      border-radius: 50%;
-      border: 1.5px dashed rgba(255, 51, 119, 0.25);
-    }
-    .track-inner { width: 120px; height: 120px; }
-    .track-middle { width: 180px; height: 180px; border-color: rgba(121, 40, 202, 0.25); }
-    .track-outer { width: 240px; height: 240px; }
-
-    .beacon-core-disc {
-      position: relative;
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff3377 0%, #7928ca 100%);
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      box-shadow: 0 12px 28px -4px var(--primary-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      z-index: 5;
-    }
-
-    .free-node {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 34px;
-      height: 34px;
-      margin-top: -17px;
-      margin-left: -17px;
-      border-radius: 50%;
-      background: #140118;
-      border: 1.5px solid var(--primary);
-      color: #ff82b2;
-      box-shadow: 0 4px 12px var(--primary-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-    }
-
-    @keyframes beaconRipple {
-      0% { transform: scale(0.65); opacity: 0.8; }
-      50% { opacity: 0.4; }
-      100% { transform: scale(1.7); opacity: 0; }
     }
 
     /* Cards Module Section */
     .workspace-section {
-      max-width: 1200px;
-      margin: 30px auto 40px;
-      padding: 0 32px;
+      max-width: 1000px;
+      margin: 20px auto 60px;
+      padding: 0 24px;
       width: 100%;
-      position: relative;
-      z-index: 2;
     }
 
     .section-bar {
@@ -161,19 +76,20 @@
 
     .section-heading {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 600;
       display: flex;
       align-items: center;
       gap: 8px;
+      color: var(--text-main);
     }
 
     .section-counter {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--primary);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #93c5fd;
       background: var(--primary-soft);
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: var(--radius-pill);
     }
 
@@ -190,65 +106,58 @@
       padding: 28px 24px;
       text-decoration: none;
       color: inherit;
-      box-shadow: var(--shadow-subtle);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
     .module-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--primary);
-      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+      border-color: rgba(37, 99, 235, 0.4);
     }
 
     .card-head {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .card-icon-pill {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.05);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--surface-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--primary);
-      transition: 0.3s;
-    }
-
-    .module-card:hover .card-icon-pill {
-      background: var(--primary);
-      color: #fff;
+      color: #60a5fa;
     }
 
     .status-tag {
       font-size: 11px;
-      font-weight: 700;
-      color: #2ecc71;
-      background: rgba(46, 204, 113, 0.15);
-      border: 1px solid rgba(46, 204, 113, 0.3);
-      padding: 4px 10px;
+      font-weight: 600;
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      padding: 3px 8px;
       border-radius: var(--radius-pill);
     }
 
     .card-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 600;
       margin-bottom: 8px;
+      color: #ffffff;
     }
 
     .card-description {
       font-size: 13.5px;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.55;
       margin-bottom: 20px;
     }
 
@@ -261,11 +170,11 @@
 
     .micro-tag {
       font-size: 11px;
-      font-weight: 600;
-      padding: 4px 10px;
-      background: rgba(255, 255, 255, 0.05);
+      font-weight: 500;
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--surface-border);
-      border-radius: 8px;
+      border-radius: 6px;
       color: #cbd5e1;
     }
 
@@ -275,119 +184,41 @@
       justify-content: space-between;
       padding-top: 16px;
       border-top: 1px solid var(--surface-border);
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    /* Live Stats Section */
-    .impact-section {
-      max-width: 1200px;
-      margin: 10px auto 40px;
-      padding: 0 32px;
-      width: 100%;
-      position: relative;
-      z-index: 2;
-    }
-
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      background: var(--surface-card);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-xl);
-      padding: 24px;
-      box-shadow: var(--shadow-subtle);
-    }
-
-    .impact-item {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      align-items: center;
-      border-right: 1px dashed var(--surface-border);
-    }
-    .impact-item:last-child { border-right: none; }
-
-    .impact-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pulse-dot {
-      width: 9px;
-      height: 9px;
-      background-color: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+      font-size: 13px;
+      font-weight: 600;
+      color: #60a5fa;
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Light Mesh Background -->
-  <div class="ambient-bg"></div>
-
-  <!-- Perspective 3D Matrix Layer -->
-  <div class="perspective-grid-layer">
-    <div class="matrix-plane" id="matrixPlane"></div>
-  </div>
-
-  <!-- Header Placeholder (Injected by common.js) -->
+  <!-- Header Placeholder -->
   <div id="header-container"></div>
 
   <main>
     <!-- HERO STAGE -->
     <section class="hero-stage">
       <div class="badge-capsule">
-        <span class="material-symbols-outlined" style="font-size: 15px;">auto_awesome</span>
-        <span>Virtual Cards Hub</span>
+        <span>Virtual Cards Platform</span>
       </div>
 
       <h1 class="hero-title">
-        Send Moments, <span>Not Just Text.</span>
+        Send Personalized Letters Online
       </h1>
 
       <p class="hero-sub">
-        Craft personalized, interactive keepsake pages with live 3D unboxing and share secret links with your loved ones.
+        Create custom digital notes and share unique presentation links directly with your recipients.
       </p>
-
-      <!-- Physics Orbit Zone -->
-      <div class="interactive-hero-zone" id="heroInteractiveZone">
-        <div class="beacon-wave"></div>
-        <div class="beacon-wave"></div>
-        <div class="beacon-wave"></div>
-
-        <div class="orbit-ring-track track-inner"></div>
-        <div class="orbit-ring-track track-middle"></div>
-        <div class="orbit-ring-track track-outer"></div>
-
-        <div class="beacon-core-disc" id="hubCore">
-          <span class="material-symbols-outlined" style="font-size: 32px;">favorite</span>
-        </div>
-
-        <div class="free-node" id="node1"><span class="material-symbols-outlined" style="font-size: 18px;">mail</span></div>
-        <div class="free-node" id="node2"><span class="material-symbols-outlined" style="font-size: 18px;">celebration</span></div>
-        <div class="free-node" id="node3"><span class="material-symbols-outlined" style="font-size: 18px;">loyalty</span></div>
-        <div class="free-node" id="node4"><span class="material-symbols-outlined" style="font-size: 18px;">diamond</span></div>
-      </div>
     </section>
 
-    <!-- CARDS / MODULES SECTION -->
+    <!-- MODULES / CARDS SECTION -->
     <section class="workspace-section">
       <div class="section-bar">
         <div class="section-heading">
-          <span class="material-symbols-outlined" style="color: var(--primary); font-size: 20px;">grid_view</span>
-          <span>Featured Greeting Cards</span>
+          <span class="material-symbols-outlined" style="font-size: 18px; color: #60a5fa;">grid_view</span>
+          <span>Available Templates</span>
         </div>
-        <span class="section-counter">1 Active Card</span>
+        <span class="section-counter">1 Template</span>
       </div>
 
       <div class="modules-grid">
@@ -396,90 +227,30 @@
           <div>
             <div class="card-head">
               <div class="card-icon-pill">
-                <span class="material-symbols-outlined">mail</span>
+                <span class="material-symbols-outlined" style="font-size: 20px;">drafts</span>
               </div>
-              <span class="status-tag">Free Edition</span>
+              <span class="status-tag">Active</span>
             </div>
-            <h2 class="card-title">Digital Love Letter</h2>
-            <p class="card-description">A handcrafted digital letter featuring floating hearts, glassmorphism cards, and an interactive envelope unboxing reveal.</p>
+            <h2 class="card-title">Love Letter</h2>
+            <p class="card-description">A structured digital letter template with custom sender and recipient parameters and instant link generation.</p>
             <div class="tags-flow">
-              <span class="micro-tag">💌 Envelope Unboxing</span>
-              <span class="micro-tag">✨ Particle Effects</span>
-              <span class="micro-tag">🔒 Secret Link</span>
+              <span class="micro-tag">Web Link</span>
+              <span class="micro-tag">Instant Access</span>
+              <span class="micro-tag">Zero Setup</span>
             </div>
           </div>
           <div class="card-footer-cta">
-            <span>Customize Note</span>
-            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+            <span>Open Generator</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
           </div>
         </a>
       </div>
     </section>
-
-    <!-- LIVE IMPACT STATS -->
-    <section class="impact-section">
-      <div class="impact-grid">
-        <div class="impact-item">
-          <div class="impact-num">1</div>
-          <div style="font-size: 12.5px; color: var(--text-muted);">Active Templates</div>
-        </div>
-        <div class="impact-item">
-          <div class="impact-num">
-            <span class="pulse-dot"></span>
-            <span>Online</span>
-          </div>
-          <div style="font-size: 12.5px; color: var(--text-muted);">Real-Time Network</div>
-        </div>
-        <div class="impact-item">
-          <div class="impact-num">Instant</div>
-          <div style="font-size: 12.5px; color: var(--text-muted);">Link Delivery</div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- Footer Placeholder (Injected by common.js) -->
+  <!-- Footer Placeholder -->
   <div id="footer-container"></div>
 
-  <!-- Shared Controller Script -->
   <script src="common.js"></script>
-
-  <!-- Orbit Physics Rig Script -->
-  <script>
-    (function initOrbitPhysics() {
-      const zone = document.getElementById('heroInteractiveZone');
-      const core = document.getElementById('hubCore');
-      if (!zone || !core) return;
-
-      const nodes = [
-        { el: document.getElementById('node1'), radius: 60,  speed:  0.012, angle: 0, x: 0, y: 0 },
-        { el: document.getElementById('node2'), radius: 90,  speed: -0.009, angle: Math.PI, x: 0, y: 0 },
-        { el: document.getElementById('node3'), radius: 120, speed:  0.006, angle: -Math.PI / 2, x: 0, y: 0 },
-        { el: document.getElementById('node4'), radius: 120, speed:  0.006, angle:  Math.PI / 2, x: 0, y: 0 }
-      ];
-
-      let mouseX = 0, mouseY = 0;
-      zone.addEventListener('mousemove', (e) => {
-        const rect = zone.getBoundingClientRect();
-        mouseX = (e.clientX - (rect.left + rect.width / 2)) * 0.06;
-        mouseY = (e.clientY - (rect.top + rect.height / 2)) * 0.06;
-      });
-      zone.addEventListener('mouseleave', () => { mouseX = 0; mouseY = 0; });
-
-      function render() {
-        core.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-        nodes.forEach(item => {
-          item.angle += item.speed;
-          const targetX = Math.cos(item.angle) * item.radius + mouseX * 0.4;
-          const targetY = Math.sin(item.angle) * item.radius + mouseY * 0.4;
-          item.x += (targetX - item.x) * 0.15;
-          item.y += (targetY - item.y) * 0.15;
-          if (item.el) item.el.style.transform = `translate(${item.x}px, ${item.y}px)`;
-        });
-        requestAnimationFrame(render);
-      }
-      render();
-    })();
-  </script>
 </body>
 </html>
