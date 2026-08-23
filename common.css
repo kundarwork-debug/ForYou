@@ -5,7 +5,7 @@
   --primary-glow: rgba(244, 63, 94, 0.3);
   --bg-base: #0e0714;
   --surface-card: rgba(255, 255, 255, 0.04);
-  --surface-border: rgba(255, 255, 255, 0.08);
+  --surface-border: rgba(255, 255, 255, 0.1);
   --text-main: #fff1f2;
   --text-muted: #fda4af;
   --radius-xl: 20px;
@@ -29,18 +29,18 @@ body {
   position: relative;
 }
 
-/* Ambient Velvet Background Glows */
+/* Ambient Velvet Glow */
 .ambient-glow {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
   background: 
-    radial-gradient(circle at 20% 15%, rgba(244, 63, 94, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 45%);
+    radial-gradient(circle at 20% 15%, rgba(244, 63, 94, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 50%);
 }
 
-/* Common Header */
+/* ================= MODERN PILL HEADER ================= */
 .site-header {
   width: 100%;
   padding: 24px 0 10px;
@@ -50,57 +50,85 @@ body {
 
 .header-container {
   width: 90%;
-  max-width: 1000px;
+  max-width: 960px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 24px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--surface-border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   border-radius: var(--radius-pill);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .brand-logo {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 21px;
   letter-spacing: -0.01em;
   color: var(--text-main);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s ease;
 }
 
-.brand-logo span {
+.brand-logo:hover {
+  transform: scale(1.02);
+}
+
+.brand-logo img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(244, 63, 94, 0.4));
+}
+
+.brand-logo span.highlight {
   color: var(--primary);
   font-style: italic;
+  font-family: 'Playfair Display', serif;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
 }
 
 .nav-link {
   color: rgba(255, 241, 242, 0.65);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
-  transition: color 0.2s ease;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  transition: all 0.25s ease;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover {
   color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
-/* Common Footer */
+.nav-link.active {
+  color: #ffffff;
+  background: rgba(251, 113, 133, 0.16);
+  border: 1px solid rgba(251, 113, 133, 0.3);
+  font-weight: 600;
+}
+
+/* ================= MODERN FOOTER ================= */
 .site-footer {
   width: 100%;
   border-top: 1px solid var(--surface-border);
-  background: rgba(14, 7, 20, 0.8);
+  background: rgba(14, 7, 20, 0.85);
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   padding: 28px 0;
   position: relative;
   z-index: 10;
@@ -109,7 +137,7 @@ body {
 
 .footer-container {
   width: 90%;
-  max-width: 1000px;
+  max-width: 960px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -119,13 +147,13 @@ body {
 }
 
 .footer-left {
-  font-size: 13.5px;
+  font-size: 13px;
   color: rgba(255, 241, 242, 0.6);
 }
 
 .footer-right {
   display: flex;
-  gap: 20px;
+  gap: 18px;
 }
 
 .footer-link {
@@ -140,6 +168,8 @@ body {
 }
 
 @media (max-width: 600px) {
-  .header-container { padding: 12px 18px; }
+  .header-container { padding: 8px 16px; }
+  .brand-logo { font-size: 19px; }
+  .nav-link { padding: 6px 12px; font-size: 12.5px; }
   .footer-container { flex-direction: column; text-align: center; }
 }
