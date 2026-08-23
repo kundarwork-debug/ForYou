@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Inject Common Header
+  // Inject Header
   const headerContainer = document.getElementById("header-container");
   if (headerContainer) {
     headerContainer.innerHTML = `
       <header class="site-header">
         <div class="header-container">
-          <a href="index.html" class="brand-logo">For <span>You</span></a>
+          <a href="index.html" class="brand-logo">
+            <img src="logo.svg" alt="For You Logo" />
+            <span>For <span class="highlight">You</span></span>
+          </a>
           <nav class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
             <a href="free1.html" class="nav-link">Love Letter</a>
@@ -14,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </header>
     `;
 
-    // Highlight current page
+    // Accurate Active Tab Highlighting
     const currentPath = window.location.pathname;
     const links = headerContainer.querySelectorAll(".nav-link");
     links.forEach(link => {
@@ -25,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Inject Common Footer
+  // Inject Footer
   const footerContainer = document.getElementById("footer-container");
   if (footerContainer) {
     footerContainer.innerHTML = `
