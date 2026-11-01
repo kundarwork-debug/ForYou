@@ -38,6 +38,17 @@
         <p class="helper">Your photo is shown in this preview. The share link carries your words, not the uploaded photo.</p>
         <button class="primary-button" type="button" id="share-button">Create share link <span>↗</span></button>
         <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+        <section class="share-result" id="share-result" hidden aria-live="polite">
+          <div class="share-result-heading">YOUR GREETING IS READY</div>
+          <img class="share-qr" id="share-qr" alt="QR code for your Diwali greeting">
+          <p class="share-short-label">SHORT LINK</p>
+          <a class="share-short-url" id="share-short-url" href="#" target="_blank" rel="noopener"></a>
+          <div class="share-actions">
+            <button class="secondary-button" type="button" id="copy-short-link">Copy link</button>
+            <button class="secondary-button" type="button" id="share-short-link">Share link ↗</button>
+          </div>
+          <p class="share-hint">Scan the QR code or send the short link.</p>
+        </section>
       </form>
 
       <div class="preview-wrap">
