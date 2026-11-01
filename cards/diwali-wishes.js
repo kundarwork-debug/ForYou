@@ -9,6 +9,9 @@ const photoFrame = document.getElementById("photo-frame");
 const previewPhoto = document.getElementById("preview-photo");
 const shareButton = document.getElementById("share-button");
 const shareStatus = document.getElementById("share-status");
+const greetingCard = document.getElementById("greeting-card");
+const revealScreen = document.getElementById("reveal-screen");
+const openCardButton = document.getElementById("open-card");
 
 const defaultMessage = messageInput.value;
 
@@ -47,9 +50,18 @@ function loadSharedCard() {
   senderInput.value = params.get("from") || "";
   updatePreview();
   document.body.classList.add("recipient-view");
+  revealScreen.hidden = false;
   document.title = "A Diwali Wish for You — For You";
   return true;
 }
+
+openCardButton.addEventListener("click", () => {
+  greetingCard.classList.add("is-opening");
+  window.setTimeout(() => {
+    revealScreen.hidden = true;
+    greetingCard.classList.remove("is-opening");
+  }, 900);
+});
 
 shareButton.addEventListener("click", async () => {
   const url = new URL(window.location.href);
@@ -67,11 +79,14 @@ shareButton.addEventListener("click", async () => {
       await navigator.clipboard.writeText(shareUrl);
       shareStatus.textContent = "Share link copied. Send it to someone special.";
     } else {
-      shareStatus.textContent = "Copy this link from your browser's address bar after creating it.";
-      window.history.replaceState({}, "", shareUrl);
+      await navigator.clipboard.writeText(shareUrl);
+      shareStatus.textContent = "Share link copied. Send it to someone special.";
     }
   } catch (error) {
-    if (error.name !== "AbortError") shareStatus.textContent = "Couldn't open sharing. Please try copying the page link.";
+    if (error.name !== "AbortError") {
+      window.history.replaceState({}, "", shareUrl);
+      shareStatus.textContent = "Your personal link is ready in the address bar. Copy it to share.";
+    }
   }
 });
 
