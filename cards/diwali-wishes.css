@@ -108,3 +108,17 @@ body.recipient-view{min-height:100vh;background:#171b2b}
 @keyframes reveal-away{0%{opacity:1;transform:scale(1);filter:blur(0)}100%{opacity:0;transform:scale(1.08);filter:blur(9px)}}
 @keyframes lantern-pulse{0%,100%{box-shadow:0 0 24px #edc46b25,inset 0 0 15px #edc46b12}50%{box-shadow:0 0 55px #edc46b65,inset 0 0 25px #edc46b30}}
 @media(prefers-reduced-motion:reduce){.card-frame,.flame,.spark,.rangoli,.reveal-lantern,.greeting-card.is-opening .reveal-screen{animation:none!important}}
+
+
+/* QR code and compact share link panel */
+.share-result{margin-top:18px;padding:18px 14px;text-align:center;border:1px solid #e8dfcf;border-radius:11px;background:#fbf8f1}
+.share-result[hidden]{display:none}
+.share-result-heading{margin-bottom:13px;color:#9b7538;font-size:9px;font-weight:700;letter-spacing:.16em}
+.share-qr{display:block;width:176px;height:176px;max-width:100%;margin:0 auto 14px;padding:7px;border:1px solid #e8dfcf;border-radius:8px;background:#fff}
+.share-short-label{margin-bottom:5px;color:#92909a;font-size:8px;font-weight:700;letter-spacing:.16em}
+.share-short-url{display:block;color:#8a642d;font-size:13px;font-weight:700;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:3px}
+.share-actions{display:flex;gap:8px;margin-top:14px}
+.secondary-button{flex:1;min-width:0;padding:10px 8px;border:1px solid #d9c9aa;border-radius:7px;background:#fffdf8;color:#51442e;font:700 10px "DM Sans",sans-serif;cursor:pointer}
+.secondary-button:hover{background:#f2eadb}
+.share-hint{margin-top:11px;color:#888894;font-size:10px;line-height:1.5}
+.primary-button:disabled{opacity:.65;cursor:wait;transform:none}
