@@ -12,29 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="brand-wordmark">For You<small>DIGITAL LETTER STUDIO</small></span>
           </a>
 
-          <nav class="nav-links" aria-label="Main navigation">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="free1.html" class="nav-link">Personal Letter</a>
-            <a href="page1.html" class="nav-link">Festival Letter</a>
-          </nav>
 
-          <a class="header-cta" href="free1.html">
-            Start a letter <span aria-hidden="true">↗</span>
-          </a>
         </div>
       </header>
     `;
 
-    const links = headerContainer.querySelectorAll(".nav-link");
-    links.forEach((link) => {
-      const href = link.getAttribute("href");
-      const isHome = href === "index.html" &&
-        (currentPath === "/" || currentPath.endsWith("/index.html") || currentPath.endsWith("/"));
-      if (isHome || (href !== "index.html" && currentPath.endsWith(href))) {
-        link.classList.add("active");
-        link.setAttribute("aria-current", "page");
-      }
-    });
+
   }
 
   // Shared footer focused on writing and creative expression
