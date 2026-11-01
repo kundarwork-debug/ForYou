@@ -40,9 +40,9 @@ body {
   min-height: 78px;
   margin: 0 auto;
   padding: 12px 20px 12px 24px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 24px;
   color: #252a31;
   background: #f5f1e9;
