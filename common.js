@@ -17,7 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
       </header>
     `;
 
+    const siteHeader = headerContainer.querySelector(".site-header");
+    const updateHeaderState = () => {
+      siteHeader.classList.toggle("is-compact", window.scrollY > 70);
+    };
 
+    window.addEventListener("scroll", updateHeaderState, { passive: true });
+    updateHeaderState();
   }
 
   // Shared footer focused on writing and creative expression
