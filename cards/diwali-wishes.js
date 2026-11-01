@@ -40,11 +40,15 @@ photoInput.addEventListener("change", () => {
 
 function loadSharedCard() {
   const params = new URLSearchParams(window.location.search);
-  if (!params.has("to") && !params.has("message") && !params.has("from")) return;
+  const isSharedCard = params.has("to") || params.has("message") || params.has("from");
+  if (!isSharedCard) return false;
   recipientInput.value = params.get("to") || "";
   messageInput.value = params.get("message") || defaultMessage;
   senderInput.value = params.get("from") || "";
   updatePreview();
+  document.body.classList.add("recipient-view");
+  document.title = "A Diwali Wish for You — For You";
+  return true;
 }
 
 shareButton.addEventListener("click", async () => {
