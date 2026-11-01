@@ -190,7 +190,19 @@
       line-height: 1.8;
     }
 
-    @media (max-width: 600px) {
+
+    .design-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,320px));gap:22px}
+    .design-card{display:block;overflow:hidden;border:1px solid #e2ddd3;border-radius:16px;background:#fffdf8;color:inherit;text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s}
+    .design-card:hover{transform:translateY(-4px);border-color:#c9bda8;box-shadow:0 16px 34px #29251d12}
+    .design-art{min-height:260px;display:grid;place-items:center;padding:18px;background:linear-gradient(145deg,#22263a,#171b2b 65%,#343047)}
+    .mini-greeting{position:relative;width:100%;max-width:220px;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 18px;border:1px solid #bd9859;color:#f4e6c5;text-align:center;background:radial-gradient(ellipse at 50% 35%,#39354b,#202437 62%,#171b2b);box-shadow:0 12px 28px #090b1680}
+    .mini-greeting:before,.mini-greeting:after{content:"✧";position:absolute;color:#d8b66f;font-size:17px}.mini-greeting:before{top:12px;left:14px}.mini-greeting:after{right:14px;bottom:12px}
+    .mini-diya{font-size:37px;line-height:1.2;color:#e7c77e;text-shadow:0 0 18px #e7b34b88}
+    .mini-greeting small{margin-top:9px;color:#d6b978;font-size:7px;letter-spacing:.2em}
+    .mini-greeting strong{margin-top:8px;font:600 31px/.98 'Playfair Display',Georgia,serif}.mini-greeting em{color:#e8c77e;font-weight:500}
+    .mini-greeting span{margin-top:12px;color:#e7dfd0;font-size:8px;letter-spacing:.08em}
+    .design-info{padding:18px 19px 20px}.design-info h3{margin-bottom:6px;color:#30343b;font:600 21px 'Playfair Display',Georgia,serif}.design-info p{color:#77766f;font-size:11px;line-height:1.7}.design-meta{display:flex;justify-content:space-between;align-items:center;margin-top:15px;color:#8a795d;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+\n    @media (max-width: 600px) {
       main { width: 88%; padding-top: 48px; }
       .hero-stage { margin-bottom: 58px; }
       .hero-sub { font-size: 13px; }
@@ -241,14 +253,22 @@
         <span class="collection-count">A collection in the making</span>
       </div>
 
-      <div class="collection-placeholder">
-        <div>
-          <div class="placeholder-icon">
-            <span class="material-symbols-outlined" aria-hidden="true">draft</span>
+      <div class="design-grid">
+        <a class="design-card" href="cards/diwali-wishes.html" aria-label="Open Diwali Wishes design">
+          <div class="design-art" aria-hidden="true">
+            <div class="mini-greeting">
+              <div class="mini-diya">✦</div>
+              <small>THE FESTIVAL OF LIGHTS</small>
+              <strong>Happy<br><em>Diwali</em></strong>
+              <span>A little wish, made personal</span>
+            </div>
           </div>
-          <h3>Something thoughtful is taking shape.</h3>
-          <p>We’re putting together a collection of designs for notes, stories, celebrations and everyday messages. Pick a design that feels right, then make it your own.</p>
-        </div>
+          <div class="design-info">
+            <h3>Diwali Wishes</h3>
+            <p>A festive digital greeting, wrapped up as a little gift to share.</p>
+            <div class="design-meta"><span>Festival greeting</span><span>Explore design ↗</span></div>
+          </div>
+        </a>
       </div>
     </section>
   </main>
