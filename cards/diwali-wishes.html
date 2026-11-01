@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171b2b">
+  <meta name="description" content="Create a personal Diwali greeting card with your own message.">
+  <title>Diwali Wishes — For You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="diwali-wishes.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="For You home"><span class="brand-mark">F.</span><span>For You<small>DIGITAL LETTER STUDIO</small></span></a>
+    <a class="back-link" href="../index.html">← All designs</a>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">A FESTIVE GREETING · DESIGN 01</p>
+      <h1>Diwali, made <em>personal.</em></h1>
+      <p>Share a little light with someone special. Make this greeting yours with a name and a message.</p>
+    </section>
+
+    <section class="studio" aria-label="Diwali card creator">
+      <form class="editor" id="card-form">
+        <div class="section-heading"><span>01 / PERSONALISE</span><span class="tiny-rule"></span></div>
+        <label for="recipient">To</label>
+        <input id="recipient" name="recipient" maxlength="48" placeholder="Someone special" autocomplete="off">
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" rows="5" maxlength="260">Wishing you a Diwali filled with light, laughter and new beginnings. May the year ahead bring you peace, prosperity and moments worth remembering.</textarea>
+        <label for="sender">From</label>
+        <input id="sender" name="sender" maxlength="48" placeholder="Your name" autocomplete="off">
+        <label class="upload-label" for="photo">Add a photo <span>OPTIONAL</span></label>
+        <input class="file-input" id="photo" type="file" accept="image/*">
+        <p class="helper">Your photo is shown in this preview. The share link carries your words, not the uploaded photo.</p>
+        <button class="primary-button" type="button" id="share-button">Create share link <span>↗</span></button>
+        <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="preview-wrap">
+        <div class="section-heading preview-heading"><span>02 / LIVE PREVIEW</span><span class="tiny-rule"></span></div>
+        <article class="greeting-card" id="greeting-card">
+          <div class="card-frame">
+            <div class="card-topline"><span>THE FESTIVAL OF LIGHTS</span><span>✳</span></div>
+            <div class="rangoli rangoli-one" aria-hidden="true">✳</div>
+            <div class="rangoli rangoli-two" aria-hidden="true">✳</div>
+            <div class="diya-scene" aria-hidden="true">
+              <span class="spark spark-a">✦</span><span class="spark spark-b">✧</span><span class="spark spark-c">✦</span>
+              <div class="flame"></div><div class="diya"><span></span></div>
+              <div class="diya-shadow"></div>
+            </div>
+            <p class="card-kicker">A WISH FOR YOU</p>
+            <h2>Happy<br><em>Diwali</em></h2>
+            <p class="card-recipient" id="preview-recipient">To someone special</p>
+            <div class="gold-line"><span>✧</span></div>
+            <p class="card-message" id="preview-message">Wishing you a Diwali filled with light, laughter and new beginnings. May the year ahead bring you peace, prosperity and moments worth remembering.</p>
+            <div class="photo-frame" id="photo-frame" hidden><img id="preview-photo" alt="Your uploaded photo"></div>
+            <p class="card-signoff">With warm wishes,</p>
+            <p class="card-sender" id="preview-sender">Your name</p>
+            <div class="card-bottomline"><span>LIGHT · JOY · NEW BEGINNINGS</span><span>✧</span></div>
+          </div>
+        </article>
+        <p class="preview-note">A little light, made yours.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer"><a href="../index.html">For You</a><span>Thoughtful digital letters, made personal.</span></footer>
+  <script src="diwali-wishes.js"></script>
+</body>
+</html>
