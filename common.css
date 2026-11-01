@@ -27,12 +27,52 @@ body {
   position: relative;
 }
 
-/* ================= EDITORIAL HEADER ================= */
+/* ================= STICKY EDITORIAL HEADER ================= */
+/* The wrapper stays in the document flow, then sticks near the top while scrolling. */
+#header-container {
+  position: sticky;
+  top: 10px;
+  z-index: 100;
+  width: 100%;
+}
+
 .site-header {
   width: 100%;
   padding: 20px 0 12px;
   position: relative;
   z-index: 100;
+}
+
+.header-container {
+  transition:
+    width .38s cubic-bezier(.2,.75,.25,1),
+    min-height .38s cubic-bezier(.2,.75,.25,1),
+    padding .38s cubic-bezier(.2,.75,.25,1),
+    border-radius .38s cubic-bezier(.2,.75,.25,1),
+    box-shadow .38s ease;
+}
+
+.site-header.is-compact .header-container {
+  width: min(92%, 560px);
+  min-height: 58px;
+  padding: 8px 16px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(25, 32, 40, .18);
+}
+
+.site-header.is-compact .brand-mark {
+  width: 34px;
+  height: 34px;
+  font-size: 19px;
+  border-radius: 8px;
+}
+
+.site-header.is-compact .brand-wordmark {
+  font-size: 18px;
+}
+
+.site-header.is-compact .brand-wordmark small {
+  display: none;
 }
 
 .header-container {
@@ -291,7 +331,14 @@ body {
 }
 
 @media (max-width: 520px) {
+  #header-container { top: 7px; }
   .site-header { padding: 12px 0 8px; }
+  .site-header.is-compact { padding-top: 5px; padding-bottom: 5px; }
+  .site-header.is-compact .header-container {
+    width: 92%;
+    min-height: 52px;
+    padding: 7px 12px;
+  }
   .header-container {
     width: 94%;
     min-height: auto;
