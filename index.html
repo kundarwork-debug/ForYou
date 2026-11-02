@@ -16,8 +16,9 @@
     html{scroll-behavior:smooth;scroll-padding-top:90px}
     body{background:var(--paper);color:var(--ink)}
     .ambient-glow{display:none}
-    /* Homepage navigation lives in the main site header */
-    .site-header{position:sticky;top:0;padding:12px 0 8px;z-index:100}
+    /* Keep the injected main header visible while the page scrolls */
+    #header-container{position:sticky;top:0;z-index:100;background:var(--paper)}
+    .site-header{position:relative;padding:12px 0 8px}
     .site-header .header-container{justify-content:space-between;gap:18px}
     .site-header .nav-links{margin-left:auto}
     .site-header .header-cta{flex:none}
