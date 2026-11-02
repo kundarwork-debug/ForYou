@@ -232,22 +232,6 @@
 
   <div id="footer-container"></div>
   <script src="common.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const header = document.querySelector("#header-container .header-container");
-      if (!header) return;
-      const links = document.createElement("nav");
-      links.className = "nav-links";
-      links.setAttribute("aria-label", "Page navigation");
-      links.innerHTML = '<a class="nav-link active" href="#top">Home</a><a class="nav-link" href="#occasions">Occasions</a><a class="nav-link" href="#designs">Designs</a><a class="nav-link" href="#how-it-works">How it works</a>';
-      header.appendChild(links);
-      const cta = document.createElement("a");
-      cta.className = "header-cta";
-      cta.href = "cards/diwali-wishes.html";
-      cta.innerHTML = 'Create a Card <span aria-hidden="true">↗</span>';
-      header.appendChild(cta);
-    });
-  </script>
   <script src="notify.js" defer></script>
 </body>
 </html>
