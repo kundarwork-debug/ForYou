@@ -17,9 +17,9 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:110px}
     body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
-    #header-container{position:sticky;top:0;z-index:100;background:rgba(247,243,235,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:0 0 8px}
-    .site-header{position:relative;padding:10px 0 0}
-    .site-header .header-container{width:min(92%,1160px);min-height:70px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:18px;border:1px solid #e5ddcf;border-radius:16px;background:rgba(255,253,248,.94);box-shadow:0 8px 26px rgba(54,45,31,.07)}
+    #header-container{position:sticky;top:0;z-index:100;width:100%;padding:0;background:#f4efe5;border-bottom:1px solid #ded5c6}
+    .site-header{position:relative;width:100%;padding:0}
+    .site-header .header-container{width:100%;max-width:none;min-height:70px;margin:0;padding:10px max(4%,calc((100% - 1160px)/2));display:flex;align-items:center;justify-content:space-between;gap:18px;border:0;border-radius:0;background:#f4efe5;box-shadow:none}
     .brand-logo{display:inline-flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;flex:none}
     .brand-mark{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--navy);color:#fffdf8;font:700 21px 'Playfair Display',serif}
     .brand-wordmark{display:flex;flex-direction:column;color:var(--ink);font:700 20px/1 'Playfair Display',serif}
@@ -108,8 +108,8 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
 
     body{background:#f4efe5;background-image:radial-gradient(rgba(109,91,64,.055) .55px,transparent .55px);background-size:5px 5px}
-    #header-container{background:rgba(244,239,229,.92);backdrop-filter:blur(8px)}
-    .site-header .header-container{border-radius:3px;background:#fbf8f0;box-shadow:0 2px 9px rgba(54,45,31,.045);border-color:#e1d8c8}
+    #header-container{background:#f4efe5;backdrop-filter:none;border-bottom:1px solid #ded5c6}
+    .site-header .header-container{border-radius:0;background:#f4efe5;box-shadow:none;border-color:transparent}
     .brand-mark{border-radius:50%;background:#6c7c70}
     .site-header .header-cta,.button-main{border-radius:3px;background:#586e60;border-color:#586e60}
     .site-header .header-cta:hover,.button-main:hover{background:#435849}
