@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <a href="${basePath}">Letter designs</a>
             <a href="${basePath}index.html#designs">Greeting cards</a>
             <a href="${basePath}cards/diwali-wishes.html">Diwali greeting</a>
+            <a href="${basePath}about-developer.html">About the Developer</a>
           </div>
 
           <div class="footer-note">
