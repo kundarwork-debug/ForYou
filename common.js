@@ -85,4 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Hide the floating mascot while the footer is on screen (same footer-aware behavior as APML).
+  const siteFooter = document.querySelector(".site-footer");
+  const siteMascot = document.querySelector(".for-you-mascot");
+  if (siteFooter && siteMascot && "IntersectionObserver" in window) {
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      siteMascot.classList.toggle("is-footer-visible", entry.isIntersecting);
+    }, { threshold: 0.01 });
+    footerObserver.observe(siteFooter);
+  }
+
 });
