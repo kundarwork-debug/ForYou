@@ -12,17 +12,45 @@ document.addEventListener("DOMContentLoaded", () => {
             <img class="brand-mark" src="${basePath}logo.svg" alt="">
             <span class="brand-wordmark">For You<small>DIGITAL LETTER STUDIO</small></span>
           </a>
-          <nav class="nav-links" aria-label="Page navigation">
-            <a class="nav-link" href="${basePath}">Home</a>
-            <a class="nav-link" href="${basePath}index.html#occasions">Occasions</a>
-            <a class="nav-link" href="${basePath}index.html#designs">Designs</a>
-            <a class="nav-link" href="${basePath}index.html#how-it-works">How it works</a>
+          <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+            <span></span><span></span><span></span>
+          </button>
+          <nav class="site-menu" id="site-menu" aria-label="Main menu" hidden>
+            <a href="${basePath}">Home</a>
+            <a href="${basePath}index.html#occasions">Occasions</a>
+            <a href="${basePath}index.html#designs">Designs</a>
+            <a href="${basePath}index.html#how-it-works">How it works</a>
+            <a class="menu-create-link" href="${basePath}cards/diwali-wishes.html">Create a Card <span aria-hidden="true">↗</span></a>
           </nav>
-          <a class="header-cta" href="${basePath}cards/diwali-wishes.html">Create a Card <span aria-hidden="true">↗</span></a>
         </div>
       </header>
     `;
 
+  }
+
+
+  // Accessible hamburger menu shared across all pages.
+  const menuToggle = headerContainer && headerContainer.querySelector(".menu-toggle");
+  const siteMenu = headerContainer && headerContainer.querySelector(".site-menu");
+  if (menuToggle && siteMenu) {
+    const closeMenu = () => {
+      siteMenu.hidden = true;
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open menu");
+    };
+    menuToggle.addEventListener("click", () => {
+      const opening = siteMenu.hidden;
+      siteMenu.hidden = !opening;
+      menuToggle.setAttribute("aria-expanded", String(opening));
+      menuToggle.setAttribute("aria-label", opening ? "Close menu" : "Open menu");
+    });
+    siteMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+    document.addEventListener("click", event => {
+      if (!siteMenu.hidden && !siteMenu.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeMenu();
+    });
   }
 
   // Shared footer focused on writing and creative expression
