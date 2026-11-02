@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
     headerContainer.innerHTML = `
       <header class="site-header">
         <div class="header-container">
-          <a href="${basePath}index.html" class="brand-logo" aria-label="For You home">
+          <a href="${basePath}" class="brand-logo" aria-label="For You home">
             <img class="brand-mark" src="${basePath}logo.svg" alt="">
             <span class="brand-wordmark">For You<small>DIGITAL LETTER STUDIO</small></span>
           </a>
           <nav class="nav-links" aria-label="Page navigation">
-            <a class="nav-link" href="${basePath}index.html">Home</a>
+            <a class="nav-link" href="${basePath}">Home</a>
             <a class="nav-link" href="${basePath}index.html#occasions">Occasions</a>
             <a class="nav-link" href="${basePath}index.html#designs">Designs</a>
             <a class="nav-link" href="${basePath}index.html#how-it-works">How it works</a>
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <footer class="site-footer">
         <div class="footer-container">
           <div class="footer-main">
-            <a href="${basePath}index.html" class="footer-brand" aria-label="For You home">
+            <a href="${basePath}" class="footer-brand" aria-label="For You home">
               <img class="footer-brand-mark" src="${basePath}logo.svg" alt="">
               <span>For You</span>
             </a>
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <div class="footer-column">
             <h2>Explore</h2>
-            <a href="${basePath}index.html">Letter designs</a>
+            <a href="${basePath}">Letter designs</a>
             <a href="${basePath}index.html#designs">Greeting cards</a>
             <a href="${basePath}cards/diwali-wishes.html">Diwali greeting</a>
           </div>
