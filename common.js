@@ -53,4 +53,36 @@ document.addEventListener("DOMContentLoaded", () => {
       </footer>
     `;
   }
+
+  // Shared For You mascot with a gentle greeting and rotating messages.
+  if (!document.querySelector(".for-you-mascot")) {
+    const mascot = document.createElement("aside");
+    mascot.className = "for-you-mascot";
+    mascot.setAttribute("aria-label", "For You mascot");
+    mascot.innerHTML = `
+      <div class="for-you-mascot__message" role="status" aria-live="polite">
+        <strong>Hi, welcome!</strong>
+        A little note can make someone's day. Have a look around.
+      </div>
+      <button class="for-you-mascot__button" type="button" aria-label="Show another greeting">
+        <span class="for-you-mascot__paper" aria-hidden="true">
+          <span class="for-you-mascot__eyes"><i></i><i></i></span>
+          <span class="for-you-mascot__smile"></span>
+        </span>
+      </button>
+    `;
+    document.body.appendChild(mascot);
+    const message = mascot.querySelector(".for-you-mascot__message");
+    const greetings = [
+      ["A little hello!", "Take your time and find a design that feels just right."],
+      ["Words matter.", "Create something thoughtful for someone special."],
+      ["Glad you're here!", "Your next little note could become a lovely memory."]
+    ];
+    let greetingIndex = 0;
+    mascot.querySelector("button").addEventListener("click", () => {
+      greetingIndex = (greetingIndex + 1) % greetings.length;
+      message.innerHTML = `<strong>${greetings[greetingIndex][0]}</strong>${greetings[greetingIndex][1]}`;
+    });
+  }
+
 });
