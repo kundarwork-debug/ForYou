@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3eb">
+  <meta name="description" content="Meet the developer behind For You, a digital letter and greeting card studio.">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <title>About the Developer — For You</title>
+  <link rel="stylesheet" href="common.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root{--dev-ink:#26313a;--dev-muted:#72766f;--dev-paper:#f7f3eb;--dev-cream:#fffdf8;--dev-line:#e7dfd1;--dev-navy:#354d61;--dev-gold:#b58b50}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--dev-paper);color:var(--dev-ink);font-family:'DM Sans',sans-serif}
+    .developer-page{width:min(90%,1000px);margin:0 auto;padding:76px 0 100px}
+    .developer-hero{display:grid;grid-template-columns:1fr .72fr;gap:60px;align-items:center}
+    .developer-eyebrow{color:#987546;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+    .developer-copy h1{margin:20px 0 20px;font:600 clamp(44px,7vw,76px)/1.04 'Playfair Display',Georgia,serif;letter-spacing:-.045em}
+    .developer-copy h1 em{color:#71899a;font-weight:500}
+    .developer-copy>p{max-width:590px;color:var(--dev-muted);font-size:15px;line-height:1.95}
+    .developer-note{margin-top:28px;padding-top:20px;border-top:1px solid var(--dev-line);color:#8a8173;font-size:12px;line-height:1.8}
+    .developer-art{position:relative;display:grid;place-items:center;min-height:340px;border:1px solid #e3d8c6;border-radius:48% 48% 44% 44%;background:radial-gradient(circle at 50% 42%,#fffdf8 0,#f0e7d8 66%,#e8ddca 100%)}
+    .developer-art:before,.developer-art:after{content:"";position:absolute;border:1px solid #d8c7a8;border-radius:50%}
+    .developer-art:before{inset:22px}
+    .developer-art:after{inset:42px}
+    .developer-monogram{position:relative;z-index:1;display:grid;place-items:center;width:142px;height:142px;border-radius:50%;background:var(--dev-navy);color:#fffdf8;font:500 66px 'Playfair Display',serif;box-shadow:0 20px 45px #354d612b}
+    .developer-card{position:relative;z-index:2;margin:-20px auto 0;width:min(680px,100%);padding:32px 36px;border:1px solid var(--dev-line);background:var(--dev-cream);box-shadow:0 18px 50px #392f1b0d}
+    .developer-card h2{margin:0 0 12px;font:600 27px 'Playfair Display',serif}
+    .developer-card p{margin:0;color:var(--dev-muted);font-size:13px;line-height:1.9}
+    .developer-values{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+    .developer-value{padding:20px 18px;border-top:2px solid #c6ad83;background:#f2ede4}
+    .developer-value strong{display:block;margin-bottom:8px;font:600 18px 'Playfair Display',serif}
+    .developer-value span{color:var(--dev-muted);font-size:11px;line-height:1.7}
+    @media(max-width:700px){.developer-page{padding:52px 0 76px}.developer-hero{grid-template-columns:1fr;gap:28px}.developer-art{min-height:250px;max-width:390px;width:100%;margin:0 auto}.developer-monogram{width:112px;height:112px;font-size:52px}.developer-card{margin-top:24px;padding:26px 22px}.developer-values{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div id="header-container"></div>
+  <main class="developer-page">
+    <section class="developer-hero">
+      <div class="developer-copy">
+        <span class="developer-eyebrow">A little behind the scenes</span>
+        <h1>About the <em>developer.</em></h1>
+        <p>For You is a small creative project built around a simple thought: a few thoughtful words can make someone's day. This page is where you can get to know the person behind the experience.</p>
+        <p class="developer-note">The developer's name, background, and contact links can be added here when ready. No personal details are published without confirmation.</p>
+      </div>
+      <div class="developer-art" aria-hidden="true"><div class="developer-monogram">FY</div></div>
+    </section>
+    <section class="developer-card">
+      <h2>Why I built For You</h2>
+      <p>To make sending a personal greeting feel simple, warm, and meaningful. Choose a design, make it your own, and share a little moment with someone who matters.</p>
+      <div class="developer-values">
+        <div class="developer-value"><strong>Thoughtful</strong><span>Made for messages that mean something.</span></div>
+        <div class="developer-value"><strong>Personal</strong><span>Your words and memories take centre stage.</span></div>
+        <div class="developer-value"><strong>Simple</strong><span>A calm, easy way to create and share.</span></div>
+      </div>
+    </section>
+  </main>
+  <div id="footer-container"></div>
+  <script src="common.js"></script>
+</body>
+</html>
