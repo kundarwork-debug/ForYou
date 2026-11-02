@@ -77,3 +77,35 @@ body.recipient-view{min-height:100vh;background:#171b2b}
 .recipient-view .card-message{min-height:0}
 .recipient-view .card-bottomline{bottom:25px}
 @media(max-width:520px){.recipient-view .page-shell{padding:8px}.recipient-view .greeting-card{padding:8px}.recipient-view .card-frame{min-height:calc(100svh - 32px);padding:28px 18px 48px}.recipient-view .card-bottomline{left:18px;right:18px}}
+
+
+/* Long-form recipient experience: the shared greeting unfolds as a small festive story. */
+.recipient-story{display:none}
+.recipient-view .recipient-story{display:block;width:min(780px,100%);margin:26px auto 0;color:#f6e9c9}
+.recipient-view .preview-wrap{padding-bottom:38px}
+.story-section{position:relative;overflow:hidden;margin-top:18px;padding:clamp(42px,7vw,76px) clamp(22px,7vw,70px);text-align:center;border:1px solid #8f754d;background:radial-gradient(ellipse at 50% 0%,#343148 0,#202437 55%,#171b2b 100%)}
+.story-overline{display:block;color:#d8b66e;font-size:9px;font-weight:700;letter-spacing:.22em}
+.story-ornament{display:grid;place-items:center;width:76px;height:76px;margin:30px auto 24px;border:1px solid #b99455;border-radius:50%;color:#f0d18b;font-size:32px;box-shadow:0 0 42px #e7bd6730}
+.story-section h2{margin:20px 0 15px;color:#fff2d6;font:600 clamp(34px,6vw,53px)/1.08 "Playfair Display",serif;letter-spacing:-.025em}
+.story-section h2 em{color:#e8c77e;font-weight:500}
+.story-section>p{max-width:490px;margin:0 auto;color:#d8d0c1;font-size:13px;line-height:1.9}
+.story-scroll,.back-to-top{display:inline-block;margin-top:30px;color:#e8c77e;font-size:9px;font-weight:700;letter-spacing:.16em;text-decoration:none}
+.story-scroll span{display:block;margin-top:9px;font-size:18px}
+.story-wishes{background:linear-gradient(145deg,#292b40,#1a1e30)}
+.wish-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}
+.wish-tile{padding:25px 15px;border:1px solid #8d754e;background:#ffffff08}
+.wish-tile>span{color:#e8c77e;font-size:24px}
+.wish-tile h3{margin:13px 0 8px;color:#f4dfb5;font:600 20px "Playfair Display",serif}
+.wish-tile p{color:#d0c8b9;font-size:11px;line-height:1.8}
+.story-note{background:radial-gradient(ellipse at 50% 40%,#3a3448,#1b2032 72%)}
+.story-note-mark{margin-bottom:18px;color:#d8b66e;font-size:36px}
+.story-closing{padding-top:62px;padding-bottom:58px;background:radial-gradient(ellipse at 50% 35%,#49405a,#25283c 52%,#171b2b)}
+.closing-diya{margin:24px 0 10px;font-size:48px;filter:drop-shadow(0 0 22px #e9b85c70)}
+.closing-signature{display:block;margin-top:42px;color:#bdb19b;font:italic 13px "Playfair Display",serif}
+@media(max-width:560px){
+  .recipient-view .recipient-story{margin-top:14px}
+  .story-section{margin-top:12px;padding:42px 22px}
+  .wish-grid{grid-template-columns:1fr;gap:9px}
+  .wish-tile{padding:20px}
+  .story-section>p{font-size:12px}
+}
