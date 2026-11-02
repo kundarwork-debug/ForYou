@@ -79,6 +79,51 @@ body.recipient-view{min-height:100vh;background:#171b2b}
 @media(max-width:520px){.recipient-view .page-shell{padding:8px}.recipient-view .greeting-card{padding:8px}.recipient-view .card-frame{min-height:calc(100svh - 32px);padding:28px 18px 48px}.recipient-view .card-bottomline{left:18px;right:18px}}
 
 
+/* A little movement brings the festive card to life. */
+.greeting-card{position:relative;isolation:isolate}
+.card-frame{animation:card-arrive .9s cubic-bezier(.2,.8,.2,1) both}
+.flame{transform-origin:50% 90%;animation:flame-dance 1.8s ease-in-out infinite alternate}
+.spark{animation:twinkle 2.8s ease-in-out infinite}
+.spark-b{animation-delay:.8s}.spark-c{animation-delay:1.4s}
+.rangoli{animation:rangoli-glow 5s ease-in-out infinite alternate}
+.diya:after{content:"";position:absolute;inset:8px 13px auto;height:2px;border-radius:50%;background:#fff0c0;opacity:.65}
+@keyframes flame-dance{0%{transform:translateX(-50%) rotate(-5deg) scale(.94)}100%{transform:translateX(-50%) rotate(5deg) scale(1.06)}}
+@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.8) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(18deg)}}
+@keyframes rangoli-glow{0%{opacity:.2;transform:rotate(-12deg)}100%{opacity:.55;transform:rotate(12deg)}}
+@keyframes card-arrive{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.reveal-screen{position:absolute;z-index:5;inset:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:30px;text-align:center;color:#f8edcf;border:1px solid #b28a4b;background:radial-gradient(ellipse at 50% 42%,#47405a 0,#25283c 48%,#171b2b 100%)}
+.reveal-screen[hidden]{display:none}
+.reveal-screen:before,.reveal-screen:after{content:"✧   ✦   ✧";position:absolute;left:0;right:0;color:#d9b96f;letter-spacing:2.2em;font-size:16px;opacity:.55}
+.reveal-screen:before{top:34px}.reveal-screen:after{bottom:34px}
+.reveal-lantern{display:grid;place-items:center;width:76px;height:76px;margin-bottom:25px;border:1px solid #c8a45f;border-radius:50%;color:#f5d58c;font-size:34px;box-shadow:0 0 45px #edc46b35,inset 0 0 22px #edc46b18;animation:lantern-pulse 2.6s ease-in-out infinite}
+.reveal-eyebrow{color:#d9b96f;font-size:9px;font-weight:700;letter-spacing:.22em}
+.reveal-screen h2{margin:17px 0 12px;font:600 clamp(35px,5vw,54px)/1.05 "Playfair Display",serif}
+.reveal-screen h2 em{color:#e8c77e;font-weight:500}
+.reveal-copy{color:#d8d0c1;font-size:13px;line-height:1.7}
+.reveal-button{margin-top:30px;padding:14px 22px;border:1px solid #d2ad67;border-radius:999px;background:#d2ad67;color:#242336;font:700 12px "DM Sans",sans-serif;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s}
+.reveal-button:hover{transform:translateY(-2px);background:#f0d99e;box-shadow:0 8px 28px #d5ad5b35}
+.reveal-button span{margin-left:13px;font-size:16px}
+.greeting-card.is-opening .reveal-screen{animation:reveal-away .85s cubic-bezier(.7,0,.2,1) forwards;pointer-events:none}
+.greeting-card.is-opening .card-frame{animation:card-arrive 1s .2s both}
+@keyframes reveal-away{0%{opacity:1;transform:scale(1);filter:blur(0)}100%{opacity:0;transform:scale(1.08);filter:blur(9px)}}
+@keyframes lantern-pulse{0%,100%{box-shadow:0 0 24px #edc46b25,inset 0 0 15px #edc46b12}50%{box-shadow:0 0 55px #edc46b65,inset 0 0 25px #edc46b30}}
+@media(prefers-reduced-motion:reduce){.card-frame,.flame,.spark,.rangoli,.reveal-lantern,.greeting-card.is-opening .reveal-screen{animation:none!important}}
+
+
+/* QR code and compact share link panel */
+.share-result{margin-top:18px;padding:18px 14px;text-align:center;border:1px solid #e8dfcf;border-radius:11px;background:#fbf8f1}
+.share-result[hidden]{display:none}
+.share-result-heading{margin-bottom:13px;color:#9b7538;font-size:9px;font-weight:700;letter-spacing:.16em}
+.share-qr{display:block;width:176px;height:176px;max-width:100%;margin:0 auto 14px;padding:7px;border:1px solid #e8dfcf;border-radius:8px;background:#fff}
+.share-short-label{margin-bottom:5px;color:#92909a;font-size:8px;font-weight:700;letter-spacing:.16em}
+.share-short-url{display:block;color:#8a642d;font-size:13px;font-weight:700;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:3px}
+.share-actions{display:flex;gap:8px;margin-top:14px}
+.secondary-button{flex:1;min-width:0;padding:10px 8px;border:1px solid #d9c9aa;border-radius:7px;background:#fffdf8;color:#51442e;font:700 10px "DM Sans",sans-serif;cursor:pointer}
+.secondary-button:hover{background:#f2eadb}
+.share-hint{margin-top:11px;color:#888894;font-size:10px;line-height:1.5}
+.primary-button:disabled{opacity:.65;cursor:wait;transform:none}
+
+
 /* Long-form recipient experience: the shared greeting unfolds as a small festive story. */
 .recipient-story{display:none}
 .recipient-view .recipient-story{display:block;width:min(780px,100%);margin:26px auto 0;color:#f6e9c9}
