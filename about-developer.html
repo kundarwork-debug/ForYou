@@ -22,6 +22,9 @@
     .developer-copy h1 em{color:#71899a;font-weight:500}
     .developer-copy>p{max-width:590px;color:var(--dev-muted);font-size:15px;line-height:1.95}
     .developer-note{margin-top:28px;padding-top:20px;border-top:1px solid var(--dev-line);color:#8a8173;font-size:12px;line-height:1.8}
+    .developer-sponsor{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:9px 13px;border:1px solid #d8c7a8;border-radius:7px;background:transparent;color:#6e604b;text-decoration:none;font-size:11px;font-weight:700;transition:background .2s,border-color .2s,transform .2s}
+    .developer-sponsor:hover{background:#eee5d6;border-color:#bda77f;transform:translateY(-1px)}
+    .developer-sponsor span{font-size:14px;line-height:1}
     .developer-art{position:relative;display:grid;place-items:center;min-height:340px;border:1px solid #e3d8c6;border-radius:48% 48% 44% 44%;background:radial-gradient(circle at 50% 42%,#fffdf8 0,#f0e7d8 66%,#e8ddca 100%)}
     .developer-art:before,.developer-art:after{content:"";position:absolute;border:1px solid #d8c7a8;border-radius:50%}
     .developer-art:before{inset:22px}
@@ -46,6 +49,7 @@
         <h1>About the <em>developer.</em></h1>
         <p>For You is a small creative project built around a simple thought: a few thoughtful words can make someone's day. This page is where you can get to know the person behind the experience.</p>
         <p class="developer-note">The developer's name, background, and contact links can be added here when ready. No personal details are published without confirmation.</p>
+        <a class="developer-sponsor" href="https://kundarwork-debug.github.io/sponsor/support.html"><span aria-hidden="true">♡</span> Support this project</a>
       </div>
       <div class="developer-art" aria-hidden="true"><div class="developer-monogram">FY</div></div>
     </section>
