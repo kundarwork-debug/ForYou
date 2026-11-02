@@ -390,3 +390,78 @@ body {
     border-radius: 0;
   }
 }
+
+
+/* ================= COMPACT HAMBURGER HEADER ================= */
+.site-header .header-container {
+  position: relative;
+  justify-content: space-between;
+}
+.menu-toggle {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid #d8d0c2;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+.menu-toggle span {
+  display: block;
+  width: 19px;
+  height: 2px;
+  border-radius: 2px;
+  background: #34495e;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-7px) rotate(-45deg); }
+.site-menu {
+  position: absolute;
+  z-index: 120;
+  top: calc(100% + 8px);
+  right: max(4%, calc((100% - 1120px) / 2));
+  display: flex;
+  width: min(280px, calc(100vw - 32px));
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px;
+  border: 1px solid #e2d9ca;
+  border-radius: 10px;
+  background: #fffdf8;
+  box-shadow: 0 14px 35px rgba(54,45,31,.14);
+}
+.site-menu[hidden] { display: none !important; }
+.site-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 13px;
+  border-radius: 6px;
+  color: #4f5a5e;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+.site-menu a:hover { background: #f1ece2; color: #34495e; }
+.site-menu .menu-create-link {
+  margin-top: 5px;
+  background: #586e60;
+  color: #fffdf8;
+}
+.site-menu .menu-create-link:hover { background: #435849; color: #fffdf8; }
+@media (max-width: 520px) {
+  .site-header .header-container {
+    width: 100%;
+    min-height: 62px;
+    padding: 10px 4%;
+    flex-wrap: nowrap;
+  }
+  .site-menu { top: calc(100% + 1px); right: 0; width: min(300px, 88vw); }
+}
