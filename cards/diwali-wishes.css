@@ -154,3 +154,20 @@ body.recipient-view{min-height:100vh;background:#171b2b}
   .wish-tile{padding:20px}
   .story-section>p{font-size:12px}
 }
+
+
+/* Keep the shared For You header branding above card-specific styles */
+.site-header .brand-mark,
+.site-footer .footer-brand-mark {
+  display: block;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  object-fit: contain;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  flex: 0 0 auto;
+}
+.site-header .header-container { position: relative; }
