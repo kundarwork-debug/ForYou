@@ -106,6 +106,31 @@
     @media(max-width:850px){.site-header .header-container{width:94%;gap:10px}.site-header .nav-link{padding:9px 8px;font-size:10px}.hero{gap:20px;min-height:490px}.occasion-grid{grid-template-columns:repeat(3,1fr)}.featured-grid{grid-template-columns:1fr}.side-feature{min-height:230px}.featured-card{min-height:300px}}
     @media(max-width:620px){#header-container{padding-bottom:6px}.site-header .header-container{min-height:62px;padding:8px 11px;flex-wrap:wrap}.site-header .nav-links{order:3;flex:1 0 100%;justify-content:center;margin:0;padding:2px 0 0;border-top:1px solid #eee7dc}.site-header .nav-link{padding:8px 10px;font-size:10px}.site-header .header-cta{padding:10px 12px;font-size:10px}.brand-mark{width:35px;height:35px}.brand-wordmark{font-size:18px}.hero{grid-template-columns:1fr;gap:0;padding:48px 0 35px}.hero h1{font-size:clamp(43px,12vw,60px)}.hero-copy>p{font-size:12px}.hero-visual{min-height:340px}.hero-card{min-height:285px;width:68%}.hero-card h2{font-size:31px}.hero-sticker{width:78px;height:78px;font-size:10px}.trust-strip{flex-wrap:wrap;gap:12px 20px;font-size:9px}.section{padding:65px 0}.section-heading{align-items:flex-start;flex-direction:column;gap:10px}.occasion-grid{grid-template-columns:repeat(2,1fr);gap:10px}.occasion{min-height:128px}.section-tint{margin:0 -4.35vw;padding:60px 4.35vw}.featured-card{grid-template-columns:1fr}.featured-art{min-height:260px}.mini-greeting{min-height:215px;width:70%}.featured-copy{padding:25px}.how-grid{grid-template-columns:1fr}.how-step,.how-step+.how-step{padding:22px 0;border-left:0}.how-step+.how-step{border-top:1px solid #ded5c6}.how-icon{margin:13px 0 8px}.closing{align-items:flex-start;flex-direction:column;padding:15px 0 65px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+    body{background:#f4efe5;background-image:radial-gradient(rgba(109,91,64,.055) .55px,transparent .55px);background-size:5px 5px}
+    #header-container{background:rgba(244,239,229,.92);backdrop-filter:blur(8px)}
+    .site-header .header-container{border-radius:3px;background:#fbf8f0;box-shadow:0 2px 9px rgba(54,45,31,.045);border-color:#e1d8c8}
+    .brand-mark{border-radius:50%;background:#6c7c70}
+    .site-header .header-cta,.button-main{border-radius:3px;background:#586e60;border-color:#586e60}
+    .site-header .header-cta:hover,.button-main:hover{background:#435849}
+    .hero{min-height:510px}.hero h1{font-size:clamp(45px,5.8vw,68px);letter-spacing:-.055em}
+    .eyebrow{letter-spacing:.12em;font-weight:700}.eyebrow:before{width:14px}
+    .hero-orbit{width:min(84%,390px);border:0;border-radius:47% 53% 58% 42%;background:#e9e0d0;transform:rotate(-8deg)}
+    .hero-card{border:1px solid #d6c7ad;box-shadow:7px 10px 0 rgba(180,158,124,.12),0 16px 35px rgba(53,43,27,.1);transform:rotate(-2.5deg);background:#fffdf6}
+    .hero-card:before{inset:10px;border-style:dashed;border-color:#e7dcc8}.hero-sticker{border-radius:46% 54% 52% 48%;border-style:dashed;background:#f4efe5;transform:rotate(5deg)}.hero-spark{display:none}
+    .trust-strip{justify-content:flex-start;gap:9px;flex-wrap:wrap;border:0;padding:16px 0 18px;color:#777164;font:italic 16px 'Playfair Display',serif}
+    .trust-strip span:first-child{color:#596f60}.trust-strip span+span{font-size:12px;font-family:'DM Sans',sans-serif;font-style:normal}
+    .section{padding:72px 0}.section-heading{margin-bottom:25px}.section-heading h2{letter-spacing:-.045em}
+    .occasion-grid{grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid #ded5c6;border-left:1px solid #ded5c6}
+    .occasion{min-height:104px;flex-direction:row;justify-content:flex-start;gap:14px;padding:15px 17px;border:0;border-right:1px solid #ded5c6;border-bottom:1px solid #ded5c6;border-radius:0;background:rgba(255,253,248,.32);text-align:left}
+    .occasion:hover{transform:none;background:#fbf8f0;box-shadow:none}.occasion .material-symbols-outlined{width:36px;height:36px;border-radius:50%;background:#e9e4d8;color:#687b6b;font-size:20px}
+    .occasion strong{font:600 15px 'Playfair Display',serif}.occasion small{display:none}.occasion.available{background:#e9eee7}
+    .section-tint{background:#ebe5d9}.featured-card{border-radius:3px;box-shadow:3px 4px 0 rgba(180,158,124,.1)}
+    .featured-card:hover{transform:translateY(-2px);box-shadow:3px 7px 0 rgba(180,158,124,.12)}.featured-art{background:#d8d5c8}
+    .mini-greeting{background:#34483b;border:1px solid #c4ae80;box-shadow:5px 7px 0 rgba(50,58,44,.14);transform:rotate(1.5deg)}
+    .side-feature{border-radius:3px;background:#e3ddcf}.how-grid,.how-step+.how-step{border-color:#d7cdbd}.how-step h3{font-size:23px}
+    .closing{border-top:1px solid #ded5c6}
+    @media(max-width:620px){.occasion-grid{grid-template-columns:repeat(2,1fr)}.occasion{min-height:88px;padding:12px}.trust-strip{font-size:14px}.section{padding:58px 0}}
   </style>
 </head>
 <body>
@@ -114,57 +139,53 @@
   <main id="top">
     <section class="hero">
       <div class="hero-copy">
-        <span class="eyebrow">A LITTLE SOMETHING, JUST FOR THEM</span>
-        <h1>Make their day a little more <em>special.</em></h1>
-        <p>Celebrate the people who make life brighter. Choose a greeting card, add your own message, and share a thoughtful little moment — wherever they are.</p>
+        <span class="eyebrow">FOR THE PEOPLE YOU THINK ABOUT</span>
+        <h1>Some things are<br>better said with a <em>card.</em></h1>
+        <p>For the birthday you nearly forgot, the friend who needs cheering up, or someone you just want to say hello to. Pick a card, write what you mean, and send it their way.</p>
         <div class="hero-actions">
-          <a class="button-main" href="#occasions">Find the perfect card <span aria-hidden="true">↗</span></a>
+          <a class="button-main" href="#occasions">Browse the cards <span aria-hidden="true">↗</span></a>
           <a class="text-link" href="#how-it-works">How it works ↓</a>
         </div>
-        <p class="hero-note">Made for your people, your moments, your words.</p>
+        <p class="hero-note">No big occasion needed. A small hello counts, too.</p>
       </div>
       <div class="hero-visual" aria-label="A greeting card illustration">
         <div class="hero-orbit"></div>
         <span class="hero-spark one" aria-hidden="true">✳</span>
         <span class="hero-spark two" aria-hidden="true">✦</span>
         <div class="hero-card">
-          <div class="hero-card-top"><span>A LITTLE NOTE</span><span>✧</span></div>
+          <div class="hero-card-top"><span>JUST BECAUSE</span><span>✧</span></div>
           <div class="hero-card-art">✿</div>
-          <h2>Made with<br><em>love</em> for you.</h2>
-          <p>Some moments deserve a card.</p>
+          <h2>Thought of<br><em>you</em> today.</h2>
+          <p>Wish you were here. — me</p>
         </div>
-        <div class="hero-sticker">a little joy<br>goes a long way<br>✦</div>
+        <div class="hero-sticker">folded with care<br>sent with love<br>♡</div>
       </div>
     </section>
 
-    <div class="trust-strip" aria-label="For You features">
-      <span><span class="material-symbols-outlined" aria-hidden="true">favorite</span>Made with care</span>
-      <span><span class="material-symbols-outlined" aria-hidden="true">edit_note</span>Your own words</span>
-      <span><span class="material-symbols-outlined" aria-hidden="true">ios_share</span>Easy to share</span>
-    </div>
+    <div class="trust-strip" aria-label="A note from For You"><span>“I saw this and thought of you.”</span><span>That is reason enough to send a card.</span></div>
 
     <section class="section" id="occasions">
       <div class="section-heading">
-        <div><span class="eyebrow">WHAT ARE WE CELEBRATING?</span><h2>Cards for every <em>kind of moment.</em></h2></div>
-        <p>Pick an occasion and find a little way to make someone feel remembered.</p>
+        <div><span class="eyebrow">START WITH A REASON</span><h2>What’s the occasion?</h2></div>
+        <p>Big day, little day, or no particular day at all. There’s usually someone worth writing to.</p>
       </div>
       <div class="occasion-grid">
-        <a class="occasion" href="#designs"><span class="material-symbols-outlined">cake</span><strong>Birthday</strong><small>Coming soon</small></a>
-        <a class="occasion" href="#designs"><span class="material-symbols-outlined">favorite</span><strong>Love & Romance</strong><small>Coming soon</small></a>
-        <a class="occasion" href="#designs"><span class="material-symbols-outlined">celebration</span><strong>Anniversary</strong><small>Coming soon</small></a>
-        <a class="occasion" href="#designs"><span class="material-symbols-outlined">volunteer_activism</span><strong>Thank You</strong><small>Coming soon</small></a>
-        <a class="occasion" href="#designs"><span class="material-symbols-outlined">diversity_1</span><strong>Wedding</strong><small>Coming soon</small></a>
+        <div class="occasion"><span class="material-symbols-outlined">cake</span><strong>Birthday</strong></div>
+        <div class="occasion"><span class="material-symbols-outlined">favorite</span><strong>Love notes</strong></div>
+        <div class="occasion"><span class="material-symbols-outlined">celebration</span><strong>Anniversary</strong></div>
+        <div class="occasion"><span class="material-symbols-outlined">volunteer_activism</span><strong>Thank you</strong></div>
+        <div class="occasion"><span class="material-symbols-outlined">diversity_1</span><strong>Wedding</strong></div>
         <a class="occasion available" href="cards/diwali-wishes.html"><span class="material-symbols-outlined">wb_twilight</span><strong>Festivals</strong><small>Explore Diwali</small></a>
       </div>
     </section>
 
     <section class="section-tint" id="designs">
       <div class="section-heading">
-        <div><span class="eyebrow">A LITTLE INSPIRATION</span><h2>Find a card that feels <em>just right.</em></h2></div>
-        <p>Browse the designs currently available and make one your own.</p>
+        <div><span class="eyebrow">ONE CARD TO GET US STARTED</span><h2>Made for a happy Diwali.</h2></div>
+        <p>We’re adding to the collection slowly and thoughtfully. Here’s the first one.</p>
       </div>
       <div class="featured-grid">
-        <a class="featured-card" href="cards/diwali-wishes.html" aria-label="Personalise the Diwali Wishes greeting card">
+        <a class="featured-card" href="cards/diwali-wishes.html" aria-label="Personalise the A Diwali wish greeting card">
           <div class="featured-art" aria-hidden="true">
             <div class="mini-greeting">
               <span class="symbol">✦</span>
@@ -174,17 +195,17 @@
             </div>
           </div>
           <div class="featured-copy">
-            <span class="tag">FEATURED · FESTIVAL GREETING</span>
+            <span class="tag">OUR FIRST GREETING CARD</span>
             <h3>Diwali Wishes</h3>
-            <p>Send a little light to someone special. Add your own words, names and an optional photo, then share your festive greeting.</p>
-            <span class="card-link">PERSONALISE THIS CARD <span aria-hidden="true">↗</span></span>
+            <p>A warm little greeting for family and friends. Add their name, write your own wish, and send it across.</p>
+            <span class="card-link">OPEN THE CARD <span aria-hidden="true">↗</span></span>
           </div>
         </a>
         <aside class="side-feature">
           <div>
             <span class="quote-mark" aria-hidden="true">“</span>
-            <h3>The best cards don't just say something. They make someone <em>feel something.</em></h3>
-            <p>A few thoughtful words can turn an ordinary day into a memory worth keeping.</p>
+            <h3>It doesn’t have to be perfect. It just has to sound like <em>you.</em></h3>
+            <p>A silly memory, an inside joke, three honest words. Those are the bits people keep.</p>
           </div>
           <span class="side-foot">THE FOR YOU WAY · WORDS THAT MATTER</span>
         </aside>
@@ -193,18 +214,18 @@
 
     <section class="section" id="how-it-works">
       <div class="section-heading">
-        <div><span class="eyebrow">THOUGHTFUL, WITHOUT THE FUSS</span><h2>Three steps to a little <em>happiness.</em></h2></div>
-        <p>It's easy to make something personal. The feeling is all yours.</p>
+        <div><span class="eyebrow">IT’S PRETTY SIMPLE</span><h2>Make it yours. Send it off.</h2></div>
+        <p>No design skills needed. Just a few minutes and someone in mind.</p>
       </div>
       <div class="how-grid">
-        <article class="how-step"><span class="how-number">01 / CHOOSE</span><span class="how-icon material-symbols-outlined" aria-hidden="true">auto_awesome</span><h3>Choose a design</h3><p>Find a card that fits the occasion and the person you're celebrating.</p></article>
-        <article class="how-step"><span class="how-number">02 / PERSONALISE</span><span class="how-icon material-symbols-outlined" aria-hidden="true">edit_note</span><h3>Make it yours</h3><p>Add names, a personal message and a photo wherever the design supports it.</p></article>
-        <article class="how-step"><span class="how-number">03 / SHARE</span><span class="how-icon material-symbols-outlined" aria-hidden="true">send</span><h3>Send some joy</h3><p>Share your finished greeting and make someone's day feel special.</p></article>
+        <article class="how-step"><span class="how-number">01 / CHOOSE</span><span class="how-icon material-symbols-outlined" aria-hidden="true">auto_awesome</span><h3>Choose a design</h3><p>Start with the card that feels right for the person.</p></article>
+        <article class="how-step"><span class="how-number">02 / PERSONALISE</span><span class="how-icon material-symbols-outlined" aria-hidden="true">edit_note</span><h3>Make it yours</h3><p>Write the message you’d send them anyway. Add a photo if you like.</p></article>
+        <article class="how-step"><span class="how-number">03 / SHARE</span><span class="how-icon material-symbols-outlined" aria-hidden="true">send</span><h3>Send some joy</h3><p>Send the link. Let them know you were thinking of them.</p></article>
       </div>
     </section>
 
     <section class="closing">
-      <div><span class="eyebrow">A MOMENT WORTH SHARING</span><h2>Someone came to mind.<br><em>Send them a little joy.</em></h2><p>Start with a design and finish with something only you could say.</p></div>
+      <div><span class="eyebrow">GO ON, MAKE SOMEONE’S DAY</span><h2>Got someone in mind?</h2><p>There’s a card waiting to become their card.</p></div>
       <a class="button-main" href="cards/diwali-wishes.html">Create a greeting <span aria-hidden="true">↗</span></a>
     </section>
   </main>
