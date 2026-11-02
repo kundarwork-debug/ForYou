@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
+  const basePath = currentPath.includes("/cards/") ? "../" : "";
 
   // Shared editorial-style site header
   const headerContainer = document.getElementById("header-container");
@@ -11,8 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="brand-mark" aria-hidden="true">F.</span>
             <span class="brand-wordmark">For You<small>DIGITAL LETTER STUDIO</small></span>
           </a>
-
-
+          <nav class="nav-links" aria-label="Page navigation">
+            <a class="nav-link" href="${basePath}index.html">Home</a>
+            <a class="nav-link" href="${basePath}index.html#occasions">Occasions</a>
+            <a class="nav-link" href="${basePath}index.html#designs">Designs</a>
+            <a class="nav-link" href="${basePath}index.html#how-it-works">How it works</a>
+          </nav>
+          <a class="header-cta" href="${basePath}cards/diwali-wishes.html">Create a Card <span aria-hidden="true">↗</span></a>
         </div>
       </header>
     `;
@@ -35,9 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <div class="footer-column">
             <h2>Explore</h2>
-            <a href="index.html">Letter designs</a>
-            <a href="free1.html">Personal letter</a>
-            <a href="page1.html">Festival letter</a>
+            <a href="${basePath}index.html">Letter designs</a>
+            <a href="${basePath}index.html#designs">Greeting cards</a>
+            <a href="${basePath}cards/diwali-wishes.html">Diwali greeting</a>
           </div>
 
           <div class="footer-note">
