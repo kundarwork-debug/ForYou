@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     headerContainer.innerHTML = `
       <header class="site-header">
         <div class="header-container">
-          <a href="index.html" class="brand-logo" aria-label="For You home">
+          <a href="${basePath}index.html" class="brand-logo" aria-label="For You home">
             <img class="brand-mark" src="${basePath}logo.svg" alt="">
             <span class="brand-wordmark">For You<small>DIGITAL LETTER STUDIO</small></span>
           </a>
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <footer class="site-footer">
         <div class="footer-container">
           <div class="footer-main">
-            <a href="index.html" class="footer-brand" aria-label="For You home">
+            <a href="${basePath}index.html" class="footer-brand" aria-label="For You home">
               <img class="footer-brand-mark" src="${basePath}logo.svg" alt="">
               <span>For You</span>
             </a>
