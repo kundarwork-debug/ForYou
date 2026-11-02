@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <header class="site-header">
         <div class="header-container">
           <a href="index.html" class="brand-logo" aria-label="For You home">
-            <span class="brand-mark" aria-hidden="true">F.</span>
+            <img class="brand-mark" src="${basePath}logo.svg" alt="">
             <span class="brand-wordmark">For You<small>DIGITAL LETTER STUDIO</small></span>
           </a>
           <nav class="nav-links" aria-label="Page navigation">
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="footer-container">
           <div class="footer-main">
             <a href="index.html" class="footer-brand" aria-label="For You home">
-              <span class="footer-brand-mark" aria-hidden="true">F.</span>
+              <img class="footer-brand-mark" src="${basePath}logo.svg" alt="">
               <span>For You</span>
             </a>
             <p class="footer-tagline">Thoughtful digital letters, made personal.<br>Choose a design, add your words and photos, then share.</p>
