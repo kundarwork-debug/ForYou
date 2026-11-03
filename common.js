@@ -12,9 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <img class="brand-mark" src="${basePath}logo.svg" alt="">
             <span class="brand-wordmark">For You<small>DIGITAL LETTER STUDIO</small></span>
           </a>
-          <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
-            <span></span><span></span><span></span>
-          </button>
+          <label class="hamburger" aria-label="Open menu">
+            <input class="menu-toggle" type="checkbox" aria-label="Toggle navigation menu" aria-controls="site-menu" aria-expanded="false">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+              <path class="line" d="M7 16 27 16"></path>
+            </svg>
+          </label>
           <nav class="site-menu" id="site-menu" aria-label="Main menu" hidden>
             <a href="${basePath}">Home</a>
             <a href="${basePath}index.html#occasions">Occasions</a>
@@ -29,28 +33,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // Accessible hamburger menu shared across all pages.
+  // Accessible animated hamburger menu shared across all pages.
   const menuToggle = headerContainer && headerContainer.querySelector(".menu-toggle");
   const siteMenu = headerContainer && headerContainer.querySelector(".site-menu");
   if (menuToggle && siteMenu) {
-    const closeMenu = () => {
-      siteMenu.hidden = true;
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open menu");
+    const syncMenu = () => {
+      siteMenu.hidden = !menuToggle.checked;
+      menuToggle.setAttribute("aria-expanded", String(menuToggle.checked));
+      menuToggle.setAttribute("aria-label", menuToggle.checked ? "Close menu" : "Open menu");
+      menuToggle.parentElement.setAttribute("aria-label", menuToggle.checked ? "Close menu" : "Open menu");
     };
-    menuToggle.addEventListener("click", () => {
-      const opening = siteMenu.hidden;
-      siteMenu.hidden = !opening;
-      menuToggle.setAttribute("aria-expanded", String(opening));
-      menuToggle.setAttribute("aria-label", opening ? "Close menu" : "Open menu");
-    });
+    const closeMenu = () => {
+      menuToggle.checked = false;
+      syncMenu();
+    };
+    menuToggle.addEventListener("change", syncMenu);
     siteMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
     document.addEventListener("click", event => {
-      if (!siteMenu.hidden && !siteMenu.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+      if (!siteMenu.hidden && !siteMenu.contains(event.target) && !menuToggle.parentElement.contains(event.target)) closeMenu();
     });
     document.addEventListener("keydown", event => {
       if (event.key === "Escape") closeMenu();
     });
+    syncMenu();
   }
 
   // Shared footer focused on writing and creative expression
