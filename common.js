@@ -108,6 +108,15 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.body.appendChild(mascot);
     const message = mascot.querySelector(".for-you-mascot__message");
+    if (document.body.classList.contains("shared-link-view")) {
+      const createUrl = window.location.origin + window.location.pathname;
+      message.innerHTML = '<strong>Create your own greeting!</strong><a class="mascot-create-link" href="' + createUrl + '">Click here to create your own greetings ↗</a>';
+      window.setTimeout(() => {
+        message.style.opacity = "0";
+        message.style.transform = "translateY(6px)";
+        window.setTimeout(() => message.remove(), 250);
+      }, 5000);
+    }
     const greetings = [
       ["A little hello!", "Take your time and find a design that feels just right."],
       ["Words matter.", "Create something thoughtful for someone special."],
