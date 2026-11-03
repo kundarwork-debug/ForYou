@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(mascot);
     const message = mascot.querySelector(".for-you-mascot__message");
     if (document.body.classList.contains("shared-link-view")) {
-      const createUrl = window.location.origin + window.location.pathname;
+      const createUrl = window.location.origin + (window.location.pathname.includes("/cards/") ? window.location.pathname.split("/cards/")[0] + "/" : "/");
       message.innerHTML = '<strong>Create your own greeting!</strong><a class="mascot-create-link" href="' + createUrl + '">Click here to create your own greetings ↗</a>';
       window.setTimeout(() => {
         message.style.opacity = "0";
