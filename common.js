@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="footer-bottom">
           <span>© ${new Date().getFullYear()} For You. Digital letters, thoughtfully designed.</span>
           <span class="footer-bottom-note">Made to be written and shared.</span>
-          ${currentPath === "/" || currentPath.endsWith("/index.html") ? '<span class="footer-share-count" id="footer-share-count">✦ Shared with care · <strong>—</strong> times</span>' : ""}
+          ${currentPath === "/" || currentPath.endsWith("/ForYou/") || currentPath.endsWith("/ForYou/index.html") ? '<span class="footer-share-count" id="footer-share-count">✦ Shared with care · <strong>—</strong> times</span>' : ""}
         </div>
       </footer>
     `;
