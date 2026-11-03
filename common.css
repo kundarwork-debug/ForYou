@@ -469,3 +469,35 @@ body {
 
 .for-you-mascot__message .mascot-create-link{display:inline-block;margin-top:3px;color:#8a642d;font-weight:700;text-decoration:underline;text-underline-offset:2px}
 .for-you-mascot__message .mascot-create-link:hover{color:#34495e}
+
+
+/* Canonical shared header sizing — keep identical across all pages */
+#header-container { min-height: 0 !important; }
+#header-container .site-header { width: 100%; padding: 0 !important; }
+#header-container .site-header .header-container {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 72px !important;
+  margin: 0 !important;
+  padding: 12px max(4%, calc((100% - 1120px) / 2)) !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #f5f1e9;
+}
+#header-container .brand-logo { display: inline-flex; align-items: center; gap: 10px; }
+#header-container .brand-mark { width: 40px !important; height: 40px !important; flex: 0 0 40px; }
+#header-container .brand-wordmark { font-size: 20px !important; line-height: 1 !important; }
+#header-container .brand-wordmark small { margin-top: 5px; font-size: 7px !important; letter-spacing: .16em; }
+@media (max-width: 520px) {
+  #header-container .site-header .header-container {
+    min-height: 64px !important;
+    padding: 10px 4% !important;
+  }
+  #header-container .brand-mark { width: 36px !important; height: 36px !important; flex-basis: 36px; }
+  #header-container .brand-wordmark { font-size: 19px !important; }
+}
