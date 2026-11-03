@@ -187,4 +187,33 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
 
+
+  // Homepage card slideshow: five available greeting designs.
+  const slideShow = document.querySelector(".home-card-showcase");
+  if (slideShow) {
+    const slides = [...slideShow.querySelectorAll(".home-slide")];
+    const dots = [...slideShow.querySelectorAll(".home-slide-dots button")];
+    const count = slideShow.querySelector(".home-slide-count");
+    let activeSlide = 0;
+    let slideTimer;
+    const showSlide = index => {
+      activeSlide = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === activeSlide));
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === activeSlide));
+      count.textContent = String(activeSlide + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
+    };
+    const restartTimer = () => {
+      window.clearInterval(slideTimer);
+      slideTimer = window.setInterval(() => showSlide(activeSlide + 1), 4500);
+    };
+    slideShow.querySelector(".home-slide-prev").addEventListener("click", () => { showSlide(activeSlide - 1); restartTimer(); });
+    slideShow.querySelector(".home-slide-next").addEventListener("click", () => { showSlide(activeSlide + 1); restartTimer(); });
+    dots.forEach((dot, i) => dot.addEventListener("click", () => { showSlide(i); restartTimer(); }));
+    slideShow.addEventListener("mouseenter", () => window.clearInterval(slideTimer));
+    slideShow.addEventListener("mouseleave", restartTimer);
+    showSlide(0);
+    restartTimer();
+  }
+
+
 });
