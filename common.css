@@ -501,3 +501,42 @@ body {
   #header-container .brand-mark { width: 36px !important; height: 36px !important; flex-basis: 36px; }
   #header-container .brand-wordmark { font-size: 19px !important; }
 }
+
+
+/* Animated SVG hamburger control */
+.hamburger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.hamburger input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.hamburger svg {
+  display: block;
+  width: 42px;
+  height: 42px;
+  overflow: visible;
+  transition: transform 600ms cubic-bezier(.4,0,.2,1);
+}
+.hamburger .line {
+  fill: none;
+  stroke: #34495e;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.6;
+  transition: stroke-dasharray 600ms cubic-bezier(.4,0,.2,1), stroke-dashoffset 600ms cubic-bezier(.4,0,.2,1);
+}
+.hamburger .line-top-bottom { stroke-dasharray: 12 63; }
+.hamburger input:checked + svg { transform: rotate(-45deg); }
+.hamburger input:checked + svg .line-top-bottom { stroke-dasharray: 20 300; stroke-dashoffset: -32.42; }
+.hamburger input:focus-visible + svg { outline: 2px solid #8d7653; outline-offset: 3px; border-radius: 5px; }
