@@ -68,7 +68,7 @@ function loadSharedCard() {
   messageInput.value = params.get("message") || defaultMessage;
   senderInput.value = params.get("from") || "";
   updatePreview();
-  document.body.classList.add("recipient-view");
+  document.body.classList.add("recipient-view", "shared-link-view");
   revealScreen.hidden = false;
   document.title = "A Diwali Wish for You — For You";
   return true;
