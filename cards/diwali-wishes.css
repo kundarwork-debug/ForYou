@@ -215,3 +215,45 @@ body.shared-link-view #footer-container { display: none !important; }
   .recipient-view .card-message{font-size:14px;line-height:1.95}
   .recipient-view .card-bottomline{margin-top:35px}
 }
+
+
+/* Improve visual hierarchy on the shared letter page: separate the paper, page, and story sections. */
+body.recipient-view{background:#e9e2d5!important;color:#303a32}
+.recipient-view .page-shell{background:transparent}
+.recipient-view .preview-wrap{width:min(100%,820px);margin:0 auto;padding:0 0 56px}
+.recipient-view .greeting-card{margin-bottom:34px}
+.recipient-view .card-frame{background:#fffefa;box-shadow:0 3px 8px #30281912,0 22px 60px #30281920}
+.recipient-view .recipient-story{width:100%;margin:0 auto;color:#303a32}
+.recipient-view .story-section{margin:0 0 22px;padding:clamp(38px,6vw,68px) clamp(22px,7vw,70px);border:1px solid #d9cfbd;box-shadow:0 3px 12px #3028190a}
+.recipient-view .story-intro{background:#f8f4eb;color:#303a32}
+.recipient-view .story-intro .story-overline,
+.recipient-view .story-intro h2 em{color:#71836e}
+.recipient-view .story-intro h2{color:#34483b}
+.recipient-view .story-intro>p{color:#66675e}
+.recipient-view .story-intro .story-ornament{border-color:#c6b58f;color:#71836e;box-shadow:none}
+.recipient-view .story-intro .story-scroll{color:#667c65}
+.recipient-view .story-wishes{background:#e3e9df;color:#303a32}
+.recipient-view .story-wishes .story-overline{color:#61765f}
+.recipient-view .story-wishes h2{color:#34483b}
+.recipient-view .story-wishes h2 em{color:#71836e}
+.recipient-view .wish-tile{border:1px solid #c7d0c1;background:#f8faf5}
+.recipient-view .wish-tile>span{color:#71836e}
+.recipient-view .wish-tile h3{color:#34483b}
+.recipient-view .wish-tile p{color:#62685e}
+.recipient-view .story-note{background:#f5eee1;color:#303a32}
+.recipient-view .story-note .story-overline,
+.recipient-view .story-note-mark{color:#98794a}
+.recipient-view .story-note h2{color:#34483b}
+.recipient-view .story-note h2 em{color:#98794a}
+.recipient-view .story-note>p{color:#626258}
+.recipient-view .story-closing{background:#34483b;color:#f8f4eb;border-color:#34483b}
+.recipient-view .story-closing .story-overline{color:#e2c991}
+.recipient-view .story-closing h2{color:#fffaf0}
+.recipient-view .story-closing h2 em{color:#e2c991}
+.recipient-view .story-closing>p{color:#e0e2d8}
+.recipient-view .story-closing .back-to-top{color:#f0d9a8}
+.recipient-view .story-closing .closing-signature{color:#d4d7cc}
+@media(max-width:560px){
+  .recipient-view .preview-wrap{padding-bottom:30px}
+  .recipient-view .story-section{margin-bottom:14px}
+}
