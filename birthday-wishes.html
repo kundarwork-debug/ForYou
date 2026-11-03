@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4efe5">
+<meta name="description" content="Browse all birthday greeting cards in the For You collection.">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<title>Birthday Wishes — For You</title>
+<link rel="stylesheet" href="common.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#e9e2d5;color:#303a32;font-family:"DM Sans",sans-serif}
+main{width:min(94%,1200px);margin:0 auto;padding:64px 0 90px}
+.intro{max-width:720px;margin:0 auto 42px;text-align:center;padding:42px 24px;background:#f9f6ee;border:1px solid #ddd3c2}
+.eyebrow{color:#75836f;font-size:9px;font-weight:800;letter-spacing:.2em}
+h1{margin:16px 0;font:600 clamp(42px,7vw,68px)/1.02 "Playfair Display",serif;letter-spacing:-.04em}
+h1 em{color:#758b76;font-weight:500}
+.intro p{max-width:560px;margin:0 auto;color:#66685e;font-size:13px;line-height:1.9}
+.collection-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:0 0 18px}
+.collection-heading h2{margin:0;font:600 29px "Playfair Display",serif}
+.collection-heading p{margin:0;color:#777568;font-size:11px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{display:flex;min-width:0;flex-direction:column;background:#f9f6ee;border:1px solid #d8cebd;color:inherit;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 25px #3d44351a}
+.art{display:grid;place-items:center;min-height:300px;padding:24px;background:radial-gradient(ellipse at 50% 15%,#7d6789,#34263e 72%)}
+.mini{width:78%;min-height:245px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;border:1px solid #e9c77e;background:linear-gradient(145deg,#4d3554,#29223b);color:#fff0df;text-align:center;box-shadow:5px 8px 0 #241d3440}
+.symbol{font-size:34px;color:#edcf91}
+.mini small{margin-top:13px;color:#e9c77e;font-size:8px;font-weight:700;letter-spacing:.16em}
+.mini strong{margin:14px 0;font:600 36px/.98 "Playfair Display",serif}
+.mini em{color:#f0c8d1;font-weight:500}
+.copy{padding:21px 22px 24px}
+.tag{color:#75836f;font-size:8px;font-weight:800;letter-spacing:.15em}
+.copy h3{margin:10px 0;font:600 24px "Playfair Display",serif}
+.copy p{margin:0;color:#66685e;font-size:11px;line-height:1.8}
+.open{display:inline-block;margin-top:18px;padding-bottom:6px;border-bottom:1px solid #aab59f;color:#50694f;font-size:9px;font-weight:800;letter-spacing:.1em}
+.note{margin-top:24px;padding:20px;text-align:center;background:#e0e8dc;border:1px solid #cbd5c5;color:#566254;font-size:11px;line-height:1.8}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){main{padding:38px 0 60px}.intro{padding:32px 18px;margin-bottom:32px}.grid{grid-template-columns:1fr}.art{min-height:270px}.mini{min-height:225px}.collection-heading{align-items:flex-start;flex-direction:column;gap:6px}}
+</style>
+</head>
+<body>
+<div id="header-container"></div>
+<main>
+<header class="intro">
+<span class="eyebrow">THE BIRTHDAY COLLECTION</span>
+<h1>Make their day<br><em>feel extraordinary.</em></h1>
+<p>Every birthday deserves a little extra love. Browse the collection, choose a greeting, and share a thoughtful surprise that unfolds as they scroll.</p>
+</header>
+<section aria-labelledby="collection-title">
+<div class="collection-heading"><h2 id="collection-title">Birthday wish cards</h2><p>Choose a card to open and share</p></div>
+<div class="grid">
+<a class="card" href="cards/birthday-wishes.html">
+<div class="art"><div class="mini"><span class="symbol">✦　🎂　✦</span><small>A DAY THAT DESERVES TO SHINE</small><strong>Happy<br><em>Birthday!</em></strong><small>WISHES · SURPRISE · JOY</small></div></div>
+<div class="copy"><span class="tag">DESIGN 01 · THE SURPRISE</span><h3>A Birthday Surprise</h3><p>A heartfelt birthday journey filled with warm wishes, a surprise gift reveal and a little confetti.</p><span class="open">OPEN THIS CARD ↗</span></div>
+</a>
+</div>
+<div class="note">More birthday designs will appear here as the collection grows. Come back for the next surprise.</div>
+</section>
+</main>
+<div id="footer-container"></div>
+<script src="common.js"></script>
+</body>
+</html>
