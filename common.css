@@ -599,3 +599,23 @@ pre, code { overflow-wrap: anywhere; }
     gap: clamp(30px, 4vw, 70px);
   }
 }
+
+
+/* Small editorial share counter on the homepage footer */
+.footer-share-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #9a896f;
+  font-size: 10px;
+  letter-spacing: .035em;
+  white-space: nowrap;
+}
+.footer-share-count strong {
+  color: #d0b987;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 699px) {
+  .footer-share-count { grid-column: 1 / -1; white-space: normal; }
+}
