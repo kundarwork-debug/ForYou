@@ -114,14 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.body.appendChild(mascot);
     const message = mascot.querySelector(".for-you-mascot__message");
-    if (document.body.classList.contains("shared-link-view")) {
-      const createUrl = window.location.origin + (window.location.pathname.includes("/cards/") ? window.location.pathname.split("/cards/")[0] + "/" : "/");
-      message.innerHTML = '<strong>Create your own greeting!</strong><a class="mascot-create-link" href="' + createUrl + '">Click here to create your own greetings ↗</a>';
-      window.setTimeout(() => {
-        message.style.opacity = "0";
-        message.style.transform = "translateY(6px)";
-        window.setTimeout(() => message.remove(), 250);
-      }, 5000);
+    const isSharedLinkView = document.body.classList.contains("shared-link-view");
+    const createUrl = window.location.origin + (window.location.pathname.includes("/cards/") ? window.location.pathname.split("/cards/")[0] + "/" : "/");
+    if (isSharedLinkView) {
+      message.remove();
+      mascot.querySelector("button").setAttribute("aria-label", "Go to For You homepage");
+      mascot.querySelector("button").setAttribute("title", "Go to For You homepage");
     }
     const greetings = [
       ["A little hello!", "Take your time and find a design that feels just right."],
@@ -130,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
     let greetingIndex = 0;
     mascot.querySelector("button").addEventListener("click", () => {
-      if (document.body.classList.contains("shared-link-view")) {
+      if (isSharedLinkView) {
         window.location.href = createUrl;
         return;
       }
