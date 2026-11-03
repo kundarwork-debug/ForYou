@@ -540,3 +540,13 @@ body {
 .hamburger input:checked + svg { transform: rotate(-45deg); }
 .hamburger input:checked + svg .line-top-bottom { stroke-dasharray: 20 300; stroke-dashoffset: -32.42; }
 .hamburger input:focus-visible + svg { outline: 2px solid #8d7653; outline-offset: 3px; border-radius: 5px; }
+
+
+/* Wider shared page layouts — use the available viewport without changing card designs */
+@media (min-width: 700px) {
+  main:not(.recipient-view main), .page-shell, .shell, .wrap, .topbar { width: min(96%, 1500px) !important; max-width: 1500px !important; }
+  .header-container, .footer-container, .footer-bottom { max-width: 1500px !important; }
+}
+@media (min-width: 700px) and (max-width: 1100px) {
+  main:not(.recipient-view main), .page-shell, .shell, .wrap, .topbar { width: 94% !important; }
+}
