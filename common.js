@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
-  const basePath = currentPath.includes("/cards/") ? "../" : "";
+  const basePath = currentPath.includes("/cards/") ? "../" : "./";
 
   // Shared editorial-style site header
   const headerContainer = document.getElementById("header-container");
