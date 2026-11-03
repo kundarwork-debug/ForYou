@@ -130,6 +130,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
     let greetingIndex = 0;
     mascot.querySelector("button").addEventListener("click", () => {
+      if (document.body.classList.contains("shared-link-view")) {
+        window.location.href = createUrl;
+        return;
+      }
       greetingIndex = (greetingIndex + 1) % greetings.length;
       message.innerHTML = `<strong>${greetings[greetingIndex][0]}</strong>${greetings[greetingIndex][1]}`;
     });
