@@ -550,3 +550,32 @@ body {
 @media (min-width: 700px) and (max-width: 1100px) {
   main:not(.recipient-view main), .page-shell, .shell, .wrap, .topbar { width: 94% !important; }
 }
+
+
+/* Mobile viewport safety: prevent horizontal overflow and keep layouts inside the screen */
+html, body { max-width: 100%; overflow-x: clip; }
+*, *::before, *::after { min-width: 0; }
+img, svg, video, canvas, iframe { max-width: 100%; }
+input, textarea, select, button { max-width: 100%; }
+pre, code { overflow-wrap: anywhere; }
+@media (max-width: 699px) {
+  main, .page-shell, .shell, .wrap, .topbar {
+    width: calc(100% - 28px) !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .studio, .grid, .developer-grid, .developer-values {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .studio { gap: 22px !important; }
+  .editor, .preview, .art, .card, .copy { min-width: 0; max-width: 100%; }
+  .editor input, .editor textarea, .editor button,
+  .result, .result a, .message, .from { max-width: 100%; overflow-wrap: anywhere; }
+  .header-container, .footer-container, .footer-bottom {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .footer-container { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
+  .footer-main, .footer-note { grid-column: 1 / -1; }
+}
