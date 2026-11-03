@@ -579,3 +579,23 @@ pre, code { overflow-wrap: anywhere; }
   .footer-container { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
   .footer-main, .footer-note { grid-column: 1 / -1; }
 }
+
+
+/* Let shared header and footer content use the wider page canvas */
+@media (min-width: 700px) {
+  #header-container .site-header .header-container,
+  .site-header .header-container,
+  .header-container {
+    padding-left: max(2%, calc((100% - 1500px) / 2)) !important;
+    padding-right: max(2%, calc((100% - 1500px) / 2)) !important;
+  }
+  .footer-container,
+  .footer-bottom {
+    width: min(96%, 1500px) !important;
+    max-width: 1500px !important;
+  }
+  .footer-container {
+    grid-template-columns: 1.5fr .8fr .8fr;
+    gap: clamp(30px, 4vw, 70px);
+  }
+}
