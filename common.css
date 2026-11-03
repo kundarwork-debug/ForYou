@@ -465,3 +465,7 @@ body {
   }
   .site-menu { top: calc(100% + 1px); right: 0; width: min(300px, 88vw); }
 }
+
+
+.for-you-mascot__message .mascot-create-link{display:inline-block;margin-top:3px;color:#8a642d;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.for-you-mascot__message .mascot-create-link:hover{color:#34495e}
