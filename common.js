@@ -145,4 +145,44 @@ document.addEventListener("DOMContentLoaded", () => {
     footerObserver.observe(siteFooter);
   }
 
+
+  // Firebase Firestore share counter
+  (async () => {
+    try {
+      const version = "10.14.1";
+      const appSdk = await import("https://www.gstatic.com/firebasejs/" + version + "/firebase-app.js");
+      const dbSdk = await import("https://www.gstatic.com/firebasejs/" + version + "/firebase-firestore.js");
+      const firebaseConfig = {
+        apiKey: "AIzaSyAljVm-tPfXC12BeRX2EMPW4MLarD4iJmY",
+        authDomain: "foryou-b3e03.firebaseapp.com",
+        projectId: "foryou-b3e03",
+        storageBucket: "foryou-b3e03.firebasestorage.app",
+        messagingSenderId: "440679421025",
+        appId: "1:440679421025:web:381d94f237010653a18620",
+        measurementId: "G-3KFW4GQ4CZ"
+      };
+      const app = appSdk.initializeApp(firebaseConfig, "for-you-share-counter");
+      const db = dbSdk.getFirestore(app);
+      const counterRef = dbSdk.doc(db, "siteStats", "shares");
+      const countEl = document.getElementById("footer-share-count");
+      if (countEl) {
+        dbSdk.onSnapshot(counterRef, snapshot => {
+          const total = snapshot.exists() ? Number(snapshot.data().total || 0) : 0;
+          countEl.innerHTML = '✦ Shared with care · <strong>' + total.toLocaleString() + '</strong> times';
+        }, error => console.warn("Share count unavailable:", error));
+      }
+      document.addEventListener("click", event => {
+        const button = event.target.closest("button, a");
+        if (!button) return;
+        const label = ((button.id || "") + " " + (button.textContent || "") + " " + (button.getAttribute("aria-label") || "")).toLowerCase();
+        if (!/(share-button|create share|create link|share link|copy link|share-short-link|copy-short-link)/.test(label)) return;
+        dbSdk.setDoc(counterRef, { total: dbSdk.increment(1) }, { merge: true })
+          .catch(error => console.warn("Could not record share:", error));
+      });
+    } catch (error) {
+      console.warn("Firebase share counter could not start:", error);
+    }
+  })();
+
+
 });
