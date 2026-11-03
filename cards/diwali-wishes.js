@@ -82,17 +82,6 @@ openCardButton.addEventListener("click", () => {
   }, 900);
 });
 
-async function createShortLink(longUrl) {
-  const endpoint = "https://is.gd/create.php?format=simple&url=" + encodeURIComponent(longUrl);
-  const response = await fetch(endpoint);
-  if (!response.ok) throw new Error("The short-link service is unavailable.");
-  const shortUrl = (await response.text()).trim();
-  if (!/^https?:\/\/(is\.gd|v\.gd)\//i.test(shortUrl)) {
-    throw new Error(shortUrl || "Could not create a short link.");
-  }
-  return shortUrl;
-}
-
 shareButton.addEventListener("click", async () => {
   shareButton.disabled = true;
   shareButton.textContent = "Creating your QR code…";
@@ -100,19 +89,19 @@ shareButton.addEventListener("click", async () => {
   shareResult.hidden = true;
 
   try {
-    currentShortUrl = await createShortLink(buildGreetingUrl());
+    currentShortUrl = buildGreetingUrl();
     shareShortUrl.href = currentShortUrl;
     shareShortUrl.textContent = currentShortUrl;
     shareQr.src = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=12&data=" + encodeURIComponent(currentShortUrl);
     shareQr.hidden = false;
     shareResult.hidden = false;
-    shareStatus.textContent = "Your QR code and short link are ready.";
+    shareStatus.textContent = "Your greeting link and QR code are ready.";
   } catch (error) {
     shareStatus.textContent = "Could not create a short link right now. Please try again.";
     console.error("Short-link creation failed:", error);
   } finally {
     shareButton.disabled = false;
-    shareButton.innerHTML = 'Create QR & short link <span>↗</span>';
+    shareButton.innerHTML = 'Create share link <span>↗</span>';
   }
 });
 
@@ -133,7 +122,7 @@ shareShortLinkButton.addEventListener("click", async () => {
     try {
       await navigator.share({
         title: "A Diwali wish for you",
-        text: "Scan the QR code or open this personal Diwali greeting:",
+        text: "Here is a personal Diwali greeting for you:",
         url: currentShortUrl
       });
     } catch (error) {
