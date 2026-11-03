@@ -171,3 +171,8 @@ body.recipient-view{min-height:100vh;background:#171b2b}
   flex: 0 0 auto;
 }
 .site-header .header-container { position: relative; }
+
+
+/* Only shared-link visits use the clean, headerless recipient layout. */
+body.shared-link-view #header-container,
+body.shared-link-view #footer-container { display: none !important; }
