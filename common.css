@@ -695,3 +695,13 @@ pre, code { overflow-wrap: anywhere; }
 .experience-choice__button.is-custom small,.experience-choice__button.is-custom>b{color:#d6ddcf}
 @media(max-width:760px){.experience-choice{grid-template-columns:1fr;gap:16px;padding:20px}.experience-choice__actions{grid-template-columns:1fr 1fr}}
 @media(max-width:440px){.experience-choice{width:92%;padding:17px 14px}.experience-choice__actions{grid-template-columns:1fr}.experience-choice__button{padding:12px}}
+
+/* Long-scroll recipient story for ready-made greeting designs */
+.ready-made-story{width:min(760px,calc(100% - 32px));margin:24px auto 45px;padding:clamp(28px,6vw,58px);background:#fbf8f0;border:1px solid #e1d7c6;color:#394a40}
+.ready-made-story>h2{max-width:560px;margin:0 auto 32px;text-align:center;font:600 clamp(30px,5vw,46px)/1.12 "Playfair Display",serif;color:#405c4c}
+.ready-made-story__section{max-width:560px;margin:0 auto;padding:25px 0;border-top:1px solid #e4dccd}
+.ready-made-story__section>span{color:#a68a5d;font-size:9px;font-weight:800;letter-spacing:.18em}
+.ready-made-story__section h3{margin:9px 0 8px;font:600 23px/1.2 "Playfair Display",serif;color:#4a5f4d}
+.ready-made-story__section p{margin:0;color:#73766c;font:14px/1.9 "DM Sans",sans-serif}
+.ready-made-story__signoff{margin:32px 0 0;text-align:center;color:#998565;font:italic 14px "Playfair Display",serif}
+@media(max-width:520px){.ready-made-story{width:calc(100% - 14px);margin:12px auto 25px;padding:28px 21px}.ready-made-story__section{padding:21px 0}}
