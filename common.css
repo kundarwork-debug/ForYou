@@ -676,3 +676,22 @@ pre, code { overflow-wrap: anywhere; }
 .experience-choice__button.is-custom small,.experience-choice__button.is-custom>b{color:#d6ddcf}
 @media(max-width:760px){.experience-choice{grid-template-columns:1fr;gap:16px;padding:20px}.experience-choice__actions{grid-template-columns:1fr 1fr}}
 @media(max-width:440px){.experience-choice{width:92%;padding:17px 14px}.experience-choice__actions{grid-template-columns:1fr}.experience-choice__button{padding:12px}}
+
+/* Separate creation paths: ready-made and custom */
+.experience-choice{width:min(1080px,92%);margin:0 auto 34px;padding:24px 26px;background:#fbf8f1;border:1px solid #e3dacb;display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:center}
+.experience-choice__intro>span{font-size:9px;font-weight:800;letter-spacing:.2em;color:#98794e}
+.experience-choice__intro h2{margin:8px 0 7px;font:600 clamp(21px,2.5vw,29px)/1.15 "Playfair Display",serif;color:#35443d}
+.experience-choice__intro p{margin:0;color:#77766d;font-size:11px;line-height:1.7}
+.experience-choice__actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.experience-choice__button{display:flex;align-items:center;gap:11px;min-width:0;padding:15px 13px;border:1px solid #d9d0c1;background:#fffdf8;color:#35443d;text-align:left;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
+.experience-choice__button:hover{transform:translateY(-2px);border-color:#9eaa91;box-shadow:0 8px 18px #303c2b10}
+.experience-choice__button .choice-icon{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border-radius:50%;background:#edf0e8;color:#60775e;font:600 17px "Playfair Display",serif}
+.experience-choice__button>span:nth-child(2){display:grid;gap:4px;min-width:0}
+.experience-choice__button strong{font:600 14px "Playfair Display",serif}
+.experience-choice__button small{color:#817e73;font-size:9px;line-height:1.5}
+.experience-choice__button>b{margin-left:auto;color:#8a795c;font-size:17px}
+.experience-choice__button.is-custom{background:#34483e;border-color:#34483e;color:#fff}
+.experience-choice__button.is-custom .choice-icon{background:#e7ebdf;color:#526b57}
+.experience-choice__button.is-custom small,.experience-choice__button.is-custom>b{color:#d6ddcf}
+@media(max-width:760px){.experience-choice{grid-template-columns:1fr;gap:16px;padding:20px}.experience-choice__actions{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.experience-choice{width:92%;padding:17px 14px}.experience-choice__actions{grid-template-columns:1fr}.experience-choice__button{padding:12px}}
