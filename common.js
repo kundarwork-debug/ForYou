@@ -2,6 +2,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
   const basePath = currentPath.includes("/cards/") ? "../" : "./";
 
+  // Offer two distinct ways to create a greeting on every card page.
+  if (currentPath.includes('/cards/') && !document.body.classList.contains('recipient-view')) {
+    const intro = document.querySelector('main .intro, main header.intro');
+    const editor = document.querySelector('main .editor, main form');
+    if (intro && editor && !document.querySelector('.experience-choice')) {
+      const title = (intro.querySelector('h1') || document.querySelector('title')).textContent.replace(/\s+/g, ' ').trim();
+      const slug = currentPath.split('/').pop().replace(/\.html?$/i, '');
+      const panel = document.createElement('section');
+      panel.className = 'experience-choice';
+      panel.innerHTML = '<div class="experience-choice__intro"><span>MAKE IT YOURS</span><h2>How would you like to create it?</h2><p>Choose a ready-made design or create a personal letter with your own memories and photos.</p></div><div class="experience-choice__actions"><button type="button" class="experience-choice__button is-ready"><span class="choice-icon">✧</span><span><strong>Ready-made experience</strong><small>Use this design and your message</small></span><b>↘</b></button><button type="button" class="experience-choice__button is-custom"><span class="choice-icon">Aa</span><span><strong>Custom experience</strong><small>Add memories, dates, photos and more</small></span><b>↗</b></button></div>';
+      intro.insertAdjacentElement('afterend', panel);
+      panel.querySelector('.is-ready').addEventListener('click', () => editor.scrollIntoView({behavior:'smooth', block:'center'}));
+      panel.querySelector('.is-custom').addEventListener('click', () => {
+        const params = new URLSearchParams({occasion:slug, title:title});
+        const recipient = document.querySelector('#recipient, #to, [name="recipient"]');
+        const message = document.querySelector('#message, #msg, [name="message"]');
+        const sender = document.querySelector('#sender, #from, [name="sender"]');
+        if (recipient && recipient.value.trim()) params.set('to', recipient.value.trim());
+        if (message && message.value.trim()) params.set('message', message.value.trim());
+        if (sender && sender.value.trim()) params.set('from', sender.value.trim());
+        window.location.href = basePath + 'custom-letter.html?' + params.toString();
+      });
+    }
+  }
+
   // Shared editorial-style site header
   const headerContainer = document.getElementById("header-container");
   if (headerContainer) {
