@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Give simple ready-made cards a proper long-scroll recipient experience too.
   if (currentPath.includes('/cards/') && document.body.classList.contains('recipient-view') && !document.querySelector('.recipient-story, .story-section, .ready-made-story')) {
-    const slug = currentPath.split('/').pop().replace(/\\.html?$/i, '').toLowerCase();
+    const slug = currentPath.split('/').pop().replace(/\.html?$/i, '').toLowerCase();
     const stories = {
       diwali: {title:'A little more light for you',items:[['A little light goes a long way','May every small light remind you that hope can begin in the simplest places. May your days feel brighter, your heart feel lighter and your home be filled with warmth.'],['Room for new beginnings','May the year ahead bring fresh possibilities, kind people and the courage to welcome every good thing coming your way.'],['A home full of warmth','Wishing you laughter around the table, peace in your heart and moments with the people who make life feel like home.']]},
       holi: {title:'A little more colour for your day',items:[['A little more colour','May life surprise you with bright moments, unexpected happiness and reasons to smile even on ordinary days.'],['Joy in the little moments','May laughter find its way into your conversations, your plans and all the small things that make a day memorable.'],['Together is the best colour','Here is to kind hearts, good company and memories that stay colourful long after the celebrations are over.']]},
