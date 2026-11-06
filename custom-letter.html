@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4eee4"><meta name="description" content="Create a personal digital letter with your own words, memories and photos.">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<title>Write a Custom Letter — For You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<style>
+:root{--paper:#f5f0e7;--ink:#35443d;--muted:#7b7b70;--line:#ded6c8;--green:#405c4c;--gold:#a9824d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}
+.custom-shell{width:min(1200px,94%);margin:auto;padding:54px 0 90px}
+.custom-intro{max-width:720px;margin:0 auto 34px;text-align:center}.custom-eyebrow{font-size:9px;font-weight:800;letter-spacing:.22em;color:var(--gold)}
+.custom-intro h1{margin:13px 0;font:600 clamp(42px,7vw,68px)/1.02 "Playfair Display",serif}.custom-intro h1 em{color:#8a9b7e;font-weight:500}
+.custom-intro p{max-width:570px;margin:0 auto;color:var(--muted);font-size:13px;line-height:1.8}
+.custom-back{display:inline-flex;margin-top:18px;color:#63745f;text-decoration:none;font-size:10px;font-weight:700}
+.custom-studio{display:grid;grid-template-columns:minmax(310px,.9fr) minmax(0,1.1fr);gap:30px;align-items:start}
+.custom-editor{padding:25px;background:#fffdf8;border:1px solid var(--line);box-shadow:0 14px 36px #343b2b0a}
+.field-label{display:block;margin:16px 0 7px;font-size:10px;font-weight:700;letter-spacing:.04em}
+.custom-editor input,.custom-editor textarea{width:100%;padding:12px;border:1px solid #e2dbcf;border-radius:5px;background:#fff;color:var(--ink);font:13px "DM Sans",sans-serif}
+.custom-editor textarea{min-height:100px;resize:vertical;line-height:1.7}.custom-editor input:focus,.custom-editor textarea:focus{outline:2px solid #bdc8b4;outline-offset:1px}
+.field-hint{margin:6px 0 0;color:#8c897e;font-size:9px;line-height:1.6}
+.section-fields{display:grid;gap:12px;margin-top:10px}.section-field{position:relative;padding:15px;border:1px solid #e7e0d4;background:#fbf9f3}
+.section-field__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;color:#8a795c;font-size:9px;font-weight:800;letter-spacing:.12em}
+.remove-section{border:0;background:transparent;color:#98736b;font-size:10px;cursor:pointer}
+.section-field .field-label{margin-top:10px}.section-field textarea{min-height:82px}
+.add-section{width:100%;margin-top:12px;padding:11px;border:1px dashed #b9bba9;background:transparent;color:#526b57;font:700 10px "DM Sans";cursor:pointer}
+.photo-input{padding:10px!important;background:#faf8f2!important}.photo-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.photo-chip{padding:6px 9px;background:#edf0e8;color:#596d56;font-size:9px;overflow-wrap:anywhere}
+.save-letter{width:100%;margin-top:20px;padding:15px;border:0;background:var(--green);color:white;font:700 11px "DM Sans";cursor:pointer}
+.save-letter:disabled{opacity:.6;cursor:wait}.save-status{min-height:20px;margin:10px 0 0;color:#60745b;font-size:10px;line-height:1.6}.save-result{margin-top:12px;padding:15px;background:#edf1e9;border:1px solid #d8e0d2}.save-result[hidden]{display:none}.save-result a{display:block;margin:7px 0;color:#405c4c;font-size:11px;overflow-wrap:anywhere}.save-result button{padding:10px 14px;border:1px solid #c5d0bd;background:#fff;color:#405c4c;font-weight:700;font-size:10px;cursor:pointer}
+.custom-preview-wrap{position:sticky;top:18px}.preview-caption{display:flex;justify-content:space-between;margin:0 0 9px;color:#8d806b;font-size:9px;font-weight:800;letter-spacing:.16em}
+.letter-preview{min-height:690px;padding:clamp(26px,5vw,54px);background:#fffdf7;border:1px solid #d8cdb9;box-shadow:0 22px 50px #303a2c12;position:relative;overflow:hidden}
+.letter-preview:before{content:"";position:absolute;inset:12px;border:1px solid #eee6d8;pointer-events:none}
+.preview-mark{position:relative;text-align:center;color:#a58b61;font-size:18px;letter-spacing:.35em}.preview-body{position:relative;max-width:520px;margin:35px auto 0}
+.preview-kicker{color:#a58b61;font-size:9px;font-weight:800;letter-spacing:.2em;text-align:center}
+.preview-title{margin:15px 0 22px;text-align:center;font:600 clamp(35px,5vw,54px)/1.05 "Playfair Display",serif;color:#40584a;overflow-wrap:anywhere}
+.preview-to{text-align:center;color:#7c796e;font:italic 17px "Playfair Display",serif}
+.preview-opening{margin:25px auto;color:#676c60;font:14px/2 "Playfair Display",serif;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
+.preview-mini-sections{display:grid;gap:12px;margin-top:28px}.preview-mini-section{padding:15px 0;border-top:1px solid #e8e0d2}.preview-mini-section h3{margin:0 0 6px;font:600 19px "Playfair Display",serif;color:#526b57}.preview-mini-section p{margin:0;color:#77776d;font:12px/1.8 "DM Sans",sans-serif;white-space:pre-wrap;overflow-wrap:anywhere}
+.preview-signoff{margin-top:35px;text-align:right;color:#7a7a6c;font:italic 15px "Playfair Display",serif}.preview-signoff strong{display:block;margin-top:7px;color:#40584a;font-size:21px;font-weight:500}
+.preview-foot{margin-top:35px;text-align:center;color:#aa9a7b;font-size:8px;letter-spacing:.18em}
+.recipient-view #header-container,.recipient-view #footer-container,.recipient-view .custom-intro,.recipient-view .custom-editor,.recipient-view .preview-caption{display:none!important}
+.recipient-view .custom-shell{width:100%;max-width:920px;padding:25px 16px 70px}.recipient-view .custom-studio{display:block}.recipient-view .custom-preview-wrap{position:static}.recipient-view .letter-preview{min-height:0;padding:clamp(28px,7vw,72px);box-shadow:none}.recipient-view .preview-body{max-width:650px;margin-top:55px}
+.recipient-story{display:grid;gap:0;margin-top:25px}.recipient-story-section{padding:clamp(35px,7vw,75px) 0;border-top:1px solid #e7dfd1}.recipient-story-section h2{margin:10px 0 16px;font:600 clamp(28px,5vw,44px)/1.12 "Playfair Display",serif;color:#40584a}.recipient-story-section time{display:block;margin-bottom:10px;color:#a58b61;font-size:9px;font-weight:700;letter-spacing:.12em}.recipient-story-section p{color:#686e63;font:15px/2 "Playfair Display",serif;white-space:pre-wrap;overflow-wrap:anywhere}
+.recipient-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:30px 0}.recipient-photos figure{margin:0}.recipient-photos img{display:block;width:100%;max-height:460px;object-fit:cover;background:#eee8dc}.recipient-photos figcaption{padding:7px 0;color:#898575;font-size:9px}
+.recipient-closing{padding:60px 0 25px;text-align:center}.recipient-closing h2{font:600 clamp(34px,6vw,52px) "Playfair Display",serif;color:#40584a}.recipient-closing p{color:#74786d;font:italic 16px/1.8 "Playfair Display",serif}.recipient-closing strong{display:block;margin-top:20px;color:#526b57;font:italic 23px "Playfair Display",serif}
+@media(max-width:800px){.custom-studio{grid-template-columns:1fr}.custom-preview-wrap{position:static;grid-row:1}.custom-editor{grid-row:2}.letter-preview{min-height:550px}.custom-shell{padding:40px 0 65px}}
+@media(max-width:520px){.custom-shell{width:92%}.custom-editor{padding:18px}.letter-preview{padding:28px 22px;min-height:520px}.preview-body{margin-top:25px}.recipient-view .custom-shell{padding:8px}.recipient-view .letter-preview{padding:34px 23px}.recipient-photos{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="header-container"></div>
+<main class="custom-shell">
+<header class="custom-intro">
+<span class="custom-eyebrow">THE PERSONAL LETTER STUDIO</span>
+<h1>Some things are better<br><em>said in a letter.</em></h1>
+<p>Take your time. Add the little details, the memories and the photographs that make this letter yours.</p>
+<a class="custom-back" id="back-to-design" href="index.html">← Back to the designs</a>
+</header>
+<section class="custom-studio" id="custom-studio">
+<form class="custom-editor" id="letter-form">
+<span class="custom-eyebrow">WRITE YOUR LETTER</span>
+<label class="field-label" for="letter-to">TO</label><input id="letter-to" maxlength="70" placeholder="Who is this letter for?" required>
+<label class="field-label" for="letter-title">YOUR LETTER TITLE</label><input id="letter-title" maxlength="90" placeholder="A little note for you">
+<label class="field-label" for="letter-opening">YOUR OPENING MESSAGE</label><textarea id="letter-opening" maxlength="1400" placeholder="Start with what you want them to know..."></textarea>
+<p class="field-hint">This is the first message they will read when they open your letter.</p>
+<div class="field-label">ADD YOUR MOMENTS & MEMORIES</div>
+<div class="section-fields" id="section-fields"></div>
+<button type="button" class="add-section" id="add-section">+ ADD ANOTHER SECTION</button>
+<label class="field-label" for="letter-photos">ADD PHOTOS <span style="color:#9b8a6c;font-weight:500">OPTIONAL</span></label>
+<input class="photo-input" id="letter-photos" type="file" accept="image/*" multiple>
+<p class="field-hint">Up to 4 photos · 5 MB each. Photos are uploaded securely when you save your letter.</p>
+<div class="photo-list" id="photo-list"></div>
+<label class="field-label" for="letter-from">WITH LOVE, FROM</label><input id="letter-from" maxlength="70" placeholder="Your name">
+<button class="save-letter" id="save-letter" type="submit">SAVE & CREATE MY SHARE LINK ↗</button>
+<p class="save-status" id="save-status" role="status" aria-live="polite"></p>
+<div class="save-result" id="save-result" hidden><strong>Your letter is ready to share</strong><a id="letter-share-url" href="#" target="_blank" rel="noopener"></a><button type="button" id="copy-letter-link">COPY LETTER LINK</button></div>
+</form>
+<div class="custom-preview-wrap">
+<div class="preview-caption"><span>LIVE PREVIEW</span><span>YOUR WORDS, YOUR STORY</span></div>
+<article class="letter-preview" id="letter-preview">
+<div class="preview-mark" aria-hidden="true">✧　❋　✧</div>
+<div class="preview-body">
+<div class="preview-kicker" id="preview-kicker">A LETTER, MADE PERSONAL</div>
+<h2 class="preview-title" id="preview-title">A little note for you</h2>
+<p class="preview-to" id="preview-to">For someone special</p>
+<p class="preview-opening" id="preview-opening">Your opening message will appear here.</p>
+<div class="preview-mini-sections" id="preview-mini-sections"></div>
+<div class="preview-signoff">With love,<strong id="preview-from">Your name</strong></div>
+<div class="preview-foot">WRITTEN WITH CARE · FOR YOU</div>
+</div>
+</article>
+</div>
+</section>
+</main>
+<div id="footer-container"></div>
+<script src="common.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getFirestore, doc, collection, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey:"AIzaSyAljVm-tPfXC12BeRX2EMPW4MLarD4iJmY",
+  authDomain:"foryou-b3e03.firebaseapp.com",
+  projectId:"foryou-b3e03",
+  storageBucket:"foryou-b3e03.firebasestorage.app",
+  messagingSenderId:"440679421025",
+  appId:"1:440679421025:web:381d94f237010653a18620",
+  measurementId:"G-3KFW4GQ4CZ"
+};
+const app = initializeApp(firebaseConfig, "foryou-custom-letters");
+const db = getFirestore(app);
+const storage = getStorage(app);
+const auth = getAuth(app);
+const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+const occasion = params.get("occasion") || "personal-letter";
+const maxSections = 8;
+let selectedPhotos = [];
+let savedLink = "";
+
+function addSection(title, date, body) {
+  const count = $("section-fields").children.length;
+  if (count >= maxSections) return;
+  const card = document.createElement("article");
+  card.className = "section-field";
+  const top = document.createElement("div");
+  top.className = "section-field__top";
+  const label = document.createElement("span");
+  label.textContent = "MOMENT " + String(count + 1).padStart(2, "0");
+  const remove = document.createElement("button");
+  remove.type = "button"; remove.className = "remove-section"; remove.textContent = "REMOVE";
+  remove.addEventListener("click", () => { card.remove(); renumberSections(); renderPreview(); });
+  top.append(label, remove);
+  const titleLabel = document.createElement("label"); titleLabel.className = "field-label"; titleLabel.textContent = "SECTION TITLE";
+  const titleInput = document.createElement("input"); titleInput.className = "moment-title"; titleInput.maxLength = 80; titleInput.placeholder = "A moment to remember"; titleInput.value = title || "";
+  const dateLabel = document.createElement("label"); dateLabel.className = "field-label"; dateLabel.textContent = "DATE OR SMALL DETAIL (OPTIONAL)";
+  const dateInput = document.createElement("input"); dateInput.className = "moment-date"; dateInput.maxLength = 60; dateInput.placeholder = "A date, place or little detail"; dateInput.value = date || "";
+  const bodyLabel = document.createElement("label"); bodyLabel.className = "field-label"; bodyLabel.textContent = "YOUR WORDS";
+  const bodyInput = document.createElement("textarea"); bodyInput.className = "moment-body"; bodyInput.maxLength = 1400; bodyInput.placeholder = "Write a memory, a wish, or anything you want to say..."; bodyInput.value = body || "";
+  [titleInput,dateInput,bodyInput].forEach(el => el.addEventListener("input", renderPreview));
+  card.append(top,titleLabel,titleInput,dateLabel,dateInput,bodyLabel,bodyInput);
+  $("section-fields").append(card);
+  renumberSections();
+}
+function renumberSections() {
+  Array.from($("section-fields").children).forEach((card,index) => { card.querySelector(".section-field__top span").textContent = "MOMENT " + String(index + 1).padStart(2,"0"); });
+  $("add-section").disabled = $("section-fields").children.length >= maxSections;
+  $("add-section").textContent = $("add-section").disabled ? "SECTION LIMIT REACHED" : "+ ADD ANOTHER SECTION";
+}
+function getSections() {
+  return Array.from($("section-fields").children).map(card => ({
+    title:card.querySelector(".moment-title").value.trim(),
+    date:card.querySelector(".moment-date").value.trim(),
+    body:card.querySelector(".moment-body").value.trim()
+  })).filter(section => section.title || section.date || section.body);
+}
+function renderPreview() {
+  $("preview-title").textContent = $("letter-title").value.trim() || "A little note for you";
+  $("preview-to").textContent = "For " + ($("letter-to").value.trim() || "someone special");
+  $("preview-opening").textContent = $("letter-opening").value.trim() || "Your opening message will appear here.";
+  $("preview-from").textContent = $("letter-from").value.trim() || "Your name";
+  const wrap = $("preview-mini-sections"); wrap.replaceChildren();
+  getSections().slice(0,3).forEach(section => {
+    const item = document.createElement("section"); item.className = "preview-mini-section";
+    const h = document.createElement("h3"); h.textContent = section.title || "A little memory";
+    const p = document.createElement("p"); p.textContent = section.body || section.date;
+    item.append(h,p); wrap.append(item);
+  });
+}
+["letter-to","letter-title","letter-opening","letter-from"].forEach(id => $(id).addEventListener("input", renderPreview));
+$("add-section").addEventListener("click", () => { addSection(); renderPreview(); });
+$("letter-photos").addEventListener("change", event => {
+  const files = Array.from(event.target.files || []);
+  if (files.length > 4) { $("save-status").textContent = "Please choose no more than 4 photos."; event.target.value = ""; selectedPhotos = []; return; }
+  const invalid = files.find(file => !file.type.startsWith("image/") || file.size > 5 * 1024 * 1024);
+  if (invalid) { $("save-status").textContent = "Each photo must be an image smaller than 5 MB."; event.target.value = ""; selectedPhotos = []; return; }
+  selectedPhotos = files;
+  $("photo-list").replaceChildren();
+  files.forEach(file => { const chip = document.createElement("span"); chip.className = "photo-chip"; chip.textContent = file.name; $("photo-list").append(chip); });
+});
+const occasionTitle = params.get("title") || "A personal letter";
+$("preview-kicker").textContent = occasionTitle.toUpperCase().slice(0,48);
+$("letter-title").value = occasionTitle;
+$("letter-to").value = params.get("to") || "";
+$("letter-from").value = params.get("from") || "";
+$("letter-opening").value = params.get("message") || "";
+$("back-to-design").href = occasion && occasion !== "personal-letter" ? "cards/" + occasion + ".html" : "index.html";
+addSection(); addSection(); renderPreview();
+
+async function loadLetter(id) {
+  document.body.classList.add("recipient-view","shared-link-view");
+  $("custom-studio").classList.add("recipient-studio");
+  $("custom-intro").hidden = true;
+  $("letter-form").hidden = true;
+  $("custom-studio").style.display = "block";
+  $("preview-caption").hidden = true;
+  $("letter-preview").replaceChildren();
+  $("save-status").textContent = "Opening your letter…";
+  try {
+    const snapshot = await getDoc(doc(db,"letters",id));
+    if (!snapshot.exists()) throw new Error("This letter may have expired or the link is incorrect.");
+    const data = snapshot.data();
+    const paper = $("letter-preview");
+    const mark = document.createElement("div"); mark.className = "preview-mark"; mark.textContent = "✧　❋　✧"; paper.append(mark);
+    const body = document.createElement("div"); body.className = "preview-body";
+    const kicker = document.createElement("div"); kicker.className = "preview-kicker"; kicker.textContent = (data.occasionTitle || "A LETTER, MADE PERSONAL").toUpperCase();
+    const heading = document.createElement("h1"); heading.className = "preview-title"; heading.textContent = data.title || "A little note for you";
+    const to = document.createElement("p"); to.className = "preview-to"; to.textContent = "For " + (data.to || "someone special");
+    const opening = document.createElement("p"); opening.className = "preview-opening"; opening.textContent = data.opening || "";
+    body.append(kicker,heading,to,opening);
+    const story = document.createElement("div"); story.className = "recipient-story";
+    (data.sections || []).forEach(section => {
+      const block = document.createElement("section"); block.className = "recipient-story-section";
+      const h = document.createElement("h2"); h.textContent = section.title || "A little memory";
+      block.append(h);
+      if (section.date) { const date = document.createElement("time"); date.textContent = section.date; block.append(date); }
+      const p = document.createElement("p"); p.textContent = section.body || ""; block.append(p); story.append(block);
+    });
+    body.append(story);
+    if (Array.isArray(data.photos) && data.photos.length) {
+      const gallery = document.createElement("div"); gallery.className = "recipient-photos";
+      data.photos.forEach(photo => { const figure = document.createElement("figure"); const img = document.createElement("img"); img.src = photo.url; img.alt = photo.caption || "A photo shared in this letter"; img.loading = "lazy"; const caption = document.createElement("figcaption"); caption.textContent = photo.caption || ""; figure.append(img,caption); gallery.append(figure); });
+      body.append(gallery);
+    }
+    const closing = document.createElement("div"); closing.className = "recipient-closing";
+    const closeTitle = document.createElement("h2"); closeTitle.textContent = "A little something, just for you.";
+    const closeText = document.createElement("p"); closeText.textContent = "Some words are worth keeping close.";
+    const signature = document.createElement("strong"); signature.textContent = data.from || "With love";
+    closing.append(closeTitle,closeText,signature); body.append(closing); paper.append(body);
+    $("save-status").textContent = "";
+    document.title = (data.title || "A letter for you") + " — For You";
+  } catch(error) {
+    $("letter-preview").textContent = error.message || "We couldn't open this letter. Please check the link and try again.";
+    $("save-status").textContent = "";
+  }
+}
+const letterId = params.get("id");
+if (letterId) {
+  $("custom-intro").hidden = true;
+  $("letter-form").hidden = true;
+  $("preview-caption").hidden = true;
+  loadLetter(letterId);
+}
+
+$("letter-form").addEventListener("submit", async event => {
+  event.preventDefault();
+  const to = $("letter-to").value.trim();
+  if (!to) { $("save-status").textContent = "Please add the recipient's name."; return; }
+  if (!$("letter-opening").value.trim() && !getSections().length) { $("save-status").textContent = "Add an opening message or at least one moment before saving."; return; }
+  const button = $("save-letter"); button.disabled = true; button.textContent = "SAVING YOUR LETTER…";
+  $("save-result").hidden = true; $("save-status").textContent = "Preparing your letter and uploading photos…";
+  try {
+    const credential = auth.currentUser ? {user:auth.currentUser} : await signInAnonymously(auth);
+    const uid = credential.user.uid;
+    const letterRef = doc(collection(db,"letters"));
+    const photos = [];
+    for (let i=0;i<selectedPhotos.length;i++) {
+      const file = selectedPhotos[i];
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g,"_").slice(0,80);
+      const imageRef = storageRef(storage,"letters/" + uid + "/" + letterRef.id + "/" + (i+1) + "-" + safeName);
+      await uploadBytes(imageRef,file,{contentType:file.type});
+      photos.push({url:await getDownloadURL(imageRef),caption:file.name.replace(/\.[^.]+$/,"").slice(0,80)});
+    }
+    await setDoc(letterRef,{
+      ownerUid:uid,occasion:occasion,occasionTitle:occasionTitle,
+      to:to,title:$("letter-title").value.trim() || "A little note for you",
+      opening:$("letter-opening").value.trim(),sections:getSections(),photos:photos,
+      from:$("letter-from").value.trim(),createdAt:serverTimestamp()
+    });
+    savedLink = location.origin + location.pathname + "?id=" + letterRef.id;
+    $("letter-share-url").href = savedLink; $("letter-share-url").textContent = savedLink;
+    $("save-result").hidden = false; $("save-status").textContent = "Your letter has been saved. The link is ready to share.";
+    $("save-result").scrollIntoView({behavior:"smooth",block:"nearest"});
+  } catch(error) {
+    console.error("Could not save custom letter:",error);
+    let message = "We couldn't save the letter. Please try again.";
+    if (error.code === "auth/operation-not-allowed") message = "Anonymous sign-in is not enabled yet. Enable it in Firebase Authentication → Sign-in method.";
+    else if (error.code === "storage/unauthorized" || error.code === "permission-denied") message = "Firebase permissions need a quick setup. Apply the Firestore and Storage rules from firebase-setup.md.";
+    else if (error.code === "storage/bucket-not-found") message = "Firebase Storage is not enabled for this project yet. Enable it in Firebase Console.";
+    else if (error.message) message += " " + error.message;
+    $("save-status").textContent = message;
+  } finally { button.disabled = false; button.textContent = "SAVE & CREATE MY SHARE LINK ↗"; }
+});
+$("copy-letter-link").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(savedLink); $("save-status").textContent = "Letter link copied. Send it to someone special."; }
+  catch { $("save-status").textContent = "Please copy the link shown above."; }
+});
+</script>
+</body>
+</html>
