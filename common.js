@@ -2,6 +2,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
   const basePath = currentPath.includes("/cards/") ? "../" : "./";
 
+  // Give simple ready-made cards a proper long-scroll recipient experience too.
+  if (currentPath.includes('/cards/') && document.body.classList.contains('recipient-view') && !document.querySelector('.recipient-story, .story-section, .ready-made-story')) {
+    const slug = currentPath.split('/').pop().replace(/\\.html?$/i, '').toLowerCase();
+    const stories = {
+      diwali: {title:'A little more light for you',items:[['A little light goes a long way','May every small light remind you that hope can begin in the simplest places. May your days feel brighter, your heart feel lighter and your home be filled with warmth.'],['Room for new beginnings','May the year ahead bring fresh possibilities, kind people and the courage to welcome every good thing coming your way.'],['A home full of warmth','Wishing you laughter around the table, peace in your heart and moments with the people who make life feel like home.']]},
+      holi: {title:'A little more colour for your day',items:[['A little more colour','May life surprise you with bright moments, unexpected happiness and reasons to smile even on ordinary days.'],['Joy in the little moments','May laughter find its way into your conversations, your plans and all the small things that make a day memorable.'],['Together is the best colour','Here is to kind hearts, good company and memories that stay colourful long after the celebrations are over.']]},
+      rakhi: {title:'A bond worth celebrating',items:[['A bond beyond the thread','Some connections are made of shared laughter, familiar silences and a thousand little acts of care. May yours always stay strong.'],['Memories that stay','From silly arguments to the moments that matter, may every memory remind you how special this bond is.'],['Always in each other’s corner','No matter where life takes you, may you always find comfort in knowing someone is cheering you on.']]},
+      default: {title:'A few more words for you',items:[['The little things matter','May you find happiness in ordinary moments, comfort in familiar places and kindness in unexpected corners.'],['Keep this close','You deserve to feel appreciated, supported and remembered. May this little note bring a smile whenever you need one.'],['Here’s to what comes next','May the days ahead bring new reasons to celebrate, good memories to keep and plenty of moments worth sharing.']] }
+    };
+    let theme = stories.default;
+    if (slug.includes('diwali')) theme = stories.diwali;
+    else if (slug.includes('holi')) theme = stories.holi;
+    else if (slug.includes('rakhi')) theme = stories.rakhi;
+    else if (slug.includes('raksha-bandhan')) theme = stories.rakhi;
+    const host = document.querySelector('main .preview, main .greeting, main .card-frame');
+    if (host) {
+      const story = document.createElement('div'); story.className = 'ready-made-story';
+      const heading = document.createElement('h2'); heading.textContent = theme.title; story.append(heading);
+      theme.items.forEach((item,index) => { const section = document.createElement('section'); section.className = 'ready-made-story__section'; const number = document.createElement('span'); number.textContent = '0' + (index + 1); const title = document.createElement('h3'); title.textContent = item[0]; const copy = document.createElement('p'); copy.textContent = item[1]; section.append(number,title,copy); story.append(section); });
+      const signoff = document.createElement('p'); signoff.className = 'ready-made-story__signoff'; signoff.textContent = 'A little note, made with care · For You'; story.append(signoff); host.insertAdjacentElement('afterend', story);
+    }
+  }
+
   // Offer two distinct ways to create a greeting on every card page.
   if (currentPath.includes('/cards/') && !document.body.classList.contains('recipient-view')) {
     const intro = document.querySelector('main .intro, main header.intro');
