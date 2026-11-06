@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /letters/{letterId} {
+      // A shared letter can be opened by anyone who has its unguessable link ID.
+      allow get: if true;
+      allow list: if false;
+      // Only the anonymous account that created a letter can create or change it.
+      allow create: if request.auth != null
+        && request.resource.data.ownerUid == request.auth.uid;
+      allow update, delete: if request.auth != null
+        && resource.data.ownerUid == request.auth.uid;
+    }
+  }
+}
